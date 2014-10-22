@@ -1,0 +1,17 @@
+{
+  "supernew": true,
+  "sub": true,
+  "laxbreak": true,
+  "expr": true,
+  "undef": true,
+  "trailing": true,
+  "browser": true,
+  "globals": {
+    "chrome": true,
+    "console": true,
+    "angular": true,
+    "App": true,
+    "$": true,
+    "debug": true
+  }
+}

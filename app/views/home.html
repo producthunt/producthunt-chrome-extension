@@ -1,0 +1,28 @@
+<div ng-show="goToPH" ng-class="{ 'animated flipInX': goToPH }" class="kitty">
+  <img src="/images/glasshole-kitty-medium.png">
+  <strong class="loading">Opening www.producthunt.com…</strong>
+</div>
+
+<section class="post-group clearfix" ng-repeat="postGroup in postGroups" ng-class="{ 'animated flipOutX': goToPH }">
+  <h2 class="day animated fadeInUp">{{ postGroup.day | date: 'fullDate' }}</h2>
+  <ul class="posts clearfix animated fadeInUp">
+    <li class="post" ng-repeat="post in postGroup.posts">
+      <div class="wrap">
+        <a class="thumb" href="{{ post.redirect_url }}" target="_blank">
+          <img ng-src="{{ post.screenshot_url['300px'] }}">
+        </a>
+        <p>
+          <a class="title" href="{{ post.redirect_url}}" target="_blank">{{ post.name }}</a>
+          <span class="tagline">{{ post.tagline }}</span>
+          <small>
+            <span class="stats" ng-show="post.votes_count">&#x25b2; {{ post.votes_count }}</span>
+            <a class="stats" href="{{ post.discussion_url }}" ng-show="post.comments_count" ><i class="fa fa-comment"></i> {{ post.comments_count }}</a>
+            <img ng-src="{{ post.user.image_url['48px'] }}" class="submitter-image"><a href="{{ post.user.profile_url }}" class="submitter">{{ post.user.name }}<span></a>
+        </p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<div ng-show="fetchingPosts" ng-hide="errorText" ng-init="fetchPosts()" class="loading animated fadeIn"> Loading… </div>
+<div ng-show="errorText" class="error animated fadeIn">{{ errorText }}</div>
