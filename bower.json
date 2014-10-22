@@ -1,0 +1,12 @@
+{
+  "name": "producthunt",
+  "version": "0.0.0",
+  "dependencies": {
+    "underscore": ">=1.6.0",
+    "jquery": ">=2.1.0",
+    "angular": ">=1.2.14",
+    "angular-route": ">=1.2.14",
+    "fontawesome": "~4.1.0"
+  },
+  "devDependencies": {}
+}
