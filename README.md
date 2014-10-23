@@ -1,12 +1,24 @@
 ## Product Hunt Chrome Extension
 
-### Note
+![](https://lh3.googleusercontent.com/j49QTv31WOp7hCK0npAyUVP_NEitcdsCv9jsJVDU7VYy9_NqJwZHrQdAZzchlHYiSO8qfrhe9Q=s640-h400-e365-rw)
 
-This extension has been written as a little side project on a 2-3 afternoons and one plane flight. We decided to opensource it to enable more people to improve it and most importantly provide an example app for our [official Product Hunt API](http://api.producthunt.com/v1/docs).
+
+## Welcome
+
+This is the official [Product Hunt](http://www.producthunt.com) extension.
+
+It has been written as a little side project on a 2-3 afternoons, one plane flight, half a lunch and during a longer phone-call with my telecom provider. We decided to opensource it to enable more people to improve it and most importantly provide an example app for our [official Product Hunt API](http://api.producthunt.com/v1/docs).
 
 * If you have ideas for improvements please feel free to submit pull-requests.
 * If you have questions please open up issues.
+* If you commit code treat it as if it would be your own code-base.
 * Also feel free to reach out on twitter to [@andreasklinger](http://twitter.com/andreasklinger)
+
+
+### How to install
+
+You can install this extension in the [Google Chrome Webstore](https://chrome.google.com/webstore/detail/product-hunt/likjafohlgffamccflcidmedfongmkee)
+
 
 ### Setup Dev
 
