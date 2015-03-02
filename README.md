@@ -1,71 +1,55 @@
-## Product Hunt Chrome Extension
+# Product Hunt Chrome Extension
 
-![](https://lh3.googleusercontent.com/j49QTv31WOp7hCK0npAyUVP_NEitcdsCv9jsJVDU7VYy9_NqJwZHrQdAZzchlHYiSO8qfrhe9Q=s640-h400-e365-rw)
+> This is the official [Product Hunt](http://www.producthunt.com) extension.
 
+## Chrome App Store
 
-## Welcome
+You can get this extension frome the [Google Chrome Webstore](https://chrome.google.com/webstore/detail/product-hunt/likjafohlgffamccflcidmedfongmkee)
 
-This is the official [Product Hunt](http://www.producthunt.com) extension.
+## Development
 
-It has been written as a little side project on a 2-3 afternoons, one plane flight, half a lunch and during a longer phone-call with my telecom provider. We decided to opensource it to enable more people to improve it and most importantly provide an example app for our [official Product Hunt API](http://api.producthunt.com/v1/docs).
+### Development Dependencies
 
-* If you have ideas for improvements please feel free to submit pull-requests.
-* If you have questions please open up issues.
-* If you commit code treat it as if it would be your own code-base.
-* Also feel free to reach out on twitter to [@andreasklinger](http://twitter.com/andreasklinger)
+| Name                | Version | Installation                                                                       |
+| --------------------|---------|------------------------------------------------------------------------------------|
+| Node.js             | 0.10.x  | [Instructions](http://nodejs.org/download/)                                        |
+| Gulp                | 3.8.x   | [Instructions](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) |
 
+### Setup
 
-### How to install
+* Clone the repository:
 
-You can install this extension in the [Google Chrome Webstore](https://chrome.google.com/webstore/detail/product-hunt/likjafohlgffamccflcidmedfongmkee)
+```
+$ git clone git@github.com:producthunt/producthunt-chrome-extension.git
+$ cd producthunt-chrome-extension
+```
 
+* Install npm dependencies:
 
-### Setup Dev
+```
+$ npm install
+```
 
-* Copypaste `config-dist.js` to `config.js`
-  * update the client id/secret with values from an oauth app on either producthunt.com or your local development system
-* `npm install`
-* `bower install`
-* Go to `chrome://extensions`
-   * click on `developer mode`
-   * click on `Load unpacked extension`
-   * select the `/app` folder
+* Load the extension:
 
+1. Open Google Chrome and type `chrome://extensions` inside the address bar
+1. Click on `developer mode`
+1. Click on `Load unpacked extension`
+1. Select the `/app` folder
+1. You are good to go
 
-### Publish the extension
+## Contributing
 
-* `grunt build`
-* Go to https://chrome.google.com/webstore/developer/dashboard
-  * (you might need to be added to the app as admin for this - or create your own app)
-  * Update the app with the zip in `/package`
+See [CONTRIBUTING](CONTRIBUTING.md)
 
+## Contributors
 
-### Dev Todo
+See all [contributors](https://github.com/producthunt/producthunt-chrome-extension/graphs/contributors)
 
-* [ ] oauth2 user sign-in + voting
-* [ ] clever caching
-* [ ] switch to angular resources
+## Changes
 
-### Feature ideas
+See [CHANGELOG](CHANGELOG.md)
 
-#### "As seen on product hunt"
+## License
 
-* show an alert if a url is on producthunt
-* or even show an alert if a url is about a product on producthunt
-    * eg a techcrunch article mentioning X
-    * we can use related links for this
-* show the post modal pane when this alert is clicked
-
-
-## Contributions
-
-1. Fork it
-1. Create your feature branch (`git checkout -b my-new-feature`)
-1. Commit your changes (`git commit -am 'Add some feature'`)
-1. Push to the branch (`git push origin my-new-feature`)
-1. Create new Pull Request
-1. Don't forget to add yourself to the list below ;)
-
-#### Contributors
-
-* [@andreasklinger](http://github.com/andreasklinger)
+See [LICENSE](LICENSE)

@@ -1,40 +1,29 @@
 {
-    "chrome_url_overrides": {
-        "newtab": "index.html"
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "name": "__MSG_appName__",
+  "version": "0.0.24",
+  "manifest_version": 2,
+  "description": "__MSG_appDescription__",
+  "icons": {
+    "16": "images/icon-16.png",
+    "128": "images/icon-128.png"
+  },
+  "default_locale": "en",
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icon-19.png",
+      "38": "images/icon-38.png"
     },
-    "name": "__MSG_appName__",
-    "version": "0.0.24",
-    "manifest_version": 2,
-    "description": "__MSG_appDescription__",
-    "icons": {
-        "16": "images/icon-16.png",
-        "128": "images/icon-128.png"
-    },
-    "default_locale": "en",
-    "background": {
-        "scripts": [
-            "scripts/background.js"
-        ]
-    },
-    "browser_action": {
-        "default_icon": {
-            "19": "images/icon-19.png",
-            "38": "images/icon-38.png"
-        },
-        "default_title": "Product Hunt",
-        "default_popup": "index.html"
-    },
-    "options_page": "options.html",
-    "omnibox": {
-        "keyword": "Product Hunt"
-    },
-    "permissions": [
-        "webRequest",
-        "tabs",
-        "http://*/*",
-        "https://*/*",
-        "storage"
-    ],
-    "web_accessible_resources": [],
-    "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com https://query.yahooapis.com; object-src 'self'"
+    "default_title": "__MSG_title__",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "webRequest",
+    "tabs"
+  ],
+  "web_accessible_resources": [],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com https://query.yahooapis.com; object-src 'self'"
 }
