@@ -24,10 +24,23 @@ $ git clone git@github.com:producthunt/producthunt-chrome-extension.git
 $ cd producthunt-chrome-extension
 ```
 
+* Edit the config file:
+
+```
+$ cp .env.example .env
+$ $EDITOR .env
+```
+
 * Install npm dependencies:
 
 ```
 $ npm install
+```
+
+* Create the initial build
+
+```
+$ gulp build
 ```
 
 * Load the extension:
@@ -35,8 +48,52 @@ $ npm install
 1. Open Google Chrome and type `chrome://extensions` inside the address bar
 1. Click on `developer mode`
 1. Click on `Load unpacked extension`
-1. Select the `/app` folder
+1. Select the `/build` folder
 1. You are good to go
+
+### Configurations (.env)
+
+| Task                | Description                                   |
+| --------------------|-----------------------------------------------|
+| SEARCH_URL          | ProductHunt search page URL address           |
+
+### Gulp Tasks
+
+| Task                | Description                                   |
+| --------------------|-----------------------------------------------|
+| build               | Compile, minify and copy the extension files  |
+| build --watch       | Rebuild on file change                        |
+| clean               | Clean the build directory                     |
+| test                | Run all tests                                 |
+| test-acceptance     | Run the acceptance tests                      |
+
+Example usage:
+
+```
+$ gulp clean
+$ gulp build
+```
+
+### Tests
+
+* Install the selenium server and Chromedriver:
+
+```
+$ node_modules/.bin/install_selenium
+$ node_modules/.bin/install_chromedriver
+```
+
+* Start selenium with chromedriver:
+
+```
+$ node_modules/.bin/start_selenium_with_chromedriver
+```
+
+* Run the tests:
+
+```
+$ NODE_ENV=test gulp test
+```
 
 ## Contributing
 
