@@ -1,0 +1,42 @@
+@import "mixins/img";
+
+@mixin loader {
+  min-height: 40px;
+  min-width: 40px;
+
+  opacity: 1;
+
+  &.m-hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    height: 40px;
+    width: 40px;
+    @include img(40px, 40px, "loader");
+    @include animation-name(rotate);
+    @include animation-duration(1.2s);
+    @include animation-iteration-count(infinite);
+    @include animation-timing-function(linear);
+    @include transition(opacity .1s ease);
+
+    // centering
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+}
+
+@include keyframes(rotate) {
+  from {
+    @include transform(rotate(0deg));
+  }
+  to {
+    @include transform(rotate(360deg));
+  }
+}

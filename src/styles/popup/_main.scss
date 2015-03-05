@@ -1,0 +1,19 @@
+@import "mixins/loader";
+
+body,
+iframe {
+  width: $width;
+  height: $height;
+}
+
+iframe {
+  border: none;
+}
+
+.loader {
+  @include loader;
+}
+
+.hidden {
+  display: none;
+}
