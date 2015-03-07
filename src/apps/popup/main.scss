@@ -1,4 +1,12 @@
-@import "mixins/loader";
+@import "bourbon";
+@import "common/loader/main";
+
+// Variables
+
+$width:  400px;
+$height: 500px;
+
+// Definitions
 
 body,
 iframe {

@@ -41,8 +41,8 @@ var argv = gutil.env;
 
 var patterns = {
   html: 'src/**/*.html',
-  img: 'src/img/*.png',
-  css: 'src/styles/*.scss',
+  img: 'src/**/*.png',
+  css: 'src/**/*.scss',
   json: 'src/**/*.json'
 };
 
@@ -53,22 +53,12 @@ var patterns = {
 var dest = 'build' || argv.build;
 
 /**
- * Out destinations.
- */
-
-var dests = {
-  img: dest + '/img/',
-  css: dest + '/css/',
-  js: dest + '/js/'
-};
-
-/**
  * JavaScript bundles.
  */
 
 var bundles = [
-  { entry: './src/js/popup/app.js', out: 'popup.js' },
-  { entry: './src/js/background/app.js', out: 'background.js' }
+  { entry: './src/apps/popup/main.js', out: 'apps/popup/main.js' },
+  { entry: './src/apps/background/main.js', out: 'apps/background/main.js' }
 ];
 
 /**
@@ -103,7 +93,7 @@ gulp.task('js', function() {
         .pipe(source(bundle.out))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(gulp.dest(dests.js));
+        .pipe(gulp.dest(dest));
     };
 
     if (argv.watch) {
@@ -145,10 +135,10 @@ gulp.task('scss', function() {
   gulp.src(patterns.css)
     .pipe(watch(patterns.css))
     .pipe(sass({
-      imagePath: '/img',
-      includePaths: bourbon.includePaths
+      imagePath: '',
+      includePaths: [bourbon.includePaths, './src']
     }))
-    .pipe(gulp.dest(dests.css));
+    .pipe(gulp.dest(dest));
 });
 
 /**
@@ -159,7 +149,7 @@ gulp.task('img', function() {
   gulp.src(patterns.img)
     .pipe(watch(patterns.img))
     .pipe(imagemin())
-    .pipe(gulp.dest(dests.img));
+    .pipe(gulp.dest(dest));
 });
 
 /**
