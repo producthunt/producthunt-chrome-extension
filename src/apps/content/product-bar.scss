@@ -1,0 +1,73 @@
+// Variables
+
+$font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
+$orange:      #db552e;
+$white:       #fff;
+
+// Mixins
+
+@mixin box($margin-left) {
+  background-color: #e27755;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 16px;
+  height: 34px;
+  line-height: 34px;
+  margin-left: $margin-left;
+  min-width: 30px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+// Declarations
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $orange;
+  color: $white;
+  font-family: $font-family;
+  line-height: 48px;
+}
+
+h1 {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  margin-left: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+h2 {
+  -webkit-font-smoothing: antialiased !important;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: normal;
+  margin-left: 20px;
+  text-rendering: optimizeLegibility !important;
+}
+
+.details {
+  float: left;
+}
+
+.votes {
+  @include box(10px);
+}
+
+.comments {
+  @include box(2px);
+}
+
+.close {
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  margin-right: 20px;
+  padding: 0 15px;
+}

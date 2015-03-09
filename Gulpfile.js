@@ -20,6 +20,7 @@ var ignore = require('gulp-ignore');
 var rimraf = require('rimraf');
 var imagemin = require('gulp-imagemin');
 var uglify = require('gulp-uglify');
+var plumber = require('gulp-plumber');
 var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
 var fs = require('fs');
@@ -58,7 +59,8 @@ var dest = 'build' || argv.build;
 
 var bundles = [
   { entry: './src/apps/popup/main.js', out: 'apps/popup/main.js' },
-  { entry: './src/apps/background/main.js', out: 'apps/background/main.js' }
+  { entry: './src/apps/background/main.js', out: 'apps/background/main.js' },
+  { entry: './src/apps/content/main.js', out: 'apps/content/main.js' }
 ];
 
 /**
@@ -134,6 +136,7 @@ gulp.task('json', function() {
 gulp.task('scss', function() {
   gulp.src(patterns.css)
     .pipe(watch(patterns.css))
+    .pipe(plumber())
     .pipe(sass({
       imagePath: '',
       includePaths: [bourbon.includePaths, './src']

@@ -1,0 +1,29 @@
+@import "bourbon";
+
+// Variables
+
+$bar-height: 50px;
+
+// Declarations
+
+.__phc-bar {
+  background: #fff;
+  border: 0;
+  bottom: auto;
+  box-sizing: content-box;
+  height: $bar-height;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: fixed;
+  text-align: left;
+  top: 0;
+  width: 100%;
+  z-index: 2147483630;
+}
+
+.__phc-body {
+  margin-top: $bar-height;
+  position: absolute;
+}
