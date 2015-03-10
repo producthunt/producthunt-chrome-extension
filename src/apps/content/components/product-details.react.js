@@ -7,6 +7,18 @@ let React = require('react');
 /**
  * Product Details View.
  *
+ * Renders the product information inside the product bar.
+ *
+ * Usage:
+ *
+ * ```js
+ * <ProductDetails product=product />
+ * ```
+ *
+ * Properties:
+ *
+ * - `product`: product from the ProductHunt API
+ *
  * @class
  */
 

@@ -14,6 +14,20 @@ const TWITTER_BASE = 'https://platform.twitter.com/widgets/tweet_button.html';
 /**
  * Tweet Button Component.
  *
+ * Renders Twitter tweet button inside an iframe.
+ *
+ * Usage:
+ *
+ * ```js
+ * <TweetButton via="handle" url="https://www.producthunt.com" text="Check this out!" />
+ * ```
+ *
+ * Properties:
+ *
+ * - `via`:  via handle
+ * - `url`:  url to be shared
+ * - `text`: text for the tweet
+ *
  * @class
  */
 

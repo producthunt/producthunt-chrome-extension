@@ -11,7 +11,18 @@ let React = require('react');
 let body = document.body;
 
 /**
- * Modifies the body by adding a class.
+ * Modifies the body by adding a class. It will remove the class
+ * when unmounting it.
+ *
+ * Usage:
+ *
+ * ```js
+ * <BodyModifier className="class-you-want-to-add" />
+ * ```
+ *
+ * Properties:
+ *
+ * - `className`: name of the class to be added
  *
  * @class
  */

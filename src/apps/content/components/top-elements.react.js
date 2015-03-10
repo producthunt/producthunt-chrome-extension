@@ -20,7 +20,16 @@ let doc = document;
 let win = window;
 
 /**
- * Manage the top DOM elements.
+ * Top Elements Component.
+ *
+ * Manage all DOM elements that are on top of the page (beginning of the page)
+ * and move them below the product bar, when shown.
+ *
+ * Usage:
+ *
+ * ```js
+ * <TopElements />
+ * ```
  *
  * @class
  */

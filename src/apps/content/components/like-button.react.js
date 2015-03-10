@@ -12,7 +12,20 @@ let buildUrl = require('../util/build-url');
 const FB_BASE = 'https://www.facebook.com/plugins/like.php';
 
 /**
- * Like Button Component.
+ * Like Button Component
+ *
+ * Inserts a Facebook like button on the page.
+ *
+ * Usage:
+ *
+ * ```js
+ * <LikeButton url="http://www.producthunt.com" appId="fb-app-id" />
+ * ```
+ *
+ * Properties:
+ *
+ * - `url`:   Page that the user will like
+ * - `appId`: Facebook application ID
  *
  * @class
  */

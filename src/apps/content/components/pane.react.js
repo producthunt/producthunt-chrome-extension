@@ -8,6 +8,22 @@ let BodyModifier = require('./body-modifier.react');
 /**
  * Product Pane View.
  *
+ * Opens up the ProductHunt product pane in an iframe on
+ * the right side of the screen. Also, adds an overlay and
+ * disables scrolling on the body.
+ *
+ * Usage:
+ *
+ * ```js
+ * <Pane url="https://www.producthunt.com/posts/mixpanel" onClick=fn />
+ * ```
+ *
+ * Properties:
+ *
+ * - `url`:       Product URL
+ * - `bodyClass`: Body class to be added when showing the overlay
+ * - `onClick`:   Overlay click event
+ *
  * @class
  */
 

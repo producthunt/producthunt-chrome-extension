@@ -26,6 +26,19 @@ const CSS_URL = chrome.extension.getURL('apps/content/product-bar.css');
 /**
  * Product Bar.
  *
+ * The main component that will build the actual product bar.
+ *
+ * Usage:
+ *
+ * ```js
+ * <ProductBar />
+ * ```
+ *
+ * State:
+ *
+ * - `product`: the product that will be shown
+ * - `pane`: whether to show the pane or not
+ *
  * @class
  */
 
