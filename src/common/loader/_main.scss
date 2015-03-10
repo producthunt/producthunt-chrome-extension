@@ -1,4 +1,4 @@
-@import "mixins/img";
+@import "common/img/main";
 
 @mixin loader {
   min-height: 40px;
@@ -16,7 +16,7 @@
     display: block;
     height: 40px;
     width: 40px;
-    @include img(40px, 40px, "loader");
+    @include img(40px, 40px, "common/loader/loader");
     @include animation-name(rotate);
     @include animation-duration(1.2s);
     @include animation-iteration-count(infinite);

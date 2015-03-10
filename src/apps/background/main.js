@@ -1,5 +1,7 @@
 // TODO(vesln): Implement suggestions in the future?
 
+require('./x-frame');
+
 /**
  * Constants.
  */

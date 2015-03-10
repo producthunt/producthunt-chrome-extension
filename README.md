@@ -55,7 +55,17 @@ $ gulp build
 
 | Task                | Description                                   |
 | --------------------|-----------------------------------------------|
+| POPUP_URL           | The URL for the popup iframe                  |
 | SEARCH_URL          | ProductHunt search page URL address           |
+| API_BASE_URL        | API base url                                  |
+| PRODUCT_HUNT_HOST   | ProductHunt host (PH bar/referrers)           |
+| AUTH_TOKEN          | API Auth token                                |
+| PRODUCT_BAR_ID      | ID attribute of the pH bar                    |
+| PRODUCT_BAR_HEIGHT  | Height of the PH bar                          |
+| BODY_CLASS          | Class that will be added when PH bar is open  |
+| OVERLAY_BODY_CLASS  | Class that will be added when pane is open    |
+| FB_APP_ID           | Facebook APP ID                               |
+| TWITTER_VIA         | Tweet "via"                                   |
 
 ### Gulp Tasks
 
@@ -66,6 +76,7 @@ $ gulp build
 | clean               | Clean the build directory                     |
 | test                | Run all tests                                 |
 | test-acceptance     | Run the acceptance tests                      |
+| test-unit           | Run the unit tests                            |
 
 Example usage:
 
@@ -93,6 +104,14 @@ $ node_modules/.bin/start_selenium_with_chromedriver
 
 ```
 $ NODE_ENV=test gulp test
+```
+
+### Debug
+
+To enable the debug output in the console:
+
+```
+localStorage.debug = '*';
 ```
 
 ## Contributing

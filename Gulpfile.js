@@ -20,10 +20,13 @@ var ignore = require('gulp-ignore');
 var rimraf = require('rimraf');
 var imagemin = require('gulp-imagemin');
 var uglify = require('gulp-uglify');
+var plumber = require('gulp-plumber');
 var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
 var fs = require('fs');
 var mocha = require('gulp-spawn-mocha');
+var jest = require('jest-cli');
+var harmonize = require('harmonize')();
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
@@ -41,8 +44,8 @@ var argv = gutil.env;
 
 var patterns = {
   html: 'src/**/*.html',
-  img: 'src/img/*.png',
-  css: 'src/styles/*.scss',
+  img: 'src/**/*.{png,svg}',
+  css: 'src/**/*.scss',
   json: 'src/**/*.json'
 };
 
@@ -53,22 +56,13 @@ var patterns = {
 var dest = 'build' || argv.build;
 
 /**
- * Out destinations.
- */
-
-var dests = {
-  img: dest + '/img/',
-  css: dest + '/css/',
-  js: dest + '/js/'
-};
-
-/**
  * JavaScript bundles.
  */
 
 var bundles = [
-  { entry: './src/js/popup/app.js', out: 'popup.js' },
-  { entry: './src/js/background/app.js', out: 'background.js' }
+  { entry: './src/apps/popup/main.js', out: 'apps/popup/main.js' },
+  { entry: './src/apps/background/main.js', out: 'apps/background/main.js' },
+  { entry: './src/apps/content/main.js', out: 'apps/content/main.js' }
 ];
 
 /**
@@ -103,7 +97,7 @@ gulp.task('js', function() {
         .pipe(source(bundle.out))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(gulp.dest(dests.js));
+        .pipe(gulp.dest(dest));
     };
 
     if (argv.watch) {
@@ -144,11 +138,12 @@ gulp.task('json', function() {
 gulp.task('scss', function() {
   gulp.src(patterns.css)
     .pipe(watch(patterns.css))
+    .pipe(plumber())
     .pipe(sass({
-      imagePath: '/img',
-      includePaths: bourbon.includePaths
+      imagePath: '',
+      includePaths: [bourbon.includePaths, './src']
     }))
-    .pipe(gulp.dest(dests.css));
+    .pipe(gulp.dest(dest));
 });
 
 /**
@@ -159,7 +154,7 @@ gulp.task('img', function() {
   gulp.src(patterns.img)
     .pipe(watch(patterns.img))
     .pipe(imagemin())
-    .pipe(gulp.dest(dests.img));
+    .pipe(gulp.dest(dest));
 });
 
 /**
@@ -169,6 +164,24 @@ gulp.task('img', function() {
 gulp.task('test-acceptance', ['build'], function () {
   gulp.src(['test/*.test.js'], { read: false })
     .pipe(mocha({ r: 'test/setup.js', timeout: 10000 }));
+});
+
+/**
+ * Run all unit tests.
+ */
+
+gulp.task('test-unit', function(done) {
+  var options = {
+    config: {
+      rootDir: __dirname,
+      testPathDirs: [__dirname + '/src'],
+      scriptPreprocessor: __dirname + '/node_modules/babel-jest/index.js',
+    }
+  };
+
+  jest.runCLI(options, __dirname, function(success) {
+    done();
+  });
 });
 
 /**
@@ -183,7 +196,7 @@ gulp.task('clean', function() {
  * Tests.
  */
 
-gulp.task('test', ['test-acceptance']);
+gulp.task('test', ['test-acceptance', 'test-unit']);
 
 /**
  * Build all.
