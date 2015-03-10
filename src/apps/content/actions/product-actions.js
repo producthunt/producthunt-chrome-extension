@@ -18,7 +18,7 @@ let ProductActions = {
    * @public
    */
 
-  receiveProduct: function(data) {
+  receiveProduct(data) {
     AppDispatcher.dispatch({
       action: {
         actionType: ProductConstants.RECEIVE_DATA,

@@ -41,7 +41,7 @@ let TopElements = React.createClass({
    * and move the below the `ProductBar`.
    */
 
-  componentWillMount: function() {
+  componentWillMount() {
     this._getTopElements().forEach(function(el) {
       el.style.setProperty('top', PRODUCT_BAR_HEIGHT, 'important');
     });
@@ -51,7 +51,7 @@ let TopElements = React.createClass({
    * Restore the top DOM elements.
    */
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     this._getTopElements().forEach(function(el) {
       el.style.setProperty('top', '0px', 'important');
     });
@@ -63,7 +63,7 @@ let TopElements = React.createClass({
    * @returns {Boolean} false
    */
 
-  render: function() {
+  render() {
     return false;
   },
 
@@ -74,7 +74,7 @@ let TopElements = React.createClass({
    * @private
    */
 
-  _getTopElements: function() {
+  _getTopElements() {
     if (!this._elements) {
       let elements = slice.call(doc.querySelectorAll('body *'), 0);
 

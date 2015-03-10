@@ -37,7 +37,7 @@ let TweetButton = React.createClass({
    * Render the view.
    */
 
-  render: function() {
+  render() {
     let attrs = {
       via: this.props.via,
       url: this.props.url,

@@ -32,7 +32,7 @@ let ProductStore = assign({}, EventEmitter.prototype, {
    * @public
    */
 
-  addChangeListener: function(cb) {
+  addChangeListener(cb) {
     this.on(CHANGE_EVENT, cb);
   },
 
@@ -43,7 +43,7 @@ let ProductStore = assign({}, EventEmitter.prototype, {
    * @public
    */
 
-  removeChangeListener: function(cb) {
+  removeChangeListener(cb) {
     this.removeListener(CHANGE_EVENT, cb);
   },
 
@@ -54,7 +54,7 @@ let ProductStore = assign({}, EventEmitter.prototype, {
    * @public
    */
 
-  getProduct: function() {
+  getProduct() {
     return data;
   },
 
@@ -64,7 +64,7 @@ let ProductStore = assign({}, EventEmitter.prototype, {
    * @private
    */
 
-  emitChange: function() {
+  emitChange() {
     this.emit(CHANGE_EVENT);
   },
 
@@ -74,7 +74,7 @@ let ProductStore = assign({}, EventEmitter.prototype, {
    * @public
    */
 
-  setProduct: function(product) {
+  setProduct(product) {
     data = product;
   }
 });

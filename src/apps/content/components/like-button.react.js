@@ -36,7 +36,7 @@ let LikeButton = React.createClass({
    * Render the view.
    */
 
-  render: function() {
+  render() {
     let attrs = {
       href: this.props.url,
       layout: 'button',

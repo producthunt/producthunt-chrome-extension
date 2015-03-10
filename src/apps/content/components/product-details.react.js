@@ -28,7 +28,7 @@ let ProductDetails = React.createClass({
    * Render the view.
    */
 
-  render: function() {
+  render() {
     let product = this.props.product;
 
     return (

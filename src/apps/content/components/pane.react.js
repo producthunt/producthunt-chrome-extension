@@ -33,7 +33,7 @@ let Pane = React.createClass({
    * Render the view.
    */
 
-  render: function() {
+  render() {
     if (!this.props.url) {
       return false;
     }

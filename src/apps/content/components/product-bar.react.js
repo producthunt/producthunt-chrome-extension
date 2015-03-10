@@ -50,7 +50,7 @@ let ProductBar = React.createClass({
    * @returns {Object}
    */
 
-  getInitialState: function() {
+  getInitialState() {
     return { product: null, pane: false };
   },
 
@@ -58,7 +58,7 @@ let ProductBar = React.createClass({
    * On component mount, subscribe to product changes.
    */
 
-  componentDidMount: function() {
+  componentDidMount() {
     ProductStore.addChangeListener(this._handleChange);
   },
 
@@ -66,7 +66,7 @@ let ProductBar = React.createClass({
    * On component unmount, unsubscribe from product changes.
    */
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     ProductStore.removeChangeListener(this._handleChange);
   },
 
@@ -74,7 +74,7 @@ let ProductBar = React.createClass({
    * Render the view.
    */
 
-  render: function() {
+  render() {
     let product = this.state.product;
 
     if (!product) {
@@ -118,7 +118,7 @@ let ProductBar = React.createClass({
    * component.
    */
 
-  _onCloseClick: function() {
+  _onCloseClick() {
     let node = this.getDOMNode().parentNode;
     React.unmountComponentAtNode(node);
   },
@@ -127,7 +127,7 @@ let ProductBar = React.createClass({
    * Handle product change event.
    */
 
-  _handleChange: function() {
+  _handleChange() {
     this.setState({ product: ProductStore.getProduct() });
   },
 
@@ -135,7 +135,7 @@ let ProductBar = React.createClass({
    * Toggle the pane.
    */
 
-  _togglePane: function() {
+  _togglePane() {
     this.setState({ pane: !this.state.pane });
   }
 });

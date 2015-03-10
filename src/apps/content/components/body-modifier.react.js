@@ -36,7 +36,7 @@ let BodyModifier = React.createClass({
    * @public
    */
 
-  componentWillMount: function() {
+  componentWillMount() {
     body.classList.add(this.props.className);
   },
 
@@ -45,7 +45,7 @@ let BodyModifier = React.createClass({
    * custom body class.
    */
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     body.classList.remove(this.props.className);
   },
 
@@ -55,7 +55,7 @@ let BodyModifier = React.createClass({
    * @returns {Boolean} false
    */
 
-  render: function() {
+  render() {
     return false;
   }
 });

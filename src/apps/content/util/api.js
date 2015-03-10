@@ -33,7 +33,7 @@ let api = {
    * @public
    */
 
-  getProduct: function(url) {
+  getProduct(url) {
     debug('getting product with url %s', url);
 
     ph.searchProducts({ 'search[url]': url }, function(err, products) {
