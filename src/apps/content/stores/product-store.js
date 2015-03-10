@@ -66,6 +66,16 @@ let ProductStore = assign({}, EventEmitter.prototype, {
 
   emitChange: function() {
     this.emit(CHANGE_EVENT);
+  },
+
+  /**
+   * Set product.
+   *
+   * @public
+   */
+
+  setProduct: function(product) {
+    data = product;
   }
 });
 
@@ -75,7 +85,7 @@ AppDispatcher.register(function(payload) {
   let action = payload.action;
 
   if (action.actionType === ProductConstants.RECEIVE_DATA) {
-    data = action.data;
+    ProductStore.setProduct(action.data);
     ProductStore.emitChange();
   }
 });

@@ -25,6 +25,8 @@ var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
 var fs = require('fs');
 var mocha = require('gulp-spawn-mocha');
+var jest = require('jest-cli');
+var harmonize = require('harmonize')();
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
@@ -42,7 +44,7 @@ var argv = gutil.env;
 
 var patterns = {
   html: 'src/**/*.html',
-  img: 'src/**/*.png',
+  img: 'src/**/*.{png,svg}',
   css: 'src/**/*.scss',
   json: 'src/**/*.json'
 };
@@ -165,6 +167,24 @@ gulp.task('test-acceptance', ['build'], function () {
 });
 
 /**
+ * Run all unit tests.
+ */
+
+gulp.task('test-unit', function(done) {
+  var options = {
+    config: {
+      rootDir: __dirname,
+      testPathDirs: [__dirname + '/src'],
+      scriptPreprocessor: __dirname + '/node_modules/babel-jest/index.js',
+    }
+  };
+
+  jest.runCLI(options, __dirname, function(success) {
+    done();
+  });
+});
+
+/**
  * Clean the build folder.
  */
 
@@ -176,7 +196,7 @@ gulp.task('clean', function() {
  * Tests.
  */
 
-gulp.task('test', ['test-acceptance']);
+gulp.task('test', ['test-acceptance', 'test-unit']);
 
 /**
  * Build all.

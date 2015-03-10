@@ -5,20 +5,13 @@
 let React = require('react');
 
 /**
- * Constants.
- */
-
-const BODY_CLASS = process.env.BODY_CLASS;
-
-/**
  * Locals.
  */
 
 let body = document.body;
 
 /**
- * Modifies the body by adding a class that will
- * push all elements under the `ProductBar`.
+ * Modifies the body by adding a class.
  *
  * @class
  */
@@ -33,16 +26,16 @@ let BodyModifier = React.createClass({
    */
 
   componentWillMount: function() {
-    body.classList.add(BODY_CLASS);
+    body.classList.add(this.props.className);
   },
 
   /**
-   * When we unmount hte component we remove the
+   * When we unmount the component we remove the
    * custom body class.
    */
 
   componentWillUnmount: function() {
-    body.classList.remove(BODY_CLASS);
+    body.classList.remove(this.props.className);
   },
 
   /**

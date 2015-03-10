@@ -1,8 +1,13 @@
 // Variables
 
-$font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
-$orange:      #db552e;
-$white:       #fff;
+// TODO(vesln): figure out how not to hardcore, likely envify-like solution
+$extension-id:       'pinaciaaafilededpcmmpfeakplinncd';
+
+$font-family:        'proxima-nova', 'Proxima Nova', sans-serif;
+$orange:             #db552e;
+$white:              #fff;
+$close-width:        40px;
+$close-margin-right: 20px;
 
 // Mixins
 
@@ -19,6 +24,18 @@ $white:       #fff;
   padding: 0 10px;
 }
 
+@mixin icon($img) {
+  background-image: url("chrome-extension://#{$extension-id}/apps/content/assets/#{$img}.svg");
+  background-position: center 49%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 28px;
+  margin-right: 5px;
+  padding-top: 3px;
+  vertical-align: middle;
+  width: 20px;
+}
+
 // Declarations
 
 * {
@@ -31,43 +48,76 @@ body {
   color: $white;
   font-family: $font-family;
   line-height: 48px;
-}
-
-h1 {
-  display: inline-block;
-  font-size: 18px;
-  font-weight: normal;
-  letter-spacing: 1px;
-  margin-left: 20px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-h2 {
-  -webkit-font-smoothing: antialiased !important;
-  display: inline-block;
-  font-size: 18px;
-  font-weight: normal;
-  margin-left: 20px;
-  text-rendering: optimizeLegibility !important;
+  user-select: none;
 }
 
 .details {
+  padding-right: $close-width + $close-margin-right;
+
+  h1 {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-left: 20px;
+  }
+
+  h2 {
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 20px;
+    text-rendering: optimizeLegibility;
+  }
+
   float: left;
+
+  a { cursor: pointer; }
+
+  .votes {
+    @include box(10px);
+    .ico { @include icon('arrow_up'); }
+  }
+
+  .comments {
+    @include box(2px);
+    .ico { @include icon('comment'); }
+  }
 }
 
-.votes {
-  @include box(10px);
+.facebook {
+  float: right;
+  width: 56px;
+  margin-right: $close-width + 10px;
+  margin-top: 14px;
+
+  iframe {
+    border: none;
+    overflow: hidden;
+    height: 35px;
+  }
 }
 
-.comments {
-  @include box(2px);
+.twitter {
+  float: right;
+  width: 65px;
+
+  iframe {
+    border: none;
+    height: 20px;
+    margin-top: 14px;
+    overflow: hidden;
+    width: 56px;
+  }
 }
 
 .close {
   cursor: pointer;
-  float: right;
   font-size: 20px;
-  margin-right: 20px;
-  padding: 0 15px;
+  position: fixed;
+  right: $close-margin-right;
+  text-align: center;
+  width: $close-width;
 }
+

@@ -7,23 +7,53 @@ $bar-height: 50px;
 // Declarations
 
 .__phc-bar {
-  background: #fff;
-  border: 0;
-  bottom: auto;
-  box-sizing: content-box;
-  height: $bar-height;
-  left: 0;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: fixed;
-  text-align: left;
-  top: 0;
-  width: 100%;
-  z-index: 2147483630;
+  background: #fff !important;
+  border: 0 !important;
+  bottom: auto !important;
+  box-sizing: content-box !important;
+  height: $bar-height !important;
+  left: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: fixed !important;
+  text-align: left !important;
+  top: 0 !important;
+  width: 100% !important;
+  z-index: 2147483630 !important;
 }
 
 .__phc-body {
-  margin-top: $bar-height;
-  position: absolute;
+  margin-top: $bar-height !important;
+  position: absolute !important;
+  width: 100% !important;
+}
+
+.__phc-pane {
+  background-color: #fff;
+  border: 0 !important;
+  bottom: 0 !important;
+  box-shadow: -25px 0px 30px -5px rgba(0, 0, 0, 0.1) !important;
+  height: 100% !important;
+  position: fixed !important;
+  right: 0 !important;
+  top: 50px !important;
+  width: 400px !important;
+  z-index: 2147483630 !important;
+}
+
+.__phc-overlay {
+  background-color: #fff !important;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  opacity: 0.8 !important;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2147483629 !important;
+}
+
+.__phc-no-scroll {
+  overflow: hidden !important;
 }

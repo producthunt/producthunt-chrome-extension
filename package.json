@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "devDependencies": {
+    "babel-jest": "^4.0.0",
     "babelify": "^5.0.3",
     "browserify": "^9.0.3",
     "chai": "^2.1.1",
@@ -21,6 +22,9 @@
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.1.1",
+    "harmonize": "^1.4.1",
+    "jest-cli": "^0.4.0",
+    "react-tools": "^0.12.2",
     "rimraf": "^2.3.0",
     "sv-selenium": "^0.2.5",
     "vinyl-buffer": "^1.0.0",
@@ -30,7 +34,9 @@
   },
   "dependencies": {
     "assert-env": "^0.6.0",
+    "debug": "^2.1.2",
     "flux": "^2.0.1",
+    "lscache": "^1.0.5",
     "node-bourbon": "^4.2.1-beta1",
     "object-assign": "^2.0.0",
     "react": "^0.12.2",
