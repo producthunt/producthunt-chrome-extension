@@ -48,5 +48,5 @@
     }
   ],
   "web_accessible_resources": ["apps/content/product-bar.css", "apps/content/assets/comment.svg", "apps/content/assets/arrow_up.svg"],
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com https://query.yahooapis.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://use.typekit.net; object-src 'self'"
 }

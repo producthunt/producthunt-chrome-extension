@@ -3,7 +3,7 @@
  */
 
 let React = require('react');
-let BodyModifier = require('./body-modifier.react');
+let BodyModifier = require('../body-modifier/body-modifier.react');
 
 /**
  * Product Pane View.
@@ -38,14 +38,17 @@ let Pane = React.createClass({
       return false;
     }
 
+    let overlayClass = this.props.overlayClass || '__phc-overlay';
+    let paneClass = this.props.paneClass || '__phc-pane';
+
     // TODO(vesln): temp hack, PH api should return https
     this.props.url = this.props.url.replace('http', 'https');
 
     return (
       <div>
         <BodyModifier className={this.props.bodyClass} />
-        <div className="__phc-overlay" onClick={this.props.onClick}></div>
-        <iframe src={this.props.url} className="__phc-pane" />
+        <div className={overlayClass} onClick={this.props.onClick}></div>
+        <iframe src={this.props.url} className={paneClass} />
       </div>
     );
   }

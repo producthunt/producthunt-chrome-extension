@@ -66,6 +66,7 @@ $ gulp build
 | OVERLAY_BODY_CLASS  | Class that will be added when pane is open    |
 | FB_APP_ID           | Facebook APP ID                               |
 | TWITTER_VIA         | Tweet "via"                                   |
+| PRODUCTS_CACHE_KEY  | LocalStorage cache key                        |
 
 ### Gulp Tasks
 

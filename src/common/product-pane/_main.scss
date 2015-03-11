@@ -1,0 +1,23 @@
+@mixin pane() {
+  background-color: #fff;
+  border: none !important;
+  box-shadow: -25px 0px 30px -5px rgba(0, 0, 0, 0.1) !important;
+  height: 100% !important;
+  position: fixed !important;
+  right: 0 !important;
+  top: 50px !important;
+  width: 400px !important;
+  z-index: 2147483630 !important;
+}
+
+@mixin overlay {
+  background-color: #fff !important;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  opacity: 0.8 !important;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2147483629 !important;
+}

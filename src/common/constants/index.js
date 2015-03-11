@@ -9,7 +9,8 @@ let keyMirror = require('react/lib/keyMirror');
  */
 
 const consts = keyMirror({
-  RECEIVE_DATA: null
+  RECEIVE_PRODUCT: null,
+  RECEIVE_PRODUCTS: null
 });
 
 /**

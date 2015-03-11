@@ -1,0 +1,196 @@
+@import "bourbon";
+@import "neat";
+@import "../../common/product-pane/main";
+
+// Variables
+
+$red:       #da552f;
+$yellow:    #fcf5e2;
+$brown-1:   #534540;
+$brown-2:   #685f5c;
+$grey-1:    #999999;
+$grey-2:    #eceae9;
+$grey-3:    #bbbbbb;
+$grey-4:    #dddddd;
+$grey-5:    #a9a29f;
+$cream-1:   #d5d2d0;
+$cream-2:   #a9a29f;
+
+// Grid settings
+
+$max-width: 960px;
+
+// Definitions
+
+html,
+body {
+  font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
+}
+
+.pane { @include pane; }
+.overlay { @include overlay; }
+.no-scroll { overflow: hidden; }
+.clickable { cursor: pointer; }
+
+header {
+  @include outer-container;
+
+  margin: {
+    top: 15px;
+    bottom: 15px;
+  }
+
+  a { text-decoration: none; }
+
+  .logo {
+    display: block;
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    width: 40px;
+  }
+
+  .title { float: left; }
+
+  h1 {
+    color: $red;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 22px;
+    margin: 0;
+  }
+
+  h2 {
+    color: $grey-1;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 3px;
+  }
+}
+
+.clear {
+  @include clearfix;
+}
+
+.main {
+  @include clearfix;
+
+  @include media(500px) {
+    max-width: 320px;
+  }
+
+  @include media(670px) {
+    max-width: 640px;
+  }
+
+  @include media(1000px) {
+    max-width: 960px;
+  }
+
+  h2 {
+    text-align: center;
+    clear: both;
+    color: $brown-1;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 20px 0;
+
+    .date {
+      color: $grey-3;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+
+  margin: {
+    left: auto;
+    right: auto;
+  }
+
+  .product {
+    @include transition(background-color, 0.1s, ease);
+    background-color: $grey-2;
+    border-radius: 4px;
+    float: left;
+    height: 300px;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+
+    &:hover {
+      @include transition(background, 0.1s);
+      background-color: $yellow;
+    }
+
+    .image {
+      height: 196px;
+      margin-bottom: 10px;
+      width: 280px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .container { position: relative; }
+
+    .votes {
+      background-color: $cream-1;
+      background-image: url('assets/arrow_up.svg');
+      background-position: center 2px;
+      background-repeat: no-repeat;
+      border-radius: 3px;
+      box-shadow: 0px 1px 1px 0px rgba(83,69,64,0.11);
+      color: $brown-1;
+      font-size: 13px;
+      height: 44px;
+      left: 0;
+      margin-right: 10px;
+      padding-top: 23px;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      width: 33px;
+    }
+
+    .details { margin-left: 44px; }
+
+    .comments {
+      background-image: url('assets/comment.svg');
+      background-repeat: no-repeat;
+      color: $cream-2;
+      height: 20px;
+      min-width: 30px;
+      padding-left: 20px;
+      position: absolute;
+      right: 0;
+      text-align: right;
+      top: 0;
+    }
+
+    h3 {
+      color: $brown-1;
+      font-size: 18px;
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    p {
+      color: $brown-2;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.loading {
+  clear: both;
+  color: $grey-4;
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 40px;
+  text-align: center;
+}

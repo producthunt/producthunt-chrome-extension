@@ -1,6 +1,6 @@
 jest.autoMockOff();
 
-jest.mock('../body-modifier.react.js');
+jest.mock('../../../../common/body-modifier/body-modifier.react');
 jest.mock('../top-elements.react.js');
 
 // chrome does not exist in jsdom
@@ -12,7 +12,7 @@ window.chrome = {
 
 describe('ProductBar', function() {
   let ProductBar = require('../product-bar.react');
-  let ProductStore = require('../../stores/product-store');
+  let ProductStore = require('../../../../common/stores/product');
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
 
@@ -23,7 +23,7 @@ describe('ProductBar', function() {
 
   it('listens for product change events', function() {
     let bar = TestUtils.renderIntoDocument(<ProductBar />);
-    ProductStore.setProduct({ foo: 'bar' });
+    ProductStore.setData({ foo: 'bar' });
     ProductStore.emitChange();
     expect(bar.getDOMNode().innerHTML).toContain('iframe');
   });
@@ -32,7 +32,7 @@ describe('ProductBar', function() {
     let bar = TestUtils.renderIntoDocument(<ProductBar />);
     let product = { discussion_url: 'test' };
 
-    ProductStore.setProduct(product);
+    ProductStore.setData(product);
     ProductStore.emitChange();
 
     let node = bar.getDOMNode();
@@ -47,7 +47,7 @@ describe('ProductBar', function() {
     let container = document.createElement('div');
     React.render(<ProductBar />, container);
 
-    ProductStore.setProduct({ foo: 'bar' });
+    ProductStore.setData({ foo: 'bar' });
     ProductStore.emitChange();
 
     let link = container.querySelector('.close');
