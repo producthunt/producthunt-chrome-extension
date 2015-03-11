@@ -137,8 +137,8 @@ gulp.task('json', function() {
 
 gulp.task('scss', function() {
   gulp.src(patterns.css)
-    .pipe(watch(patterns.css))
     .pipe(plumber())
+    .pipe(watch(patterns.css))
     .pipe(sass({
       imagePath: '',
       includePaths: [bourbon.includePaths, './src']
