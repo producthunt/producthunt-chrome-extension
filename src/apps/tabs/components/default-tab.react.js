@@ -33,8 +33,9 @@ const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
  *
  * State:
  *
- * - `products`: Products to be shown on the page
- * - `url`:      Product pane url
+ * - `products`:  Products to be shown on the page
+ * - `url`:       Product pane url
+ * - `startPage`: Start fetching posts from `startPage` days ago
  *
  * @class
  */
@@ -49,8 +50,17 @@ let DefaultTab = React.createClass({
 
   getInitialState() {
     this.cache = cache.get(CACHE_KEY);
-    let startPage = !!this.cache ? 0 : -1;
-    return { products: this.cache || [], startPage: startPage };
+
+    let firstPageCached = !!this.cache;
+
+    // if we have cache, this means the first page has been already
+    // fetched, therefore start from the next one
+    let startPage = firstPageCached ? 0 : -1;
+
+    return {
+      products: this.cache || [],
+      startPage: startPage
+    };
   },
 
   /**
@@ -68,7 +78,7 @@ let DefaultTab = React.createClass({
 
   componentDidMount() {
     ProductStore.addChangeListener(this._handleChange);
-    // using cache, load the latest products
+    // using cache, refresh it
     if (this.cache) this._loadNext(0);
   },
 
