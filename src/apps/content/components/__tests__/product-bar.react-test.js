@@ -1,6 +1,6 @@
 jest.autoMockOff();
 
-jest.mock('../../../../common/body-modifier/body-modifier.react');
+jest.mock(filePath('/common/body-modifier/body-modifier.react'));
 jest.mock('../top-elements.react.js');
 
 // chrome does not exist in jsdom
@@ -12,7 +12,7 @@ window.chrome = {
 
 describe('ProductBar', function() {
   let ProductBar = require('../product-bar.react');
-  let ProductStore = require('../../../../common/stores/product');
+  let ProductStore = load('/common/stores/product');
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
 

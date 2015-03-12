@@ -3,7 +3,7 @@ jest.mock('../header.react.js');
 
 describe('DefaultTab', function() {
   let DefaultTab = require('../default-tab.react');
-  let ProductStore = require('../../../../common/stores/product');
+  let ProductStore = load('/common/stores/product');
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
 

@@ -180,6 +180,7 @@ gulp.task('test-unit', function(done) {
       rootDir: __dirname,
       testPathDirs: [__dirname + '/src'],
       scriptPreprocessor: __dirname + '/node_modules/babel-jest/index.js',
+      setupEnvScriptFile: __dirname + '/__test__/helper.js'
     }
   };
 
