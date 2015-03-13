@@ -1,4 +1,5 @@
 @import "bourbon";
+@import "../../common/product-pane/main";
 
 // Variables
 
@@ -29,31 +30,7 @@ $bar-height: 50px;
   width: 100% !important;
 }
 
-.__phc-pane {
-  background-color: #fff;
-  border: 0 !important;
-  bottom: 0 !important;
-  box-shadow: -25px 0px 30px -5px rgba(0, 0, 0, 0.1) !important;
-  height: 100% !important;
-  position: fixed !important;
-  right: 0 !important;
-  top: 50px !important;
-  width: 400px !important;
-  z-index: 2147483630 !important;
-}
-
-.__phc-overlay {
-  background-color: #fff !important;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  opacity: 0.8 !important;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 2147483629 !important;
-}
-
-.__phc-no-scroll {
-  overflow: hidden !important;
-}
+.__phc-pane { @include product-pane; }
+.__phc-overlay { @include product-pane-overlay; }
+.__phc-close { @include product-pane-close; }
+.__phc-no-scroll { overflow: hidden !important; }

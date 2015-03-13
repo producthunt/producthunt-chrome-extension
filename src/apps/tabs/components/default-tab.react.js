@@ -112,6 +112,7 @@ let DefaultTab = React.createClass({
           <Pane
             bodyClass="no-scroll"
             overlayClass="overlay"
+            closeClass="close"
             paneClass="pane"
             url={url}
             onClick={this._closePane} />

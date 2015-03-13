@@ -27,8 +27,9 @@ body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
 }
 
-.pane { @include pane; top: 0 !important; }
-.overlay { @include overlay; }
+.pane { @include product-pane; top: 0 !important; }
+.overlay { @include product-pane-overlay; }
+.close { @include product-pane-close; top: 15px !important; }
 .no-scroll { overflow: hidden; }
 .clickable { cursor: pointer; }
 
@@ -154,7 +155,7 @@ header {
       width: 33px;
     }
 
-    .details { margin-left: 44px; }
+    .details { margin-left: 44px; margin-right: 10px; }
 
     .comments {
       background-image: url('assets/comment.svg');
