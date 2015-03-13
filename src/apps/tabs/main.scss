@@ -27,7 +27,7 @@ body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
 }
 
-.pane { @include pane; }
+.pane { @include pane; top: 0 !important; }
 .overlay { @include overlay; }
 .no-scroll { overflow: hidden; }
 .clickable { cursor: pointer; }
