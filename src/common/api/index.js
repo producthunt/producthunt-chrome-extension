@@ -15,7 +15,7 @@ const BASE_URL = process.env.API_BASE_URL;
 const OAUTH_KEY = process.env.OAUTH_KEY;
 const OAUTH_SECRET = process.env.OAUTH_SECRET;
 const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
-const CACHE_DURARTION = 120;
+const CACHE_DURARTION = 60 * 24;
 
 /**
  * Locals.
