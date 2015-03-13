@@ -10,7 +10,7 @@
   z-index: 2147483630 !important;
 }
 
-@mixin overlay {
+@mixin overlay() {
   background-color: #fff !important;
   bottom: 0;
   cursor: pointer;
