@@ -7,14 +7,11 @@
  */
 
 function groupByDay(items) {
-  let groups = {};
-
-  items.forEach(function(item) {
+  return items.reduce(function(groups, item) {
     groups[item.day] = groups[item.day] || [];
     groups[item.day].push(item);
-  });
-
-  return groups;
+    return groups;
+  }, {});
 }
 
 /**
