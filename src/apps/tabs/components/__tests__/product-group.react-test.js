@@ -3,7 +3,6 @@ jest.autoMockOff();
 describe('ProductGroup', function() {
   let ProductGroup = require('../product-group.react');
   let React = require('react/addons');
-  let TestUtils = React.addons.TestUtils;
   let product = {
     name: 'Name',
     tagline: 'Tagline',
@@ -14,17 +13,11 @@ describe('ProductGroup', function() {
     comments_count: 22
   };
 
-  function html() {
-    return TestUtils.renderIntoDocument(
-      <ProductGroup products={[product]} />
-    ).getDOMNode().innerHTML;
-  }
-
   it('renders the group name', function() {
-    expect(html()).toContain('Thursday');
+    expect(<ProductGroup products={[product]} />).toRender('Thursday');
   });
 
   it('renders the product name', function() {
-    expect(html()).toContain(product.name);
+    expect(<ProductGroup products={[product]} />).toRender(product.name);
   });
 });

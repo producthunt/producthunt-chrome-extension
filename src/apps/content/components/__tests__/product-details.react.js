@@ -11,27 +11,20 @@ describe('ProductDetails', function() {
     comments_count: 22
   };
 
-  function html() {
-    let details = TestUtils.renderIntoDocument(
-      <ProductDetails product={product} />
-    );
-    return details.getDOMNode().innerHTML;
-  }
-
   it('renders the votes count', function() {
-    expect(html()).toContain(product.votes_count);
+    expect(<ProductDetails product={product} />).toRender(product.votes_count);
   });
 
   it('renders the comments count', function() {
-    expect(html()).toContain(product.comments_count);
+    expect(<ProductDetails product={product} />).toRender(product.comments_count);
   });
 
   it('renders the product name', function() {
-    expect(html()).toContain(product.name);
+    expect(<ProductDetails product={product} />).toRender(product.name);
   });
 
   it('renders the product tagline', function() {
-    expect(html()).toContain(product.tagline);
+    expect(<ProductDetails product={product} />).toRender(product.tagline);
   });
 
   it('accepts a custom onclick handler', function() {

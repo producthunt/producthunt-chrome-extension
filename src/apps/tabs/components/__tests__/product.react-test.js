@@ -13,33 +13,27 @@ describe('Product', function() {
     comments_count: 22
   };
 
-  function html() {
-    return TestUtils.renderIntoDocument(
-      <Product product={product} />
-    ).getDOMNode().innerHTML;
-  }
-
   it('renders the votes count', function() {
-    expect(html()).toContain(product.votes_count);
+    expect(<Product product={product} />).toRender(product.votes_count);
   });
 
   it('renders the comments count', function() {
-    expect(html()).toContain(product.comments_count);
+    expect(<Product product={product} />).toRender(product.comments_count);
   });
 
   it('renders the product name', function() {
-    expect(html()).toContain(product.name);
+    expect(<Product product={product} />).toRender(product.name);
   });
 
   it('renders the product tagline', function() {
-    expect(html()).toContain(product.tagline);
+    expect(<Product product={product} />).toRender(product.tagline);
   });
 
   it('renders the screenshot_url', function() {
-    expect(html()).toContain(product.screenshot_url['300px']);
+    expect(<Product product={product} />).toRender(product.screenshot_url['300px']);
   });
 
   it('renders the discussion_url', function() {
-    expect(html()).toContain(product.discussion_url);
+    expect(<Product product={product} />).toRender(product.discussion_url);
   });
 });

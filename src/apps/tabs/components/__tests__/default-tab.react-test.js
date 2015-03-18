@@ -20,6 +20,6 @@ describe('DefaultTab', function() {
     let component = TestUtils.renderIntoDocument(<DefaultTab />);
     ProductStore.setData([product]);
     ProductStore.emitChange();
-    expect(component.getDOMNode().innerHTML).toContain(product.name);
+    expect(component).toMatchContent(product.name);
   });
 });

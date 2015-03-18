@@ -25,7 +25,7 @@ describe('ProductBar', function() {
     let bar = TestUtils.renderIntoDocument(<ProductBar />);
     ProductStore.setData({ foo: 'bar' });
     ProductStore.emitChange();
-    expect(bar.getDOMNode().innerHTML).toContain('iframe');
+    expect(bar).toMatchContent('iframe');
   });
 
   it('can open the product pane', function() {
