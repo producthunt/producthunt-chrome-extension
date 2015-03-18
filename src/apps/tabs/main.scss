@@ -137,12 +137,10 @@ header {
     .container { position: relative; }
 
     .votes {
-      background-color: $cream-1;
       background-image: url('assets/arrow_up.svg');
       background-position: center 2px;
       background-repeat: no-repeat;
       border-radius: 3px;
-      box-shadow: 0px 1px 1px 0px rgba(83,69,64,0.11);
       color: $brown-1;
       font-size: 13px;
       height: 44px;
