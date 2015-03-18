@@ -36,7 +36,7 @@ let Product = React.createClass({
 
     return (
       <a onClick={click} className="clickable" target="_blank">
-        <div className="product animated fadeIn">
+        <div className="product">
           <div className="image">
             <img src={product.screenshot_url['300px']}/>
           </div>

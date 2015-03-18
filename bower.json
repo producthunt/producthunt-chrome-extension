@@ -2,7 +2,5 @@
   "name": "producthunt-chrome",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "animate.css": "~3.2.3"
-  }
+  "dependencies": {}
 }
