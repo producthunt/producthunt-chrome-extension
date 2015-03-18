@@ -8,6 +8,11 @@ $height: 500px;
 
 // Definitions
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body,
 iframe {
   width: $width;
