@@ -36,9 +36,7 @@ let ProductGroup = React.createClass({
   render() {
     let groups = groupByDay(this.props.products);
     let onClick = this.props.onClick;
-    let out = [];
-
-    Object.keys(groups).map(function(day) {
+    let out = Object.keys(groups).map(function(day) {
       let date = moment(day);
       let humanDay = getDay(date);
       let monthDay = date.format('MMMM Do');
@@ -46,7 +44,7 @@ let ProductGroup = React.createClass({
         return <Product product={product} onClick={onClick} />
       });
 
-      out.push(
+      return (
         <div className="clear">
           <h2>{humanDay} <span className="date">{monthDay}</span></h2>
           {{products}}
