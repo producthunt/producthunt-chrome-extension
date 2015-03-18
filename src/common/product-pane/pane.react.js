@@ -37,11 +37,33 @@ let closeButton = (
  * - `bodyClass`:    Body class to be added when showing the overlay
  * - `overlayClass`: Overlay class (default: __phc-Overlay)
  * - `closeClass`:   Close button class (default: __phc-close)
+ * - `loaderClass`:  Loader class (default: __phc-loader)
  *
  * @class
  */
 
 let Pane = React.createClass({
+
+  /**
+   * Subscribe to iframe onload events when we
+   * rerender the view.
+   *
+   * We hide the loading indicator and show
+   * the iframe once loaded.
+   */
+
+  componentDidUpdate() {
+    if (!this.props.url) return;
+
+    let iframe = this.getDOMNode().querySelector('iframe');
+    let loader = this.getDOMNode().querySelector('#__phc-loader');
+
+    iframe.onload = () => {
+      loader.parentNode.removeChild(loader);
+      iframe.style.setProperty('display', 'block');
+      iframe.onload = null;
+    };
+  },
 
   /**
    * Render the view.
@@ -55,6 +77,7 @@ let Pane = React.createClass({
     let overlayClass = this.props.overlayClass || '__phc-overlay';
     let paneClass = this.props.paneClass || '__phc-pane';
     let closeClass = this.props.closeClass || '__phc-close';
+    let loaderClass = this.props.loaderClass || '__phc-loader';
 
     this.props.url = location.protocol === 'https:'
       ? this.props.url.replace('http', 'https')
@@ -67,7 +90,10 @@ let Pane = React.createClass({
         <a className={closeClass} onClick={this.props.onClick}>
           {closeButton}
         </a>
-        <iframe src={this.props.url} className={paneClass} />
+        <div className={paneClass}>
+          <div id="__phc-loader" className={loaderClass}></div>
+          <iframe src={this.props.url} />
+        </div>
       </div>
     );
   }

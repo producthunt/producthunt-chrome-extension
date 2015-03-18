@@ -1,6 +1,11 @@
+@import "common/loader/main";
+
+@mixin product-pane-loader() {
+  @include loader;
+}
+
 @mixin product-pane() {
   background-color: #fff;
-  border: none;
   box-shadow: rgba(0, 0, 0, 0.247059) -1px 0px 2px 0px !important;
   height: 100%;
   position: fixed;
@@ -8,6 +13,13 @@
   top: 50px;
   width: 700px;
   z-index: 2147483630;
+
+  iframe {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 }
 
 @mixin product-pane-overlay() {

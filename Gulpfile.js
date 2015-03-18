@@ -29,6 +29,7 @@ var mocha = require('gulp-spawn-mocha');
 var jest = require('jest-cli');
 var harmonize = require('harmonize')();
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
+var env = process.env;
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
@@ -144,7 +145,7 @@ gulp.task('scss', function() {
     .pipe(plumber())
     .pipe(watch(patterns.css))
     .pipe(sass({
-      imagePath: '',
+      imagePath: 'chrome-extension://' + env.EXTENSION_ID,
       includePaths: paths
     }))
     .pipe(gulp.dest(dest));

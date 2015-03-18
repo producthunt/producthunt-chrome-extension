@@ -1,8 +1,5 @@
 // Variables
 
-// TODO(vesln): figure out how not to hardcore, likely envify-like solution
-$extension-id:       'kohbfiglclngpkohlkloeikkllngdlke';
-
 $font-family:        'proxima-nova', 'Proxima Nova', sans-serif;
 $orange:             #db552e;
 $white:              #fff;
@@ -25,7 +22,7 @@ $close-margin-right: 20px;
 }
 
 @mixin icon($img) {
-  background-image: url("chrome-extension://#{$extension-id}/apps/content/assets/#{$img}.svg");
+  background-image: image-url("apps/content/assets/#{$img}.svg");
   background-position: center 49%;
   background-repeat: no-repeat;
   display: inline-block;
@@ -120,4 +117,3 @@ body {
   text-align: center;
   width: $close-width;
 }
-

@@ -67,6 +67,7 @@ $ gulp build
 | FB_APP_ID           | Facebook APP ID                               |
 | TWITTER_VIA         | Tweet "via"                                   |
 | PRODUCTS_CACHE_KEY  | LocalStorage cache key                        |
+| EXTENSION_ID        | ID of the extension                           |
 
 ### Gulp Tasks
 

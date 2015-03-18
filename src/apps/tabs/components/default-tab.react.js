@@ -109,6 +109,7 @@ let DefaultTab = React.createClass({
 
           <Pane
             bodyClass="no-scroll"
+            loaderClass="loader"
             overlayClass="overlay"
             closeClass="close"
             paneClass="pane"

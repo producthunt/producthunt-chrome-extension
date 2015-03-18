@@ -92,6 +92,7 @@ let ProductBar = React.createClass({
       <div>
         <BodyModifier className={BODY_CLASS} />
         <TopElements />
+
         <Pane bodyClass={OVERLAY_BODY_CLASS} url={url} onClick={this._togglePane} />
 
         <Frame className="__phc-bar" id={PRODUCT_BAR_ID} scrolling="no" head={

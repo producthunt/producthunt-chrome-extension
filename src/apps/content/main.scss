@@ -33,4 +33,5 @@ $bar-height: 50px;
 .__phc-pane { @include product-pane; }
 .__phc-overlay { @include product-pane-overlay; }
 .__phc-close { @include product-pane-close; }
+.__phc-loader { @include product-pane-loader; }
 .__phc-no-scroll { overflow: hidden !important; }
