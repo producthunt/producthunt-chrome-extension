@@ -9,28 +9,28 @@ let buildUrl = require('../util/build-url');
  * Constants.
  */
 
-const FB_BASE = 'https://www.facebook.com/plugins/like.php';
+const FB_BASE = 'https://www.facebook.com/plugins/share_button.php';
 
 /**
- * Like Button Component
+ * Share Button Component
  *
- * Inserts a Facebook like button on the page.
+ * Inserts a Facebook share button on the page.
  *
  * Usage:
  *
  * ```js
- * <LikeButton url="http://www.producthunt.com" appId="fb-app-id" />
+ * <ShareButton url="http://www.producthunt.com" appId="fb-app-id" />
  * ```
  *
  * Properties:
  *
- * - `url`:   Page that the user will like
+ * - `url`:   Page that the user will share
  * - `appId`: Facebook application ID
  *
  * @class
  */
 
-let LikeButton = React.createClass({
+let ShareButton = React.createClass({
 
   /**
    * Render the view.
@@ -40,9 +40,6 @@ let LikeButton = React.createClass({
     let attrs = {
       href: this.props.url,
       layout: 'button',
-      action: 'like',
-      show_face: 'false',
-      share: 'false',
       height: '35',
       appId: this.props.appId,
     };
@@ -56,7 +53,7 @@ let LikeButton = React.createClass({
 });
 
 /**
- * Export `LikeButton`.
+ * Export `ShareButton`.
  */
 
-module.exports = LikeButton;
+module.exports = ShareButton;

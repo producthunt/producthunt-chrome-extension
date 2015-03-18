@@ -10,7 +10,7 @@ let TopElements = require('./top-elements.react');
 let ProductDetails = require('./product-details.react');
 let Pane = require('../../../common/product-pane/pane.react');
 let TweetButton = require('./tweet-button.react');
-let LikeButton = require('./like-button.react');
+let ShareButton = require('./share-button.react');
 
 /**
  * Constants.
@@ -86,7 +86,7 @@ let ProductBar = React.createClass({
     let tweetText = `${product.name}: ${product.tagline}`;
 
     // NOTE(vesln): React has bugs when rendering iframe inside the iframe, thats why
-    // the Like and Tweet buttons are wrapped inside divs
+    // the Share and Tweet buttons are wrapped inside divs
     // TODO(vesln): Investigate
     return (
       <div>
@@ -100,7 +100,7 @@ let ProductBar = React.createClass({
           <ProductDetails product={this.state.product} onClick={this._togglePane} />
 
           <div className="facebook">
-            <LikeButton url={shareUrl} appId={FB_APP_ID} />
+            <ShareButton url={shareUrl} appId={FB_APP_ID} />
           </div>
 
           <div className="twitter">
