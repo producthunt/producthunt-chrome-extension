@@ -22,21 +22,22 @@
 }
 
 @mixin product-pane-close() {
-  background-color: #d5cfce;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 0px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 0px;
+  background: rgba(#ccc5c3, .8);
+  border-radius: 3px 0 0 3px;
   cursor: pointer;
   display: block;
   height: 40px;
-  line-height: 42px;
+  line-height: 46px;
   position: fixed;
   right: 700px;
   text-align: center;
   top: 50px;
   width: 35px;
   z-index: 2147483631;
+
+  path {
+    fill: rgba(#534540, .5);
+  }
 
   &:hover {
     background-color: #da552f;
