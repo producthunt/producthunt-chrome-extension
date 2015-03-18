@@ -27,7 +27,7 @@ let Header = React.createClass({
   render() {
     return (
       <header>
-        <a href="https://www.producthunt.com">
+        <a href="http://www.producthunt.com">
           <img src="assets/logo.svg" alt="Product Hunt" className="logo" />
           <div className="title">
             <h1>Product Hunt</h1>
