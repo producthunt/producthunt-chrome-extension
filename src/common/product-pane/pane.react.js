@@ -56,7 +56,6 @@ let Pane = React.createClass({
     let paneClass = this.props.paneClass || '__phc-pane';
     let closeClass = this.props.closeClass || '__phc-close';
 
-    // TODO(vesln): temp hack, PH api should return https
     this.props.url = location.protocol === 'https:'
       ? this.props.url.replace('http', 'https')
       : this.props.url;
