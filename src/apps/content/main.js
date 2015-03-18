@@ -5,7 +5,7 @@
 let React = require('react');
 let debug = require('debug')('content:main');
 let ProductBar = require('./components/product-bar.react');
-let api = require('./util/api');
+let api = require('../../common/api');
 let Detector = require('./util/detector');
 let getHost = require('./util/get-host');
 

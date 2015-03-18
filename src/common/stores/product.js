@@ -3,8 +3,8 @@
  */
 
 let assign = require('object-assign');
-let AppDispatcher = require('../dispatcher/app-dispatcher');
-let ProductConstants = require('../constants/product-constants');
+let AppDispatcher = require('../dispatcher');
+let ProductConstants = require('../constants');
 let EventEmitter = require('events').EventEmitter;
 
 /**
@@ -17,7 +17,7 @@ const CHANGE_EVENT = 'change';
  * Data.
  */
 
-let data = {};
+let data = [];
 
 /**
  * Product Store.
@@ -48,13 +48,21 @@ let ProductStore = assign({}, EventEmitter.prototype, {
   },
 
   /**
-   * Return the current product.
+   * Return the last product.
    *
    * @returns {Object}
    * @public
    */
 
   getProduct() {
+    return data[data.length -1];
+  },
+
+  /**
+   * Return all products.
+   */
+
+  getProducts() {
     return data;
   },
 
@@ -69,13 +77,18 @@ let ProductStore = assign({}, EventEmitter.prototype, {
   },
 
   /**
-   * Set product.
+   * Set data.
    *
+   * @param {Object|Array} product(s)
    * @public
    */
 
-  setProduct(product) {
-    data = product;
+  setData(product) {
+    if (Array.isArray(product)) {
+      data = data.concat(product);
+    } else {
+      data.push(product);
+    }
   }
 });
 
@@ -83,9 +96,10 @@ let ProductStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload) {
   let action = payload.action;
+  let type = action.actionType;
 
-  if (action.actionType === ProductConstants.RECEIVE_DATA) {
-    ProductStore.setProduct(action.data);
+  if (type === ProductConstants.RECEIVE_PRODUCT || type === ProductConstants.RECEIVE_PRODUCTS) {
+    ProductStore.setData(action.data);
     ProductStore.emitChange();
   }
 });

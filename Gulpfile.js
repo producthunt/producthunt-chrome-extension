@@ -23,6 +23,7 @@ var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
+var neat = require('node-neat');
 var fs = require('fs');
 var mocha = require('gulp-spawn-mocha');
 var jest = require('jest-cli');
@@ -44,8 +45,8 @@ var argv = gutil.env;
 
 var patterns = {
   html: 'src/**/*.html',
-  img: 'src/**/*.{png,svg}',
-  css: 'src/**/*.scss',
+  img: 'src/**/*.{png,svg,ico}',
+  css: 'src/**/*.{scss,css}',
   json: 'src/**/*.json'
 };
 
@@ -62,7 +63,8 @@ var dest = 'build' || argv.build;
 var bundles = [
   { entry: './src/apps/popup/main.js', out: 'apps/popup/main.js' },
   { entry: './src/apps/background/main.js', out: 'apps/background/main.js' },
-  { entry: './src/apps/content/main.js', out: 'apps/content/main.js' }
+  { entry: './src/apps/content/main.js', out: 'apps/content/main.js' },
+  { entry: './src/apps/tabs/main.js', out: 'apps/tabs/main.js' }
 ];
 
 /**
@@ -136,12 +138,14 @@ gulp.task('json', function() {
  */
 
 gulp.task('scss', function() {
+  var paths = neat.includePaths.concat(['./src']);
+
   gulp.src(patterns.css)
-    .pipe(watch(patterns.css))
     .pipe(plumber())
+    .pipe(watch(patterns.css))
     .pipe(sass({
       imagePath: '',
-      includePaths: [bourbon.includePaths, './src']
+      includePaths: paths
     }))
     .pipe(gulp.dest(dest));
 });
@@ -176,6 +180,8 @@ gulp.task('test-unit', function(done) {
       rootDir: __dirname,
       testPathDirs: [__dirname + '/src'],
       scriptPreprocessor: __dirname + '/node_modules/babel-jest/index.js',
+      setupEnvScriptFile: __dirname + '/jest/env.js',
+      setupTestFrameworkScriptFile: __dirname + '/jest/setup.js'
     }
   };
 
@@ -189,7 +195,14 @@ gulp.task('test-unit', function(done) {
  */
 
 gulp.task('clean', function() {
-  rimraf.sync(dest)
+  [
+    dest + '/_locales',
+    dest + '/apps',
+    dest + '/common',
+    dest + '/manifest.json'
+  ].forEach(function(dir) {
+    rimraf.sync(dir)
+  });
 });
 
 /**

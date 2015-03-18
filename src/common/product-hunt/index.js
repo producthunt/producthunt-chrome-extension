@@ -4,7 +4,7 @@
 
 let request = require('superagent');
 let cache = require('lscache');
-let debug = require('debug')('content:product-hunt');
+let debug = require('debug')('ph:client');
 
 /**
  * Constants.
@@ -52,14 +52,33 @@ class ProductHunt {
         .query(query)
         .set('Authorization', `Bearer ${token}`)
         .end((res) => {
-          if (res.status === 401) {
-            this._clearAuth();
-            this.searchProducts(query, cb)
-          } else if (res.error) {
-            cb(res.error);
-          } else {
-            cb(null, res.body.posts);
-          }
+          let retry = () => this.searchProducts(query, cb)
+          this._handleResponse(res, retry, cb);
+        });
+    });
+  }
+
+  /**
+   * Get product
+   *
+   * @param {Number} days ago
+   * @param {Function} cb
+   * @public
+   */
+
+  getProducts(daysAgo, cb) {
+    debug('searching products...');
+
+    this._getAuth((err, token) => {
+      if (err) return cb(err);
+
+      request
+        .get(`${this.baseUrl}/v1/posts`)
+        .query({ days_ago: daysAgo })
+        .set('Authorization', `Bearer ${token}`)
+        .end((res) => {
+          let retry = () => this.getProducts(daysAgo, cb)
+          this._handleResponse(res, retry, cb);
         });
     });
   }
@@ -109,6 +128,28 @@ class ProductHunt {
 
   _clearAuth() {
     cache.remove(this.cacheKey);
+  }
+
+  /**
+   * Handle API response.
+   *
+   * @param {Object} response
+   * @param {Function} retry function
+   * @param {Fucntion} cb
+   * @private
+   */
+
+  _handleResponse(res, retryFn, cb) {
+    if (res.status === 401) {
+      debug('invalid access token, retrying...');
+      this._clearAuth();
+      retryFn();
+    } else if (res.error) {
+      debug('response error: %s', res.error);
+      cb(res.error);
+    } else {
+      cb(null, res.body.posts);
+    }
   }
 }
 

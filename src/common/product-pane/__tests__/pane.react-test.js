@@ -28,7 +28,7 @@ describe('Pane', function() {
       let pane = TestUtils.renderIntoDocument(<Pane url="http://example.com" />);
       let iframe = pane.getDOMNode().querySelector('iframe');
 
-      expect(iframe.src).toEqual('https://example.com');
+      expect(iframe.src).toEqual('http://example.com');
     });
 
     it('appends an overlay', function() {

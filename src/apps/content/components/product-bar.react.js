@@ -4,11 +4,11 @@
 
 let React = require('react');
 let Frame = require('react-frame-component');
-let ProductStore = require('../stores/product-store');
-let BodyModifier = require('./body-modifier.react');
+let ProductStore = require('../../../common/stores/product');
+let BodyModifier = require('../../../common/body-modifier/body-modifier.react');
 let TopElements = require('./top-elements.react');
 let ProductDetails = require('./product-details.react');
-let Pane = require('./pane.react');
+let Pane = require('../../../common/product-pane/pane.react');
 let TweetButton = require('./tweet-button.react');
 let LikeButton = require('./like-button.react');
 

@@ -1,0 +1,47 @@
+@mixin product-pane() {
+  background-color: #fff;
+  border: none;
+  box-shadow: -25px 0px 30px -5px rgba(0, 0, 0, 0.1) !important;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 50px;
+  width: 400px;
+  z-index: 2147483630;
+}
+
+@mixin product-pane-overlay() {
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+  opacity: 0.8;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2147483629;
+}
+
+@mixin product-pane-close() {
+  background-color: #d5cfce;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 0px;
+  cursor: pointer;
+  display: block;
+  height: 40px;
+  line-height: 42px;
+  position: fixed;
+  right: 400px;
+  text-align: center;
+  top: 50px;
+  width: 35px;
+  z-index: 2147483631;
+
+  &:hover {
+    background-color: #da552f;
+    color: #fff;
+
+    path { fill: #fff; }
+  }
+}

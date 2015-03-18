@@ -50,7 +50,7 @@ let LikeButton = React.createClass({
     let src = buildUrl(FB_BASE, attrs);
 
     return (
-      <iframe src={src} scrolling="no" frameborder="0" className="fb" allowTransparency="true"></iframe>
+      <iframe src={src} scrolling="no" frameBorder="0" className="fb" allowTransparency="true"></iframe>
     );
   }
 });

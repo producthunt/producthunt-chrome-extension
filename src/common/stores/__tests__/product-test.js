@@ -1,11 +1,11 @@
 jest.autoMockOff();
 
 describe('ProductStore', function() {
-  let ProductStore = require('../product-store');
+  let ProductStore = require('../product');
 
   it('sets/returns a product', function() {
     let product = { foo: 'bar' };
-    ProductStore.setProduct(product);
+    ProductStore.setData(product);
     expect(ProductStore.getProduct(product)).toEqual(product);
   });
 
