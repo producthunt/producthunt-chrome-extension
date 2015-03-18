@@ -10,8 +10,6 @@ let ProductGroup = require('./product-group.react');
 let Header = require('./header.react');
 let ProductStore = require('../../../common/stores/product');
 let api = require('../../../common/api');
-let getDay = require('../util/get-day');
-let groupByDay = require('../util/group-by-day');
 let Pane = require('../../../common/product-pane/pane.react');
 
 /**
