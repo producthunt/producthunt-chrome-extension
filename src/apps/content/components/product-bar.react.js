@@ -98,17 +98,19 @@ let ProductBar = React.createClass({
         <Frame className="__phc-bar" id={PRODUCT_BAR_ID} scrolling="no" head={
           <link type='text/css' rel='stylesheet' href={CSS_URL} />
         }>
-          <ProductDetails product={this.state.product} onClick={this._togglePane} />
+          <div onClick={this._togglePane} className="container">
+            <ProductDetails product={this.state.product} />
 
-          <div className="facebook">
-            <ShareButton url={shareUrl} appId={FB_APP_ID} />
+            <div className="facebook">
+              <ShareButton url={shareUrl} appId={FB_APP_ID} />
+            </div>
+
+            <div className="twitter">
+              <TweetButton via={TWITTER_VIA} url={shareUrl} text={tweetText} />
+            </div>
+
+            <a className="close" onClick={this._onCloseClick}>x</a>
           </div>
-
-          <div className="twitter">
-            <TweetButton via={TWITTER_VIA} url={shareUrl} text={tweetText} />
-          </div>
-
-          <a className="close" onClick={this._onCloseClick}>x</a>
         </Frame>
       </div>
     );

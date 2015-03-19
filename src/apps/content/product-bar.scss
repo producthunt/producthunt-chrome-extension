@@ -9,7 +9,7 @@ $close-margin-right: 20px;
 // Mixins
 
 @mixin box($margin-left) {
-  background-color: #e27755;
+  background-color: #edeceb;
   border-radius: 3px;
   display: inline-block;
   font-size: 16px;
@@ -41,11 +41,16 @@ $close-margin-right: 20px;
 }
 
 body {
-  background-color: $orange;
-  color: $white;
+  background-color: $white;
+  color: #534540;
+  cursor: pointer;
   font-family: $font-family;
   line-height: 48px;
   user-select: none;
+
+  &:hover {
+    background-color: #fcf5e3;
+  }
 }
 
 .details {
@@ -116,4 +121,9 @@ body {
   right: $close-margin-right;
   text-align: center;
   width: $close-width;
+}
+
+.container {
+  width: 100%;
+  height: 50px;
 }
