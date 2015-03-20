@@ -24,6 +24,12 @@ const TWITTER_VIA = process.env.TWITTER_VIA;
 const CSS_URL = chrome.extension.getURL('apps/content/product-bar.css');
 
 /**
+ * Locals.
+ */
+
+let closeButton = require('../../../common/close-button');
+
+/**
  * Product Bar.
  *
  * The main component that will build the actual product bar.
@@ -109,7 +115,7 @@ let ProductBar = React.createClass({
               <TweetButton via={TWITTER_VIA} url={shareUrl} text={tweetText} />
             </div>
 
-            <a className="close" onClick={this._onCloseClick}>x</a>
+            <a className="close" onClick={this._onCloseClick}>{closeButton}</a>
           </div>
         </Frame>
       </div>

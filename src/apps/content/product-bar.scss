@@ -1,37 +1,12 @@
+@import "bourbon";
+
 // Variables
 
 $font-family:        'proxima-nova', 'Proxima Nova', sans-serif;
 $orange:             #db552e;
 $white:              #fff;
 $close-width:        40px;
-$close-margin-right: 20px;
-
-// Mixins
-
-@mixin box($margin-left) {
-  background-color: #edeceb;
-  border-radius: 3px;
-  display: inline-block;
-  font-size: 16px;
-  height: 34px;
-  line-height: 34px;
-  margin-left: $margin-left;
-  min-width: 30px;
-  text-align: center;
-  padding: 0 10px;
-}
-
-@mixin icon($img) {
-  background-image: image-url("apps/content/assets/#{$img}.svg");
-  background-position: center 49%;
-  background-repeat: no-repeat;
-  display: inline-block;
-  height: 28px;
-  margin-right: 5px;
-  padding-top: 3px;
-  vertical-align: middle;
-  width: 20px;
-}
+$close-margin-right: 10px;
 
 // Declarations
 
@@ -45,7 +20,7 @@ body {
   color: #534540;
   cursor: pointer;
   font-family: $font-family;
-  line-height: 48px;
+  line-height: 50px;
   user-select: none;
 
   &:hover {
@@ -58,16 +33,17 @@ body {
 
   h1 {
     display: inline-block;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
     letter-spacing: 1px;
-    margin-left: 20px;
+    margin-left: 10px;
   }
 
   h2 {
     -webkit-font-smoothing: antialiased;
+    color: #999999;
     display: inline-block;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: normal;
     margin-left: 20px;
     text-rendering: optimizeLegibility;
@@ -78,13 +54,33 @@ body {
   a { cursor: pointer; }
 
   .votes {
-    @include box(10px);
-    .ico { @include icon('arrow_up'); }
+    background-color: #edeceb;
+    background-image: image-url("apps/content/assets/arrow_up.svg");
+    background-position: 10px 47%;
+    background-size: 9px;
+    background-repeat: no-repeat;
+    border-radius: 3px;
+    box-shadow: 0px 1px 0px 0px rgba(83, 69, 64, 0.3), 0px 1px 1px 0px rgba(black, 0.2);
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 25px;
+    padding-right: 10px;
+    margin-left: 10px;
   }
 
   .comments {
-    @include box(2px);
-    .ico { @include icon('comment'); }
+    -webkit-font-smoothing: antialiased;
+    background-image: image-url("apps/content/assets/comment.svg");
+    background-position: 10px 47%;
+    background-size: 14px;
+    background-repeat: no-repeat;
+    color: #999999;
+    padding-left: 30px;
+    padding-right: 10px;
+    font-size: 14px;
+    display: inline-block;
   }
 }
 
@@ -116,11 +112,14 @@ body {
 
 .close {
   cursor: pointer;
-  font-size: 20px;
+  padding-top: 18px;
   position: fixed;
+  color: #999999;
   right: $close-margin-right;
   text-align: center;
   width: $close-width;
+
+  path { fill: #dddad9; }
 }
 
 .container {
