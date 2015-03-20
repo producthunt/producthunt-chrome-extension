@@ -35,28 +35,26 @@ let Product = React.createClass({
     let click = () => this.props.onClick(product.discussion_url);
 
     return (
-      <a onClick={click} className="clickable" target="_blank">
-        <div className="product">
-          <div className="image">
-            <img src={product.screenshot_url['300px']}/>
+      <div className="product clickable" onClick={click}>
+        <div className="image">
+          <img src={product.screenshot_url['300px']}/>
+        </div>
+
+        <div className="container">
+          <div className="votes">
+            {product.votes_count}
           </div>
 
-          <div className="container">
-            <div className="votes">
-              {product.votes_count}
-            </div>
+          <div className="details">
+            <h3>{product.name}</h3>
+            <p>{product.tagline}</p>
+          </div>
 
-            <div className="details">
-              <h3>{product.name}</h3>
-              <p>{product.tagline}</p>
-            </div>
-
-            <div className="comments">
-              {product.comments_count}
-            </div>
+          <div className="comments">
+            {product.comments_count}
           </div>
         </div>
-      </a>
+      </div>
     );
   }
 });
