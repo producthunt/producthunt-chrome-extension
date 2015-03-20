@@ -46,7 +46,7 @@ let Product = React.createClass({
           </div>
 
           <div className="details">
-            <h3>{product.name}</h3>
+            <h3><a onClick={this._openProduct}>{product.name}</a></h3>
             <p>{product.tagline}</p>
           </div>
 
@@ -56,6 +56,11 @@ let Product = React.createClass({
         </div>
       </div>
     );
+  },
+
+  _openProduct(e) {
+    e.stopPropagation();
+    open(this.props.product.redirect_url);
   }
 });
 

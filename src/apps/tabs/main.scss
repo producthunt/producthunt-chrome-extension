@@ -154,7 +154,12 @@ header {
       width: 33px;
     }
 
-    .details { margin-left: 44px; margin-right: 10px; }
+    .details {
+      margin-left: 44px;
+      margin-right: 10px;
+
+      a:hover { text-decoration: underline; }
+    }
 
     .comments {
       background-image: url('assets/comment.svg');
