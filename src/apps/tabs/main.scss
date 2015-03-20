@@ -35,8 +35,6 @@ body {
 .clickable { cursor: pointer; }
 
 header {
-  @include outer-container;
-
   margin: {
     top: 15px;
     bottom: 15px;
@@ -89,6 +87,21 @@ header {
     max-width: 960px;
   }
 
+  @include media(1400px) {
+    max-width: 1290px;
+  }
+
+  @include media(1700px) {
+    max-width: 1600px;
+  }
+
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+.products {
   h2 {
     text-align: center;
     clear: both;
@@ -102,11 +115,6 @@ header {
       font-size: 14px;
       font-weight: normal;
     }
-  }
-
-  margin: {
-    left: auto;
-    right: auto;
   }
 
   .product {

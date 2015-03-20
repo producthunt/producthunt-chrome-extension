@@ -47,6 +47,11 @@
   width: 35px;
   z-index: 2147483631;
 
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+
   path {
     fill: rgba(#534540, .5);
   }

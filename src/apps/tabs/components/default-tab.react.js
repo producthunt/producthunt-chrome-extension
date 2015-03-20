@@ -105,15 +105,17 @@ let DefaultTab = React.createClass({
 
     return (
       <div>
-        <Header />
         <div className="main">
-          <InfiniteScroll
-            loader={<div className="loading">Hunting down posts...</div>}
-            pageStart={this.state.startPage}
-            loadMore={this._loadNext}
-            hasMore={true}>
-            <ProductGroup products={this.state.products} onClick={this._openPane} />
-          </InfiniteScroll>
+          <Header />
+          <div className="products">
+            <InfiniteScroll
+              loader={<div className="loading">Hunting down posts...</div>}
+              pageStart={this.state.startPage}
+              loadMore={this._loadNext}
+              hasMore={true}>
+              <ProductGroup products={this.state.products} onClick={this._openPane} />
+            </InfiniteScroll>
+          </div>
 
           <Pane
             bodyClass="no-scroll"
