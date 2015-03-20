@@ -6,6 +6,7 @@ let React = require('react');
 let InfiniteScroll = require('react-infinite-scroll')(React);
 let moment = require('moment');
 let cache = require('lscache');
+let async = require('async');
 let ProductGroup = require('./product-group.react');
 let Header = require('./header.react');
 let ProductStore = require('../../../common/stores/product');
@@ -17,6 +18,14 @@ let Pane = require('../../../common/product-pane/pane.react');
  */
 
 const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
+
+/**
+ * Queue for fetching the next page with products.
+ */
+
+let fetch = async.queue(function(daysAgo, cb) {
+  api.getProducts(daysAgo, cb);
+});
 
 /**
  * Default Tab component.
@@ -67,7 +76,8 @@ let DefaultTab = React.createClass({
    */
 
   componentWillMount() {
-    this.startDate = new Date;
+    // using cache, refresh it
+    if (this.cache) this._loadNext(0);
   },
 
   /**
@@ -76,8 +86,6 @@ let DefaultTab = React.createClass({
 
   componentDidMount() {
     ProductStore.addChangeListener(this._handleChange);
-    // using cache, refresh it
-    if (this.cache) this._loadNext(0);
   },
 
   /**
@@ -145,7 +153,7 @@ let DefaultTab = React.createClass({
    */
 
   _loadNext(daysAgo) {
-    api.getProducts(daysAgo);
+    fetch.push(daysAgo);
   },
 
   /**
