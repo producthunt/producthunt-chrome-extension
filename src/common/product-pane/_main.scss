@@ -38,6 +38,7 @@
   border-radius: 3px 0 0 3px;
   cursor: pointer;
   display: block;
+  font-size: 14px;
   height: 40px;
   line-height: 46px;
   position: fixed;
@@ -60,6 +61,8 @@
     background-color: #da552f;
     color: #fff;
 
-    path { fill: #fff; }
+    path {
+      fill: #fff;
+    }
   }
 }
