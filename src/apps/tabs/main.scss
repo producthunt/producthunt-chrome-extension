@@ -1,6 +1,7 @@
 @import "bourbon";
 @import "neat";
-@import "../../common/product-pane/main";
+@import "common/product-pane/main";
+@import "common/header/main";
 
 // Variables
 
@@ -35,37 +36,7 @@ body {
 .clickable { cursor: pointer; }
 
 header {
-  margin: {
-    top: 15px;
-    bottom: 15px;
-  }
-
-  a { text-decoration: none; }
-
-  .logo {
-    display: block;
-    float: left;
-    height: 40px;
-    margin-right: 10px;
-    width: 40px;
-  }
-
-  .title { float: left; }
-
-  h1 {
-    color: $red;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 22px;
-    margin: 0;
-  }
-
-  h2 {
-    color: $grey-1;
-    font-size: 14px;
-    font-weight: normal;
-    margin-top: 3px;
-  }
+  @include main-header();
 }
 
 .clear {

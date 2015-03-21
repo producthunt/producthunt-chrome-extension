@@ -1,0 +1,42 @@
+@import "bourbon";
+@import "common/header/main";
+
+// Definitions
+
+html,
+body {
+  font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
+}
+
+header {
+  @include main-header();
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 39px;
+  margin: 41px 0 20px 0;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.flash {
+  @include transition(opacity .25s ease-in-out);
+  opacity: 1;
+  background: #00b27f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  z-index: 90000;
+
+  &.hidden { opacity: 0; }
+}
