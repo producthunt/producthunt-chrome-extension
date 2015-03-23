@@ -13,16 +13,13 @@ let getHost = require('./util/get-host');
  * Constants.
  */
 
-const PRODUCT_HUNT_HOST = process.env.PRODUCT_HUNT_HOST;
 const BAR_DISABLED_KEY = process.env.BAR_DISABLED_KEY;
 
 /**
  * Locals.
  */
 
-let referrer = getHost(document.referrer);
-let currentHost = location.host;
-let detector = new Detector(PRODUCT_HUNT_HOST, currentHost, referrer);
+let detector = new Detector;
 
 /**
  * Render the product bar.
@@ -33,7 +30,7 @@ let detector = new Detector(PRODUCT_HUNT_HOST, currentHost, referrer);
 function render() {
   // check if we should show the product bar
   // on the current page
-  if (detector.enable()) {
+  if (detector.enable(location.search)) {
     debug('showing product bar...');
     let containerEl = document.createElement('div');
 
