@@ -38,9 +38,9 @@
 
   h2 {
     color: #999999;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
-    margin-top: 3px;
+    margin-top: 0;
 
     @include medium-screen {
       display: none;

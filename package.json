@@ -47,6 +47,7 @@
     "moment": "^2.9.0",
     "node-bourbon": "^4.2.1-beta1",
     "object-assign": "^2.0.0",
+    "query-string": "^1.0.0",
     "react": "^0.12.2",
     "react-frame-component": "^0.3.0",
     "react-infinite-scroll": "^0.1.5",
