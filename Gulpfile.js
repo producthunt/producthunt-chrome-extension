@@ -117,7 +117,7 @@ gulp.task('js', function() {
  */
 
 gulp.task('html', function() {
-  gulp.src(patterns.html)
+  return gulp.src(patterns.html)
     .pipe(watch(patterns.html))
     .pipe(html())
     .pipe(gulp.dest(dest));
@@ -128,7 +128,7 @@ gulp.task('html', function() {
  */
 
 gulp.task('json', function() {
-  gulp.src(patterns.json)
+  return gulp.src(patterns.json)
     .pipe(watch(patterns.json))
     .pipe(json())
     .pipe(gulp.dest(dest));
@@ -141,7 +141,7 @@ gulp.task('json', function() {
 gulp.task('scss', function() {
   var paths = neat.includePaths.concat(['./src']);
 
-  gulp.src(patterns.css)
+  return gulp.src(patterns.css)
     .pipe(plumber())
     .pipe(watch(patterns.css))
     .pipe(sass({
@@ -156,7 +156,7 @@ gulp.task('scss', function() {
  */
 
 gulp.task('img', function() {
-  gulp.src(patterns.img)
+  return gulp.src(patterns.img)
     .pipe(watch(patterns.img))
     .pipe(imagemin())
     .pipe(gulp.dest(dest));
@@ -167,7 +167,7 @@ gulp.task('img', function() {
  */
 
 gulp.task('test-acceptance', ['build'], function () {
-  gulp.src(['test/*.test.js'], { read: false })
+  return gulp.src(['test/*.test.js'], { read: false })
     .pipe(mocha({ r: 'test/setup.js', timeout: 10000 }));
 });
 
