@@ -58,14 +58,6 @@ header {
     max-width: 960px;
   }
 
-  @include media(1400px) {
-    max-width: 1290px;
-  }
-
-  @include media(1700px) {
-    max-width: 1600px;
-  }
-
   margin: {
     left: auto;
     right: auto;
