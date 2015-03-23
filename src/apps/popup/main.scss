@@ -4,13 +4,17 @@
 // Variables
 
 $width:  550px;
-$height: 550px;
+$height: 650px;
 
 // Definitions
 
-body {
+* {
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
 }
 
 body,
@@ -27,6 +31,25 @@ iframe {
   @include loader;
 }
 
-.hidden {
-  display: none;
+header {
+  background: #534540;
+  color: #C4BFBD;
+  height: 54px;
+  line-height: 54px;
+
+  ul {
+    list-style: none;
+
+    li {
+      cursor: pointer;
+      font-size: 16px;
+      float: left;
+      text-align: center;
+      width: 50%;
+
+      &:hover, &.current {
+        background: #fff;
+      }
+    }
+  }
 }
