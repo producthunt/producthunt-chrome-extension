@@ -34,35 +34,13 @@
 }
 
 @mixin product-pane-close() {
-  background: rgba(#ccc5c3, .8);
+  border: 1px;
   border-radius: 3px 0 0 3px;
-  cursor: pointer;
-  display: block;
-  font-size: 14px;
   height: 40px;
-  line-height: 46px;
   position: fixed;
   right: 700px;
   text-align: center;
   top: 50px;
   width: 35px;
   z-index: 2147483631;
-
-  svg {
-    width: 12px;
-    height: 12px;
-  }
-
-  path {
-    fill: rgba(#534540, .5);
-  }
-
-  &:hover {
-    background-color: #da552f;
-    color: #fff;
-
-    path {
-      fill: #fff;
-    }
-  }
 }
