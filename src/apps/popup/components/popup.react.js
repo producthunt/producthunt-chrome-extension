@@ -35,7 +35,7 @@ let Popup = React.createClass({
    */
 
   getInitialState() {
-    return { url: POST_URL };
+    return { url: SEARCH_URL };
   },
 
   /**
@@ -48,12 +48,6 @@ let Popup = React.createClass({
 
     return (
       <div>
-        <header>
-          <ul>
-            <li className={postClass} onClick={this._openSubmission}>Hunt a Product</li>
-            <li className={searchClass} onClick={this._openSearch}>Search</li>
-          </ul>
-        </header>
         <Tab url={this.state.url} />
       </div>
     );
