@@ -1,3 +1,5 @@
+@import "common/screens/main";
+
 @mixin main-header() {
   height: 40px;
 
@@ -24,6 +26,14 @@
     font-weight: bold;
     line-height: 22px;
     margin: 0;
+
+    @include medium-screen {
+      margin-top: 10px;
+    }
+
+    @include small-screen {
+      display: none;
+    }
   }
 
   h2 {
@@ -31,5 +41,13 @@
     font-size: 14px;
     font-weight: normal;
     margin-top: 3px;
+
+    @include medium-screen {
+      display: none;
+    }
+
+    @include small-screen {
+      display: none;
+    }
   }
 }

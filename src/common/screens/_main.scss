@@ -1,0 +1,14 @@
+// Variables
+
+$small-screen-breakpoint: 768px;
+$large-screen-breakpoint: 1200px;
+
+// Mixins
+
+@mixin medium-screen {
+  @media (min-width: $small-screen-breakpoint + 1px) and (max-width: $large-screen-breakpoint - 1px) { @content; }
+}
+
+@mixin small-screen {
+  @media (max-width: $small-screen-breakpoint) { @content; }
+}
