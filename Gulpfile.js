@@ -48,7 +48,8 @@ var patterns = {
   html: 'src/**/*.html',
   img: 'src/**/*.{png,svg,ico}',
   css: 'src/**/*.{scss,css}',
-  json: 'src/**/*.json'
+  json: 'src/**/*.json',
+  vendor: 'vendor/**/*'
 };
 
 /**
@@ -121,6 +122,16 @@ gulp.task('html', function() {
     .pipe(watch(patterns.html))
     .pipe(html())
     .pipe(gulp.dest(dest));
+});
+
+/**
+ * Copy vendor files.
+ */
+
+gulp.task('vendor', function() {
+  return gulp.src(patterns.vendor)
+    .pipe(watch(patterns.vendor))
+    .pipe(gulp.dest(dest + '/vendor'));
 });
 
 /**
@@ -200,6 +211,7 @@ gulp.task('clean', function() {
     dest + '/_locales',
     dest + '/apps',
     dest + '/common',
+    dest + '/vendor',
     dest + '/manifest.json'
   ].forEach(function(dir) {
     rimraf.sync(dir)
@@ -216,4 +228,4 @@ gulp.task('test', ['test-acceptance', 'test-unit']);
  * Build all.
  */
 
-gulp.task('build', ['clean', 'js', 'html', 'json', 'scss', 'img']);
+gulp.task('build', ['clean', 'js', 'html', 'json', 'scss', 'img', 'vendor']);

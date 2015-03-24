@@ -1,6 +1,10 @@
-// TODO(vesln): Implement suggestions in the future?
-
 require('./x-frame');
+
+/**
+ * Dependencies.
+ */
+
+let analytis = require('../../common/analytics');
 
 /**
  * Constants.
@@ -21,7 +25,10 @@ function buildUrl(baseUrl, query) {
   return baseUrl.replace('{query}', encodeURI(query));
 }
 
-// register omnibox "enter" event listner
+/**
+ * Register omnibox "enter" event listner
+ */
+
 chrome.omnibox.onInputEntered.addListener(function(query) {
   if (!query) return;
 
@@ -29,4 +36,12 @@ chrome.omnibox.onInputEntered.addListener(function(query) {
     let url = buildUrl(SEARCH_URL, query);
     chrome.tabs.update(tab.id, { url: url });
   });
+});
+
+/**
+ * Track product bar clicks.
+ */
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  analytis.clickBar(request);
 });

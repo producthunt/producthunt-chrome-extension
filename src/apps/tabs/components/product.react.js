@@ -3,6 +3,7 @@
  */
 
 let React = require('react');
+let analytics = require('../../../common/analytics');
 
 /**
  * Product Component.
@@ -31,11 +32,9 @@ let Product = React.createClass({
 
   render() {
     let product = this.props.product;
-    let onClick = this.props.onClick;
-    let click = () => this.props.onClick(product.discussion_url);
 
     return (
-      <div className="product clickable" onClick={click}>
+      <div className="product clickable" onClick={this._onClick}>
         <div className="image">
           <img src={product.screenshot_url['300px']}/>
         </div>
@@ -58,7 +57,25 @@ let Product = React.createClass({
     );
   },
 
+  /**
+   * Handle product click events.
+   *
+   * @param {Object} event
+   */
+
+  _onClick(e) {
+    analytics.clickPost(this.props.product);
+    this.props.onClick(this.props.product.discussion_url);
+  },
+
+  /**
+   * Handle open product click events.
+   *
+   * @param {Object} event
+   */
+
   _openProduct(e) {
+    analytics.clickPost(this.props.product);
     e.stopPropagation();
     open(this.props.product.redirect_url);
   }

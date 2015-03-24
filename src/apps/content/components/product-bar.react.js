@@ -141,10 +141,11 @@ let ProductBar = React.createClass({
   },
 
   /**
-   * Toggle the pane.
+   * Track bar click & toggle the pane.
    */
 
   _togglePane() {
+    chrome.runtime.sendMessage(this.state.product);
     this.setState({ pane: !this.state.pane });
   }
 });

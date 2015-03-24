@@ -4,6 +4,7 @@
 
 let React = require('react');
 let debug = require('debug')('tab:main');
+let analytics = require('../../common/analytics');
 
 /**
  * Dependencies.
