@@ -10,7 +10,7 @@ let analytis = require('../../common/analytics');
  * Constants.
  */
 
-const SEARCH_URL = process.env.SEARCH_URL;
+const SEARCH_URL = process.env.POST_SEARCH_URL;
 
 /**
  * Build search URL.

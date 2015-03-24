@@ -17,11 +17,13 @@ module.exports = {
     analytics.track({
       anonymousId: userId,
       event: 'click',
-      type: 'post',
-      link_location: 'index',
-      platform: 'chrome extension',
-      post_id: post.id,
-      post_name: post.name
+      properties: {
+        type: 'post',
+        link_location: 'index',
+        platform: 'chrome extension',
+        post_id: post.id,
+        post_name: post.name
+      }
     });
   },
 
@@ -36,10 +38,13 @@ module.exports = {
     analytics.track({
       anonymousId: userId,
       event: 'click',
-      type: 'post_bar',
-      platform: 'chrome extension',
-      post_id: post.id,
-      post_name: post.name
+      properties: {
+        type: 'post',
+        link_location: 'top_bar',
+        platform: 'chrome extension',
+        post_id: post.id,
+        post_name: post.name
+      }
     });
   }
 };
