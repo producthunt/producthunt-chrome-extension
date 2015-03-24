@@ -53,5 +53,5 @@
     }
   ],
   "web_accessible_resources": ["apps/content/product-bar.css", "apps/content/assets/comment.svg", "apps/content/assets/arrow_up.svg", "common/loader/loader.png", "common/product-pane/close.css"],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src https://ssl.google-analytics.com 'self' 'unsafe-eval'; object-src 'self'"
 }

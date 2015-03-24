@@ -49,7 +49,7 @@ var patterns = {
   img: 'src/**/*.{png,svg,ico}',
   css: 'src/**/*.{scss,css}',
   json: 'src/**/*.json',
-  vendor: 'vendor/**/*'
+  vendor: 'vendor/**/**'
 };
 
 /**
