@@ -1,5 +1,11 @@
-// TODO(vesln): added temp because of the product pane
-// credits: https://gist.github.com/dergachev/e216b25d9a144914eae2
+/**
+ * Remove ProductHunt's X-frame header.
+ *
+ * Temporary workaround, because the API responses do not include a link to the widgets
+ * page. Likely we will just modify the API URL on the fly, instead of removing the
+ * x-frame option, but that will do too.
+ */
+
 chrome.webRequest.onHeadersReceived.addListener(function(details) {
   for (var i = 0; i < details.responseHeaders.length; ++i) {
     if (details.responseHeaders[i].name.toLowerCase() == 'x-frame-options') {
@@ -7,4 +13,4 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
       return { responseHeaders: details.responseHeaders };
     }
   }
-}, { urls: ['<all_urls>'] }, ['blocking', 'responseHeaders']);
+}, { urls: ['*://www.producthunt.com/*'] }, ['blocking', 'responseHeaders']);

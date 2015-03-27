@@ -1,29 +1,22 @@
+/**
+ * Modifiers.
+ */
+
 require('./x-frame');
+require('./typekit');
 
 /**
  * Dependencies.
  */
 
-let analytis = require('../../common/analytics');
+let analytics = require('../../common/analytics');
+let buildUrl = require('./build-url');
 
 /**
  * Constants.
  */
 
 const SEARCH_URL = process.env.POST_SEARCH_URL;
-
-/**
- * Build search URL.
- *
- * @param {String} base url
- * @param {String} query
- * @returns {String}
- * @private
- */
-
-function buildUrl(baseUrl, query) {
-  return baseUrl.replace('{query}', encodeURI(query));
-}
 
 /**
  * Register omnibox "enter" event listner
@@ -43,5 +36,5 @@ chrome.omnibox.onInputEntered.addListener(function(query) {
  */
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  analytis.clickBar(request);
+  analytics.clickBar(request);
 });

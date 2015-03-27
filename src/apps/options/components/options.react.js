@@ -24,6 +24,12 @@ const TAB_KEY = process.env.TAB_DISABLED_KEY;
  * <Options />
  * ```
  *
+ * State:
+ *
+ * - barDisabled: default value for the bar disabled option
+ * - tabDisabled: default value for the tab disabled option
+ * - showFlash:   whether to show the flash message or not
+ *
  * @class
  */
 

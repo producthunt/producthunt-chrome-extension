@@ -1,9 +1,22 @@
 /**
+ * Dependencies.
+ */
+
+let NullAnalytics = require('./null-analytics');
+
+/**
+ * Constants.
+ */
+
+const ANALYTICS_KEY = process.env.ANALYTICS_KEY;
+
+/**
  * Locals.
  */
 
-let analytics = new window.ProductHuntAnalytics(process.env.ANALYTICS_KEY);
-let userId = anonymousId();
+let enableAnalytics = window.ProductHuntAnalytics && ANALYTICS_KEY;
+let ProductHuntAnalytics = enableAnalytics ? window.ProductHuntAnalytics : NullAnalytics;
+let analytics = new ProductHuntAnalytics(process.env.ANALYTICS_KEY);
 
 module.exports = {
 
@@ -14,16 +27,18 @@ module.exports = {
    */
 
   clickPost(post) {
-    analytics.track({
-      anonymousId: userId,
-      event: 'click',
-      properties: {
-        type: 'post',
-        link_location: 'index',
-        platform: 'chrome extension',
-        post_id: post.id,
-        post_name: post.name
-      }
+    getAnonymousId(function(id) {
+      analytics.track({
+        anonymousId: id,
+        event: 'click',
+        properties: {
+          type: 'post',
+          link_location: 'index',
+          platform: 'chrome extension',
+          post_id: post.id,
+          post_name: post.name
+        }
+      });
     });
   },
 
@@ -35,16 +50,18 @@ module.exports = {
    */
 
   clickBar(post) {
-    analytics.track({
-      anonymousId: userId,
-      event: 'click',
-      properties: {
-        type: 'post',
-        link_location: 'top_bar',
-        platform: 'chrome extension',
-        post_id: post.id,
-        post_name: post.name
-      }
+    getAnonymousId(function(id) {
+      analytics.track({
+        anonymousId: id,
+        event: 'click',
+        properties: {
+          type: 'post',
+          link_location: 'top_bar',
+          platform: 'chrome extension',
+          post_id: post.id,
+          post_name: post.name
+        }
+      });
     });
   }
 };
@@ -60,5 +77,22 @@ function anonymousId() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
     return v.toString(16);
+  });
+}
+
+/**
+ * Get anonymous ID.
+ *
+ * @param {Function} fn
+ * @private
+ */
+
+function getAnonymousId(fn) {
+  chrome.storage.sync.get({ userId: null }, function(items) {
+    if (items.userId) return fn(items.userId);
+    var userId = anonymousId();
+    chrome.storage.sync.set({ userId: userId }, function() {
+      fn(userId);
+    });
   });
 }

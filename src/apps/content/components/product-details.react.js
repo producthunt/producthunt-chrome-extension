@@ -33,7 +33,6 @@ let ProductDetails = React.createClass({
 
     return (
       <div className="details">
-
         <div className="votes">
           {product.votes_count}
         </div>

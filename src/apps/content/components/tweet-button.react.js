@@ -48,7 +48,12 @@ let TweetButton = React.createClass({
     let src = buildUrl(TWITTER_BASE, attrs);
 
     return (
-      <iframe className="tweet" id="tweet-button" allowTransparency="true" frameBorder="0" scrolling="no" src={src}></iframe>
+      <iframe
+        className="tweet"
+        id="tweet-button"
+        allowTransparency="true"
+        frameBorder="0"
+        scrolling="no" src={src}></iframe>
     );
   }
 });

@@ -78,22 +78,21 @@ let ProductBar = React.createClass({
 
   /**
    * Render the view.
+   *
+   * NOTE(vesln): React has bugs when rendering iframe inside the iframe, thats why
+   * the Share and Tweet buttons are wrapped inside divs
    */
 
   render() {
-    let product = this.state.product;
-
-    if (!product) {
+    if (!this.state.product) {
       return false;
     }
 
+    let product = this.state.product;
     let url = this.state.pane ? product.discussion_url : null;
     let shareUrl = product.discussion_url;
     let tweetText = `${product.name}: ${product.tagline}`;
 
-    // NOTE(vesln): React has bugs when rendering iframe inside the iframe, thats why
-    // the Share and Tweet buttons are wrapped inside divs
-    // TODO(vesln): Investigate
     return (
       <div>
         <BodyModifier className={BODY_CLASS} />

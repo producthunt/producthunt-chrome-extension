@@ -1,12 +1,12 @@
 {
+  "name": "__MSG_appName__",
+  "options_page": "apps/options/main.html",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "__MSG_appDescription__",
   "chrome_url_overrides": {
     "newtab": "apps/tabs/main.html"
   },
-  "name": "__MSG_appName__",
-  "options_page": "apps/options/main.html",
-  "version": "0.0.25",
-  "manifest_version": 2,
-  "description": "__MSG_appDescription__",
   "background": {
     "scripts": [
       "vendor/analytics.js",
@@ -30,8 +30,9 @@
     "keyword": "product"
   },
   "permissions": [
+    "*://use.typekit.net/*",
+    "*://www.producthunt.com/*",
     "webRequestBlocking",
-    "<all_urls>",
     "storage",
     "webRequest",
     "tabs"
@@ -52,6 +53,13 @@
       "all_frames": false
     }
   ],
-  "web_accessible_resources": ["apps/content/product-bar.css", "apps/content/assets/comment.svg", "apps/content/assets/arrow_up.svg", "common/loader/loader.png", "common/product-pane/close.css"],
-  "content_security_policy": "script-src https://ssl.google-analytics.com 'self' 'unsafe-eval'; object-src 'self'"
+  "web_accessible_resources": [
+    "apps/content/product-bar.css",
+    "apps/content/assets/comment.svg",
+    "apps/content/assets/arrow_up.svg",
+    "common/loader/loader.png",
+    "common/loader/loader@2x.png",
+    "common/product-pane/close.css"
+  ],
+  "content_security_policy": "script-src https://ssl.google-analytics.com https://use.typekit.net 'self' 'unsafe-eval'; object-src 'self'"
 }

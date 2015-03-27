@@ -83,11 +83,13 @@ let Pane = React.createClass({
       <div>
         <BodyModifier className={this.props.bodyClass} />
         <div className={overlayClass} onClick={this.props.onClick}></div>
+
         <Frame className={closeClass} scrolling="no" head={
           <link type='text/css' rel='stylesheet' href={CSS_URL} />
         }>
           <div className="content" onClick={this.props.onClick}>{closeButton} </div>
         </Frame>
+
         <div className={paneClass}>
           <div id="__phc-loader" className={loaderClass}></div>
           <iframe src={this.props.url} id="__phc-product-pane" />

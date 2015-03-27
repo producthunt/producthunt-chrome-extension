@@ -23,6 +23,10 @@ const POST_URL = process.env.POST_URL;
  * <Popup />
  * ```
  *
+ * State:
+ *
+ * - url: Popup URL address
+ *
  * @class
  */
 
@@ -43,9 +47,6 @@ let Popup = React.createClass({
    */
 
   render() {
-    let postClass = this.state.url === POST_URL ? 'current': null;
-    let searchClass = this.state.url === SEARCH_URL ? 'current': null;
-
     return (
       <div>
         <Tab url={this.state.url} />

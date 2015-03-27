@@ -4,7 +4,6 @@
 
 let React = require('react');
 let InfiniteScroll = require('react-infinite-scroll')(React);
-let moment = require('moment');
 let cache = require('lscache');
 let async = require('async');
 let ProductGroup = require('./product-group.react');

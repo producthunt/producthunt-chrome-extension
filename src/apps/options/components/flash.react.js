@@ -44,9 +44,7 @@ let Flash = React.createClass({
    */
 
   render() {
-    return (
-      <div className="flash hidden">{this.props.text}</div>
-    );
+    return <div className="flash hidden">{this.props.text}</div>;
   }
 });
 
