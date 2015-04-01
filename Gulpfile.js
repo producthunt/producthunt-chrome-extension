@@ -80,7 +80,7 @@ var bundles = [
  */
 
 function watch(pattern) {
-  return argv.watch ? gwatch(pattern) : gutil.noop();
+  return argv.watch ? gwatch(pattern, { verbose: true }) : gutil.noop();
 }
 
 /**
