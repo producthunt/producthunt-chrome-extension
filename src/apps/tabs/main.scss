@@ -1,6 +1,7 @@
 @import "bourbon";
 @import "neat";
-@import "../../common/product-pane/main";
+@import "common/product-pane/main";
+@import "common/header/main";
 
 // Variables
 
@@ -30,43 +31,12 @@ body {
 .pane { @include product-pane; top: 0 !important; }
 .overlay { @include product-pane-overlay; }
 .close { @include product-pane-close; top: 15px !important; }
+.loader { @include product-pane-loader; }
 .no-scroll { overflow: hidden; }
 .clickable { cursor: pointer; }
 
 header {
-  @include outer-container;
-
-  margin: {
-    top: 15px;
-    bottom: 15px;
-  }
-
-  a { text-decoration: none; }
-
-  .logo {
-    display: block;
-    float: left;
-    height: 40px;
-    margin-right: 10px;
-    width: 40px;
-  }
-
-  .title { float: left; }
-
-  h1 {
-    color: $red;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 22px;
-    margin: 0;
-  }
-
-  h2 {
-    color: $grey-1;
-    font-size: 14px;
-    font-weight: normal;
-    margin-top: 3px;
-  }
+  @include main-header();
 }
 
 .clear {
@@ -88,6 +58,13 @@ header {
     max-width: 960px;
   }
 
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+.products {
   h2 {
     text-align: center;
     clear: both;
@@ -101,11 +78,6 @@ header {
       font-size: 14px;
       font-weight: normal;
     }
-  }
-
-  margin: {
-    left: auto;
-    right: auto;
   }
 
   .product {
@@ -137,12 +109,10 @@ header {
     .container { position: relative; }
 
     .votes {
-      background-color: $cream-1;
       background-image: url('assets/arrow_up.svg');
       background-position: center 2px;
       background-repeat: no-repeat;
       border-radius: 3px;
-      box-shadow: 0px 1px 1px 0px rgba(83,69,64,0.11);
       color: $brown-1;
       font-size: 13px;
       height: 44px;
@@ -155,7 +125,12 @@ header {
       width: 33px;
     }
 
-    .details { margin-left: 44px; margin-right: 10px; }
+    .details {
+      margin-left: 44px;
+      margin-right: 10px;
+
+      a:hover { text-decoration: underline; }
+    }
 
     .comments {
       background-image: url('assets/comment.svg');
@@ -172,8 +147,8 @@ header {
 
     h3 {
       color: $brown-1;
-      font-size: 18px;
-      margin: 0 0 5px 0;
+      font-size: 16px;
+      margin: 0 23px 5px 0;
       padding: 0;
     }
 

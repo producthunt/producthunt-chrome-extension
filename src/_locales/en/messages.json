@@ -4,11 +4,11 @@
     "description": "The name of the application"
   },
   "title": {
-    "message": "Product Hunt",
+    "message": "Product Hunt: The best new products, every day",
     "description": "Default title"
   },
   "appDescription": {
-    "message": "Product Hunt Extension: The best new products, every day, in your new tab",
+    "message": "Product Hunt brings you the best new products, every day.",
     "description": "The description of the application"
   }
 }

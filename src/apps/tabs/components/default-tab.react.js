@@ -4,10 +4,10 @@
 
 let React = require('react');
 let InfiniteScroll = require('react-infinite-scroll')(React);
-let moment = require('moment');
 let cache = require('lscache');
+let async = require('async');
 let ProductGroup = require('./product-group.react');
-let Header = require('./header.react');
+let Header = require('../../../common/header/header.react');
 let ProductStore = require('../../../common/stores/product');
 let api = require('../../../common/api');
 let Pane = require('../../../common/product-pane/pane.react');
@@ -17,6 +17,14 @@ let Pane = require('../../../common/product-pane/pane.react');
  */
 
 const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
+
+/**
+ * Queue for fetching the next page with products.
+ */
+
+let fetch = async.queue(function(daysAgo, cb) {
+  api.getProducts(daysAgo, cb);
+});
 
 /**
  * Default Tab component.
@@ -67,7 +75,8 @@ let DefaultTab = React.createClass({
    */
 
   componentWillMount() {
-    this.startDate = new Date;
+    // using cache, refresh it
+    if (this.cache) this._loadNext(0);
   },
 
   /**
@@ -76,8 +85,6 @@ let DefaultTab = React.createClass({
 
   componentDidMount() {
     ProductStore.addChangeListener(this._handleChange);
-    // using cache, refresh it
-    if (this.cache) this._loadNext(0);
   },
 
   /**
@@ -97,18 +104,21 @@ let DefaultTab = React.createClass({
 
     return (
       <div>
-        <Header />
         <div className="main">
-          <InfiniteScroll
-            loader={<div className="loading">Hunting down posts...</div>}
-            pageStart={this.state.startPage}
-            loadMore={this._loadNext}
-            hasMore={true}>
-            <ProductGroup products={this.state.products} onClick={this._openPane} />
-          </InfiniteScroll>
+          <Header />
+          <div className="products">
+            <InfiniteScroll
+              loader={<div className="loading">Hunting down posts...</div>}
+              pageStart={this.state.startPage}
+              loadMore={this._loadNext}
+              hasMore={true}>
+              <ProductGroup products={this.state.products} onClick={this._openPane} />
+            </InfiniteScroll>
+          </div>
 
           <Pane
             bodyClass="no-scroll"
+            loaderClass="loader"
             overlayClass="overlay"
             closeClass="close"
             paneClass="pane"
@@ -144,7 +154,7 @@ let DefaultTab = React.createClass({
    */
 
   _loadNext(daysAgo) {
-    api.getProducts(daysAgo);
+    fetch.push(daysAgo);
   },
 
   /**

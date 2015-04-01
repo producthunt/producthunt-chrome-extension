@@ -26,16 +26,4 @@ describe('ProductDetails', function() {
   it('renders the product tagline', function() {
     expect(<ProductDetails product={product} />).toRender(product.tagline);
   });
-
-  it('accepts a custom onclick handler', function() {
-    let click = jest.genMockFn();
-    let details = TestUtils.renderIntoDocument(
-      <ProductDetails product={product} onClick={click} />
-    );
-    let link = TestUtils.findRenderedDOMComponentWithTag(details, 'a');
-
-    TestUtils.Simulate.click(link);
-
-    expect(click).toBeCalled();
-  });
 });

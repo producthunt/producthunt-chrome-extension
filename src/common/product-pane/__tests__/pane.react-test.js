@@ -26,7 +26,7 @@ describe('Pane', function() {
   describe('with url', function() {
     it('renders the iframe', function() {
       let pane = TestUtils.renderIntoDocument(<Pane url="http://example.com" />);
-      let iframe = pane.getDOMNode().querySelector('iframe');
+      let iframe = pane.getDOMNode().querySelector('#__phc-product-pane');
 
       expect(iframe.src).toEqual('http://example.com');
     });

@@ -1,5 +1,5 @@
 jest.autoMockOff();
-jest.mock('../header.react.js');
+jest.mock(filePath('common/header/header.react.js'));
 
 describe('DefaultTab', function() {
   let DefaultTab = require('../default-tab.react');

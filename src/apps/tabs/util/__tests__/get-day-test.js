@@ -15,7 +15,7 @@ describe('getDay', function() {
   });
 
   it('returns the actual day of the week if the date is not yesterday or tomorrow', function() {
-    let date = moment('2015-03-01');
+    let date = moment(new Date('2015-03-01'));
     expect(getDay(date)).toEqual('Sunday');
   });
 });

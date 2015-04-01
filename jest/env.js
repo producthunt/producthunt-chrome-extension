@@ -47,3 +47,16 @@ global.load = load;
  */
 
 global.filePath = filePath;
+
+/**
+ * Expose fake `chrome` object.
+ */
+
+global.chrome = window.chrome = {
+  extension: {
+    getURL: function() {}
+  },
+  runtime: {
+    sendMessage: function() {}
+  }
+};

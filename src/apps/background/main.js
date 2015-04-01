@@ -1,27 +1,27 @@
-// TODO(vesln): Implement suggestions in the future?
+/**
+ * Modifiers.
+ */
 
 require('./x-frame');
+require('./typekit');
+
+/**
+ * Dependencies.
+ */
+
+let analytics = require('../../common/analytics');
+let buildUrl = require('./build-url');
 
 /**
  * Constants.
  */
 
-const SEARCH_URL = process.env.SEARCH_URL;
+const SEARCH_URL = process.env.POST_SEARCH_URL;
 
 /**
- * Build search URL.
- *
- * @param {String} base url
- * @param {String} query
- * @returns {String}
- * @private
+ * Register omnibox "enter" event listner
  */
 
-function buildUrl(baseUrl, query) {
-  return baseUrl.replace('{query}', encodeURI(query));
-}
-
-// register omnibox "enter" event listner
 chrome.omnibox.onInputEntered.addListener(function(query) {
   if (!query) return;
 
@@ -29,4 +29,12 @@ chrome.omnibox.onInputEntered.addListener(function(query) {
     let url = buildUrl(SEARCH_URL, query);
     chrome.tabs.update(tab.id, { url: url });
   });
+});
+
+/**
+ * Track product bar clicks.
+ */
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  analytics.clickBar(request);
 });

@@ -33,19 +33,16 @@ let ProductDetails = React.createClass({
 
     return (
       <div className="details">
-        <a onClick={this.props.onClick}>
-          <div className="votes">
-            <span className="ico"></span>
-            {product.votes_count}
-          </div>
-          <div className="comments">
-            <span className="ico"></span>
-            {product.comments_count}
-          </div>
+        <div className="votes">
+          {product.votes_count}
+        </div>
 
-          <h1>{product.name}</h1>
-          <h2>{product.tagline}</h2>
-        </a>
+        <h1>{product.name}</h1>
+        <h2>{product.tagline}</h2>
+
+        <div className="comments">
+          {product.comments_count}
+        </div>
       </div>
     );
   }

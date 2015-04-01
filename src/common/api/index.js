@@ -50,10 +50,11 @@ let api = {
    * Fetch all products for given date.
    *
    * @param {Date} date
+   * @param {Function} callback [optional]
    * @public
    */
 
-  getProducts(daysAgo) {
+  getProducts(daysAgo, cb) {
     debug('getting products from %d days ago', daysAgo);
 
     ph.getProducts(daysAgo, function(err, products) {
@@ -66,6 +67,7 @@ let api = {
       }
 
       ProductActions.receiveProducts(products);
+      cb();
     });
   },
 };

@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  background: #ccc5c3;
+  cursor: pointer;
+  font-size: 14px;
+  height: 40px;
+  line-height: 46px;
+  text-align: center;
+  width: 100%;
+  z-index: 2147483631;
+
+  svg {
+    margin-top: 14px;
+    width: 12px;
+    height: 12px;
+  }
+
+  path {
+    fill: rgba(#534540, .5);
+  }
+
+  &:hover {
+    background-color: #da552f;
+    color: #fff;
+
+    path {
+      fill: #fff;
+    }
+  }
+}

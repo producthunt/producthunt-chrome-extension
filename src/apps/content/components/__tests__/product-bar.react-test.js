@@ -3,13 +3,6 @@ jest.autoMockOff();
 jest.mock(filePath('/common/body-modifier/body-modifier.react'));
 jest.mock('../top-elements.react.js');
 
-// chrome does not exist in jsdom
-window.chrome = {
-  extension: {
-    getURL: function(){}
-  }
-};
-
 describe('ProductBar', function() {
   let ProductBar = require('../product-bar.react');
   let ProductStore = load('/common/stores/product');
@@ -36,23 +29,10 @@ describe('ProductBar', function() {
     ProductStore.emitChange();
 
     let node = bar.getDOMNode();
-    let link = node.querySelector('.details a');
+    let link = node.querySelector('div.container');
 
     TestUtils.Simulate.click(link);
 
     expect(node.innerHTML).toContain(product.discussion_url);
-  });
-
-  it('can be closed', function() {
-    let container = document.createElement('div');
-    React.render(<ProductBar />, container);
-
-    ProductStore.setData({ foo: 'bar' });
-    ProductStore.emitChange();
-
-    let link = container.querySelector('.close');
-    TestUtils.Simulate.click(link);
-
-    expect(container.innerHTML).toEqual('');
   });
 });

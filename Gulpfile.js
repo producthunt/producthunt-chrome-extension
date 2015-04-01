@@ -29,6 +29,7 @@ var mocha = require('gulp-spawn-mocha');
 var jest = require('jest-cli');
 var harmonize = require('harmonize')();
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
+var env = process.env;
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
@@ -47,7 +48,8 @@ var patterns = {
   html: 'src/**/*.html',
   img: 'src/**/*.{png,svg,ico}',
   css: 'src/**/*.{scss,css}',
-  json: 'src/**/*.json'
+  json: 'src/**/*.json',
+  vendor: 'vendor/**/**'
 };
 
 /**
@@ -64,7 +66,8 @@ var bundles = [
   { entry: './src/apps/popup/main.js', out: 'apps/popup/main.js' },
   { entry: './src/apps/background/main.js', out: 'apps/background/main.js' },
   { entry: './src/apps/content/main.js', out: 'apps/content/main.js' },
-  { entry: './src/apps/tabs/main.js', out: 'apps/tabs/main.js' }
+  { entry: './src/apps/tabs/main.js', out: 'apps/tabs/main.js' },
+  { entry: './src/apps/options/main.js', out: 'apps/options/main.js' }
 ];
 
 /**
@@ -98,7 +101,6 @@ gulp.task('js', function() {
       bundler.bundle()
         .pipe(source(bundle.out))
         .pipe(buffer())
-        .pipe(uglify())
         .pipe(gulp.dest(dest));
     };
 
@@ -116,10 +118,20 @@ gulp.task('js', function() {
  */
 
 gulp.task('html', function() {
-  gulp.src(patterns.html)
+  return gulp.src(patterns.html)
     .pipe(watch(patterns.html))
     .pipe(html())
     .pipe(gulp.dest(dest));
+});
+
+/**
+ * Copy vendor files.
+ */
+
+gulp.task('vendor', function() {
+  return gulp.src(patterns.vendor)
+    .pipe(watch(patterns.vendor))
+    .pipe(gulp.dest(dest + '/vendor'));
 });
 
 /**
@@ -127,7 +139,7 @@ gulp.task('html', function() {
  */
 
 gulp.task('json', function() {
-  gulp.src(patterns.json)
+  return gulp.src(patterns.json)
     .pipe(watch(patterns.json))
     .pipe(json())
     .pipe(gulp.dest(dest));
@@ -140,11 +152,11 @@ gulp.task('json', function() {
 gulp.task('scss', function() {
   var paths = neat.includePaths.concat(['./src']);
 
-  gulp.src(patterns.css)
+  return gulp.src(patterns.css)
     .pipe(plumber())
     .pipe(watch(patterns.css))
     .pipe(sass({
-      imagePath: '',
+      imagePath: 'chrome-extension://' + env.EXTENSION_ID,
       includePaths: paths
     }))
     .pipe(gulp.dest(dest));
@@ -155,7 +167,7 @@ gulp.task('scss', function() {
  */
 
 gulp.task('img', function() {
-  gulp.src(patterns.img)
+  return gulp.src(patterns.img)
     .pipe(watch(patterns.img))
     .pipe(imagemin())
     .pipe(gulp.dest(dest));
@@ -166,7 +178,7 @@ gulp.task('img', function() {
  */
 
 gulp.task('test-acceptance', ['build'], function () {
-  gulp.src(['test/*.test.js'], { read: false })
+  return gulp.src(['test/*.test.js'], { read: false })
     .pipe(mocha({ r: 'test/setup.js', timeout: 10000 }));
 });
 
@@ -199,6 +211,7 @@ gulp.task('clean', function() {
     dest + '/_locales',
     dest + '/apps',
     dest + '/common',
+    dest + '/vendor',
     dest + '/manifest.json'
   ].forEach(function(dir) {
     rimraf.sync(dir)
@@ -215,4 +228,4 @@ gulp.task('test', ['test-acceptance', 'test-unit']);
  * Build all.
  */
 
-gulp.task('build', ['clean', 'js', 'html', 'json', 'scss', 'img']);
+gulp.task('build', ['clean', 'js', 'html', 'json', 'scss', 'img', 'vendor']);

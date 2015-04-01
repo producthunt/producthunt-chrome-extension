@@ -12,6 +12,7 @@ $bar-height: 50px;
   border: 0 !important;
   bottom: auto !important;
   box-sizing: content-box !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
   height: $bar-height !important;
   left: 0 !important;
   margin: 0 !important;
@@ -33,4 +34,5 @@ $bar-height: 50px;
 .__phc-pane { @include product-pane; }
 .__phc-overlay { @include product-pane-overlay; }
 .__phc-close { @include product-pane-close; }
+.__phc-loader { @include product-pane-loader; }
 .__phc-no-scroll { overflow: hidden !important; }

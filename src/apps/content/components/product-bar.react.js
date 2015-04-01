@@ -10,7 +10,7 @@ let TopElements = require('./top-elements.react');
 let ProductDetails = require('./product-details.react');
 let Pane = require('../../../common/product-pane/pane.react');
 let TweetButton = require('./tweet-button.react');
-let LikeButton = require('./like-button.react');
+let ShareButton = require('./share-button.react');
 
 /**
  * Constants.
@@ -22,6 +22,12 @@ const OVERLAY_BODY_CLASS = process.env.OVERLAY_BODY_CLASS;
 const FB_APP_ID = process.env.FB_APP_ID;
 const TWITTER_VIA = process.env.TWITTER_VIA;
 const CSS_URL = chrome.extension.getURL('apps/content/product-bar.css');
+
+/**
+ * Locals.
+ */
+
+let closeButton = require('../../../common/close-button');
 
 /**
  * Product Bar.
@@ -72,42 +78,44 @@ let ProductBar = React.createClass({
 
   /**
    * Render the view.
+   *
+   * NOTE(vesln): React has bugs when rendering iframe inside the iframe, thats why
+   * the Share and Tweet buttons are wrapped inside divs
    */
 
   render() {
-    let product = this.state.product;
-
-    if (!product) {
+    if (!this.state.product) {
       return false;
     }
 
+    let product = this.state.product;
     let url = this.state.pane ? product.discussion_url : null;
     let shareUrl = product.discussion_url;
     let tweetText = `${product.name}: ${product.tagline}`;
 
-    // NOTE(vesln): React has bugs when rendering iframe inside the iframe, thats why
-    // the Like and Tweet buttons are wrapped inside divs
-    // TODO(vesln): Investigate
     return (
       <div>
         <BodyModifier className={BODY_CLASS} />
         <TopElements />
+
         <Pane bodyClass={OVERLAY_BODY_CLASS} url={url} onClick={this._togglePane} />
 
         <Frame className="__phc-bar" id={PRODUCT_BAR_ID} scrolling="no" head={
           <link type='text/css' rel='stylesheet' href={CSS_URL} />
         }>
-          <ProductDetails product={this.state.product} onClick={this._togglePane} />
+          <div onClick={this._togglePane} className="container">
+            <ProductDetails product={this.state.product} />
 
-          <div className="facebook">
-            <LikeButton url={shareUrl} appId={FB_APP_ID} />
+            <div className="facebook">
+              <ShareButton url={shareUrl} appId={FB_APP_ID} />
+            </div>
+
+            <div className="twitter">
+              <TweetButton via={TWITTER_VIA} url={shareUrl} text={tweetText} />
+            </div>
+
+            <a className="close" onClick={this._onCloseClick}>{closeButton}</a>
           </div>
-
-          <div className="twitter">
-            <TweetButton via={TWITTER_VIA} url={shareUrl} text={tweetText} />
-          </div>
-
-          <a className="close" onClick={this._onCloseClick}>x</a>
         </Frame>
       </div>
     );
@@ -132,10 +140,11 @@ let ProductBar = React.createClass({
   },
 
   /**
-   * Toggle the pane.
+   * Track bar click & toggle the pane.
    */
 
   _togglePane() {
+    chrome.runtime.sendMessage(this.state.product);
     this.setState({ pane: !this.state.pane });
   }
 });

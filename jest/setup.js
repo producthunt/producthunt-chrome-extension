@@ -1,6 +1,7 @@
 jasmine.getEnv().beforeEach(function() {
   var React = require('react/addons');
 
+  // add custom matchers
   this.addMatchers({
     toMatchContent: function(expected) {
       return this.actual.getDOMNode().innerHTML.match(expected);

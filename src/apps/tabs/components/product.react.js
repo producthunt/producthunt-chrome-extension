@@ -3,6 +3,7 @@
  */
 
 let React = require('react');
+let analytics = require('../../../common/analytics');
 
 /**
  * Product Component.
@@ -31,33 +32,52 @@ let Product = React.createClass({
 
   render() {
     let product = this.props.product;
-    let onClick = this.props.onClick;
-    let click = () => this.props.onClick(product.discussion_url);
 
     return (
-      <a onClick={click} className="clickable" target="_blank">
-        <div className="product animated fadeIn">
-          <div className="image">
-            <img src={product.screenshot_url['300px']}/>
+      <div className="product clickable" onClick={this._onClick}>
+        <div className="image">
+          <img src={product.screenshot_url['300px']}/>
+        </div>
+
+        <div className="container">
+          <div className="votes">
+            {product.votes_count}
           </div>
 
-          <div className="container">
-            <div className="votes">
-              {product.votes_count}
-            </div>
+          <div className="details">
+            <h3><a onClick={this._openProduct}>{product.name}</a></h3>
+            <p>{product.tagline}</p>
+          </div>
 
-            <div className="details">
-              <h3>{product.name}</h3>
-              <p>{product.tagline}</p>
-            </div>
-
-            <div className="comments">
-              {product.comments_count}
-            </div>
+          <div className="comments">
+            {product.comments_count}
           </div>
         </div>
-      </a>
+      </div>
     );
+  },
+
+  /**
+   * Handle product click events.
+   *
+   * @param {Object} event
+   */
+
+  _onClick(e) {
+    analytics.clickPost(this.props.product);
+    this.props.onClick(this.props.product.discussion_url);
+  },
+
+  /**
+   * Handle open product click events.
+   *
+   * @param {Object} event
+   */
+
+  _openProduct(e) {
+    analytics.clickPost(this.props.product);
+    e.stopPropagation();
+    open(this.props.product.redirect_url);
   }
 });
 
