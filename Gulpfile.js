@@ -20,7 +20,6 @@ var ignore = require('gulp-ignore');
 var rimraf = require('rimraf');
 var imagemin = require('gulp-imagemin');
 var uglify = require('gulp-uglify');
-var plumber = require('gulp-plumber');
 var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
 var neat = require('node-neat');
@@ -98,8 +97,13 @@ gulp.task('js', function() {
       fullPaths: true
     });
 
+    bundler.on('log', gutil.log)
+
     var update = function() {
       bundler.bundle()
+        .on('error', function(err) {
+          gutil.log(err.message);
+        })
         .pipe(source(bundle.out))
         .pipe(buffer())
         .pipe(gulp.dest(dest));
@@ -173,11 +177,11 @@ gulp.task('scss', function() {
   var paths = neat.includePaths.concat(['./src']);
 
   return gulp.src(patterns.css)
-    .pipe(plumber())
     .pipe(watch(patterns.css))
     .pipe(sass({
       imagePath: 'chrome-extension://' + env.EXTENSION_ID,
-      includePaths: paths
+      includePaths: paths,
+      errLogToConsole: true
     }))
     .pipe(gulp.dest(dest));
 });
