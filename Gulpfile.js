@@ -30,6 +30,7 @@ var jest = require('jest-cli');
 var harmonize = require('harmonize')();
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var env = process.env;
+var NODE_ENV = env.NODE_ENV || 'development';
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
@@ -48,7 +49,7 @@ var patterns = {
   html: 'src/**/*.html',
   img: 'src/**/*.{png,svg,ico}',
   css: 'src/**/*.{scss,css}',
-  json: 'src/**/*.json',
+  locales: 'src/_locales/**/*.json',
   vendor: 'vendor/**/**'
 };
 
@@ -135,14 +136,33 @@ gulp.task('vendor', function() {
 });
 
 /**
- * Minify the JSON files.
+ * Minify the locale files.
  */
 
-gulp.task('json', function() {
-  return gulp.src(patterns.json)
-    .pipe(watch(patterns.json))
+gulp.task('locales', function() {
+  return gulp.src(patterns.locales)
+    .pipe(watch(patterns.locales))
     .pipe(json())
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest + '/_locales/'));
+});
+
+/**
+ * Modify the manifest file.
+ */
+
+gulp.task('manifest', function(done) {
+  var manifest = require('./src/manifest.json');
+
+  switch (NODE_ENV) {
+    case 'development':
+      manifest.name = '[dev] ProductHunt';
+      break;
+    case 'staging':
+      manifest.name = '[staging] ProductHunt';
+      break;
+  }
+
+  fs.writeFile(dest + '/manifest.json', JSON.stringify(manifest), done);
 });
 
 /**
@@ -228,4 +248,13 @@ gulp.task('test', ['test-acceptance', 'test-unit']);
  * Build all.
  */
 
-gulp.task('build', ['clean', 'js', 'html', 'json', 'scss', 'img', 'vendor']);
+gulp.task('build', [
+  'clean',
+  'js',
+  'html',
+  'locales',
+  'manifest',
+  'scss',
+  'img',
+  'vendor'
+]);
