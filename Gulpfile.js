@@ -11,28 +11,32 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
  */
 
 var babelify = require('babelify');
-var browserify = require('browserify');
-var watchify = require('watchify');
-var envify = require('envify');
-var source = require('vinyl-source-stream');
-var envc = require('envc')();
-var gulp = require('gulp');
-var gwatch = require('gulp-watch');
-var gutil = require('gulp-util')
-var html = require('gulp-minify-html');
-var json = require('gulp-jsonminify');
-var sass = require('gulp-sass');
-var ignore = require('gulp-ignore');
-var rimraf = require('rimraf');
-var imagemin = require('gulp-imagemin');
-var uglify = require('gulp-uglify');
-var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
-var neat = require('node-neat');
+var browserify = require('browserify');
+var buffer = require('vinyl-buffer');
+var envc = require('envc')();
+var envify = require('envify');
 var fs = require('fs');
-var mocha = require('gulp-spawn-mocha');
-var jest = require('jest-cli');
+var gulp = require('gulp');
+var gutil = require('gulp-util')
+var gwatch = require('gulp-watch');
 var harmonize = require('harmonize')();
+var html = require('gulp-minify-html');
+var imagemin = require('gulp-imagemin');
+var jest = require('jest-cli');
+var json = require('gulp-jsonminify');
+var mocha = require('gulp-spawn-mocha');
+var neat = require('node-neat');
+var rimraf = require('rimraf');
+var sass = require('gulp-sass');
+var source = require('vinyl-source-stream');
+var uglify = require('gulp-uglify');
+var watchify = require('watchify');
+
+/**
+ * Locals.
+ */
+
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var env = process.env;
 var NODE_ENV = env.NODE_ENV;

@@ -15,7 +15,6 @@
     "envc": "^2.1.0",
     "envify": "^3.2.0",
     "gulp": "^3.8.11",
-    "gulp-ignore": "^1.2.1",
     "gulp-imagemin": "^2.2.1",
     "gulp-jsonminify": "0.0.2",
     "gulp-minify-html": "^1.0.0",
