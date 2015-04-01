@@ -1,6 +1,12 @@
 'use strict';
 
 /**
+ * Set the current node environment.
+ */
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+/**
  * Dependencies.
  */
 
@@ -29,7 +35,7 @@ var jest = require('jest-cli');
 var harmonize = require('harmonize')();
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var env = process.env;
-var NODE_ENV = env.NODE_ENV || 'development';
+var NODE_ENV = env.NODE_ENV;
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
