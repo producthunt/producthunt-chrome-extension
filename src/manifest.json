@@ -14,14 +14,14 @@
     ]
   },
   "icons": {
-    "16": "apps/base/icon-16.png",
-    "128": "apps/base/icon-128.png"
+    "16": "common/icons/icon-16.png",
+    "128": "common/icons/icon-128.png"
   },
   "default_locale": "en",
   "browser_action": {
     "default_icon": {
-      "19": "apps/base/icon-19.png",
-      "38": "apps/base/icon-38.png"
+      "19": "common/icons/icon-19.png",
+      "38": "common/icons/icon-38.png"
     },
     "default_title": "__MSG_title__",
     "default_popup": "apps/popup/main.html"
