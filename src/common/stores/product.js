@@ -3,6 +3,7 @@
  */
 
 let assign = require('object-assign');
+let debug = require('debug')('ph:stores:product');
 let AppDispatcher = require('../dispatcher');
 let ProductConstants = require('../constants');
 let EventEmitter = require('events').EventEmitter;
@@ -99,6 +100,7 @@ AppDispatcher.register(function(payload) {
   let type = action.actionType;
 
   if (type === ProductConstants.RECEIVE_PRODUCT || type === ProductConstants.RECEIVE_PRODUCTS) {
+    debug('product receive action received');
     ProductStore.setData(action.data);
     ProductStore.emitChange();
   }

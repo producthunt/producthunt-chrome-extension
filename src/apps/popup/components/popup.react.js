@@ -3,6 +3,7 @@
  */
 
 let React = require('react');
+let debug = require('debug')('ph:popup:popup');
 let Tab = require('./tab.react');
 
 /**
@@ -61,6 +62,7 @@ let Popup = React.createClass({
    */
 
   _openSubmission() {
+    debug('opening the submissions page');
     this.setState({ url: POST_URL });
   },
 
@@ -71,6 +73,7 @@ let Popup = React.createClass({
    */
 
   _openSearch() {
+    debug('opening the search page');
     this.setState({ url: SEARCH_URL });
   }
 });

@@ -4,6 +4,7 @@
 
 let React = require('react');
 let Frame = require('react-frame-component');
+let debug = require('debug')('ph:product-pane');
 let BodyModifier = require('../body-modifier/body-modifier.react');
 let closeButton = require('../close-button');
 
@@ -55,6 +56,7 @@ let Pane = React.createClass({
     let loader = this.getDOMNode().querySelector('#__phc-loader');
 
     iframe.onload = () => {
+      debug('product pane loaded');
       loader.parentNode.removeChild(loader);
       iframe.style.setProperty('display', 'block');
       iframe.onload = null;
@@ -67,6 +69,7 @@ let Pane = React.createClass({
 
   render() {
     if (!this.props.url) {
+      debug('no URL - bail out');
       return false;
     }
 

@@ -4,7 +4,7 @@
 
 let request = require('superagent');
 let cache = require('lscache');
-let debug = require('debug')('ph:client');
+let debug = require('debug')('ph:product-hunt');
 
 /**
  * Constants.

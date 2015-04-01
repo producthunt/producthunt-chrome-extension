@@ -37,11 +37,11 @@ let api = {
    */
 
   getProduct(url) {
-    debug('getting product with url %s', url);
+    debug('getting post with url %s', url);
 
     ph.searchProducts({ 'search[url]': url }, function(err, products) {
       if (err) throw err;
-      debug('product: %j', products[0]);
+      debug('post received');
       ProductActions.receiveProduct(products[0]);
     });
   },
@@ -55,14 +55,14 @@ let api = {
    */
 
   getProducts(daysAgo, cb) {
-    debug('getting products from %d days ago', daysAgo);
+    debug('getting posts from %d days ago', daysAgo);
 
     ph.getProducts(daysAgo, function(err, products) {
       if (err) throw err;
-      debug('products: %j', products);
+      debug('posts received');
 
       if (daysAgo === 0) {
-        debug('caching the products...');
+        debug('caching the posts...');
         cache.set(CACHE_KEY, products, CACHE_DURARTION);
       }
 

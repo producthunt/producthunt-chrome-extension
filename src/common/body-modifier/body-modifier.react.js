@@ -3,6 +3,7 @@
  */
 
 let React = require('react');
+let debug = require('debug')('ph:body-modifier');
 
 /**
  * Locals.
@@ -38,6 +39,7 @@ let BodyModifier = React.createClass({
 
   componentWillMount() {
     body.classList.add(this.props.className);
+    debug('body class added: %s', this.props.className);
   },
 
   /**
@@ -47,6 +49,7 @@ let BodyModifier = React.createClass({
 
   componentWillUnmount() {
     body.classList.remove(this.props.className);
+    debug('body class removed: %s', this.props.className);
   },
 
   /**

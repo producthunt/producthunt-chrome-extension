@@ -3,6 +3,7 @@
  */
 
 let React = require('react');
+let debug = require('debug')('ph:tabs:default-tab');
 let InfiniteScroll = require('react-infinite-scroll')(React);
 let cache = require('lscache');
 let async = require('async');
@@ -23,6 +24,7 @@ const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
  */
 
 let fetch = async.queue(function(daysAgo, cb) {
+  debug('fetching next day');
   api.getProducts(daysAgo, cb);
 });
 
@@ -63,6 +65,8 @@ let DefaultTab = React.createClass({
     // fetched, therefore start from the next one
     let startPage = firstPageCached ? 0 : -1;
 
+    debug('start page: %d', startPage);
+
     return {
       products: this.cache || [],
       startPage: startPage
@@ -75,8 +79,10 @@ let DefaultTab = React.createClass({
    */
 
   componentWillMount() {
-    // using cache, refresh it
-    if (this.cache) this._loadNext(0);
+    if (this.cache) {
+      debug('using cache, refreshing it');
+      this._loadNext(0);
+    }
   },
 
   /**

@@ -1,4 +1,10 @@
 /**
+ * Dependencies.
+ */
+
+let debug = require('debug')('ph:typekit');
+
+/**
  * Load Typekit.
  *
  * @public
@@ -7,8 +13,9 @@
 function loadTypekit() {
   try {
     Typekit.load();
+    debug('Typekit loaded');
   } catch(e) {
-    // noop
+    debug('Typekit could not be loaded');
   }
 }
 

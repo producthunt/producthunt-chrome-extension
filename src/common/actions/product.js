@@ -2,6 +2,7 @@
  * Dependencies.
  */
 
+let debug = require('debug')('ph:actions:product');
 let AppDispatcher = require('../dispatcher');
 let ProductConstants = require('../constants');
 
@@ -42,6 +43,7 @@ let ProductActions = {
    */
 
   _dispatch(type, data) {
+    debug('dispatching %s', type);
     AppDispatcher.dispatch({
       action: { actionType: type, data: data }
     });

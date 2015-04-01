@@ -1,4 +1,11 @@
 /**
+ * Dependencies.
+ */
+
+let assign = require('object-assign');
+let debug = require('debug')('ph:settings');
+
+/**
  * Chrome Extension Settings.
  */
 
@@ -14,11 +21,13 @@ let settings = {
 
   get(key, cb) {
     chrome.storage.sync.get({ [key]: false }, function(items) {
+      debug('%j', items);
       cb(items[key]);
     });
   },
 
   set(key, val, cb) {
+    // TODO(vesln): implement
   }
 }
 

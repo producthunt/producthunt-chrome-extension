@@ -1,4 +1,10 @@
 /**
+ * Dependencies.
+ */
+
+let debug = require('debug')('ph:analytics:null-analytics');
+
+/**
  * Null Analytics.
  */
 
@@ -11,7 +17,7 @@ class NullAnalytics {
    */
 
   track() {
-    // noop
+    debug('track %j', arguments);
   }
 }
 

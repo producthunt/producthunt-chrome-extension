@@ -2,6 +2,7 @@
  * Dependencies.
  */
 
+let debug = require('debug')('ph:analytics');
 let NullAnalytics = require('./null-analytics');
 
 /**
@@ -27,6 +28,7 @@ module.exports = {
    */
 
   clickPost(post) {
+    debug('track click post');
     getAnonymousId(function(id) {
       analytics.track({
         anonymousId: id,
@@ -50,6 +52,7 @@ module.exports = {
    */
 
   clickBar(post) {
+    debug('track click bar');
     getAnonymousId(function(id) {
       analytics.track({
         anonymousId: id,
@@ -89,8 +92,15 @@ function anonymousId() {
 
 function getAnonymousId(fn) {
   chrome.storage.sync.get({ userId: null }, function(items) {
-    if (items.userId) return fn(items.userId);
-    var userId = anonymousId();
+    if (items.userId) {
+      debug('User ID found in cache');
+      return fn(items.userId);
+    }
+
+    debug('User ID not found in cache, generating a new one');
+
+    let userId = anonymousId();
+
     chrome.storage.sync.set({ userId: userId }, function() {
       fn(userId);
     });
