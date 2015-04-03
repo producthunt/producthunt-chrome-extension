@@ -18,6 +18,7 @@ var envc = require('envc')();
 var envify = require('envify');
 var fs = require('fs');
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var gutil = require('gulp-util')
 var gwatch = require('gulp-watch');
 var harmonize = require('harmonize')();
@@ -40,6 +41,7 @@ var watchify = require('watchify');
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var env = process.env;
 var NODE_ENV = env.NODE_ENV;
+var DEV = NODE_ENV === 'development';
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
@@ -101,7 +103,7 @@ gulp.task('js', function() {
     var bundler = browserify({
       entries: [bundle.entry],
       transform: [envify, babelify],
-      debug: true,
+      debug: DEV,
       cache: {},
       packageCache: {},
       fullPaths: true
@@ -110,12 +112,13 @@ gulp.task('js', function() {
     bundler.on('log', gutil.log)
 
     var update = function() {
-      bundler.bundle()
+      return bundler.bundle()
         .on('error', function(err) {
           gutil.log(err.message);
         })
         .pipe(source(bundle.out))
         .pipe(buffer())
+        .pipe(gulpif(!DEV, uglify()))
         .pipe(gulp.dest(dest));
     };
 
@@ -124,7 +127,7 @@ gulp.task('js', function() {
       bundler.on('update', update);
     }
 
-    update();
+    return update();
   });
 });
 
