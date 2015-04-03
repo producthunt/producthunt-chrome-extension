@@ -1,6 +1,7 @@
 /node_modules/
 /tmp/
 /build/
+/dist/
 /.env
 /dev/
 *.pem

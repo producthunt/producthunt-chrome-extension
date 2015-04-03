@@ -35,6 +35,7 @@ var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
+var zip = require('gulp-zip');
 
 /**
  * Locals.
@@ -101,7 +102,7 @@ function watch(pattern) {
  */
 
 gulp.task('js', function() {
-  bundles.forEach(function(bundle) {
+  return bundles.map(function(bundle) {
     var bundler = browserify({
       entries: [bundle.entry],
       transform: [envify, babelify],
@@ -242,6 +243,18 @@ gulp.task('test-unit', function(done) {
   jest.runCLI(options, __dirname, function(success) {
     done();
   });
+});
+
+/**
+ * Create an archive from `build`.
+ */
+
+gulp.task('pack', function() {
+  var version = require('./src/manifest.json').version;
+
+  return gulp.src(dest + '/**/*')
+    .pipe(zip(version + '-product-hunt.zip'))
+    .pipe(gulp.dest('dist'));
 });
 
 /**

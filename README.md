@@ -65,6 +65,7 @@ See the [example .env file](.env.example).
 | test                | Run all tests                                 |
 | test-acceptance     | Run the acceptance tests                      |
 | test-unit           | Run the unit tests                            |
+| pack                | Create an archive for publishing              |
 
 Example usage:
 
@@ -101,6 +102,16 @@ To enable the debug output in the console:
 ```
 localStorage.debug = '*';
 ```
+
+### Publishing the extension
+
+```
+$ NODE_ENV=production gulp build
+$ gulp pack
+$ open dist/
+```
+
+Then upload the archive to the Chrome Web Store.
 
 ## Contributing
 
