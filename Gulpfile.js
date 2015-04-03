@@ -26,11 +26,13 @@ var html = require('gulp-minify-html');
 var imagemin = require('gulp-imagemin');
 var jest = require('jest-cli');
 var json = require('gulp-jsonminify');
+var minifyCss = require('gulp-minify-css');
 var mocha = require('gulp-spawn-mocha');
 var neat = require('node-neat');
 var rimraf = require('rimraf');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
+var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watchify = require('watchify');
 
@@ -191,11 +193,14 @@ gulp.task('scss', function() {
 
   return gulp.src(patterns.css)
     .pipe(watch(patterns.css))
+    .pipe(gulpif(DEV, sourcemaps.init()))
     .pipe(sass({
       imagePath: 'chrome-extension://' + env.EXTENSION_ID,
       includePaths: paths,
       errLogToConsole: true
     }))
+    .pipe(gulpif(DEV, sourcemaps.write()))
+    .pipe(gulpif(!DEV, minifyCss()))
     .pipe(gulp.dest(dest));
 });
 
