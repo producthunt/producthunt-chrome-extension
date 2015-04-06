@@ -85,10 +85,11 @@ header {
     background-color: $grey-2;
     border-radius: 4px;
     float: left;
-    height: 300px;
+    height: 340px;
     margin: 10px;
     padding: 10px;
     width: 300px;
+    word-break: break-all;
 
     &:hover {
       @include transition(background, 0.1s);
