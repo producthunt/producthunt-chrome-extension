@@ -6,6 +6,7 @@ let React = require('react');
 let debug = require('debug')('ph:tab:main');
 let analytics = require('../../common/analytics');
 let DefaultTab = require('./components/default-tab.react');
+let DisabledDefaultTab = require('./components/disabled-default-tab.react');
 let renderComponent = require('../../common/render');
 let loadTypekit = require('../../common/typekit');
 let loadGoogleAnalytics = require('../../common/google-analytics');
@@ -22,11 +23,13 @@ const GA_ID = process.env.GA_ID;
 loadTypekit();
 
 settings.get(TAB_DISABLED_KEY, function(disabled) {
+  let el = document.getElementById('main');
+
   if (disabled) {
     debug('settings: tab disabled');
-    return;
+    renderComponent(<DisabledDefaultTab />, el);
+  } else {
+    loadGoogleAnalytics(GA_ID);
+    renderComponent(<DefaultTab />, el);
   }
-
-  loadGoogleAnalytics(GA_ID);
-  renderComponent(<DefaultTab />, document.getElementById('main'));
 });

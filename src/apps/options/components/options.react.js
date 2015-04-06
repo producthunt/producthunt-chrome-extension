@@ -81,7 +81,7 @@ let Options = React.createClass({
             onChange={this._toggleDefaultTab}
             checked={this.state[TAB_KEY]}
             type="checkbox" />
-            <label htmlFor="tab">Disable default tab</label>
+            <label htmlFor="tab">Disable default tab (due to technical limitations, this will not return your previous default tab).</label>
         </div>
       </div>
     );
