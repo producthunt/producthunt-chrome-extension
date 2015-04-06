@@ -6,12 +6,6 @@ let React = require('react');
 let debug = require('debug')('ph:body-modifier');
 
 /**
- * Locals.
- */
-
-let body = document.body;
-
-/**
  * Modifies the body by adding a class. It will remove the class
  * when unmounting it.
  *
@@ -38,7 +32,7 @@ let BodyModifier = React.createClass({
    */
 
   componentWillMount() {
-    body.classList.add(this.props.className);
+    document.body.classList.add(this.props.className);
     debug('body class added: %s', this.props.className);
   },
 
@@ -48,7 +42,7 @@ let BodyModifier = React.createClass({
    */
 
   componentWillUnmount() {
-    body.classList.remove(this.props.className);
+    document.body.classList.remove(this.props.className);
     debug('body class removed: %s', this.props.className);
   },
 

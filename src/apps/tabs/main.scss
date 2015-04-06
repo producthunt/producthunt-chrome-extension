@@ -103,6 +103,11 @@ header {
       img {
         height: 100%;
         width: 100%;
+
+        &:hover {
+          @include transition(opacity, 0.2s);
+          opacity: 0.8;
+        }
       }
     }
 
@@ -129,7 +134,11 @@ header {
       margin-left: 44px;
       margin-right: 10px;
 
-      a:hover { text-decoration: underline; }
+      a:hover {
+        @include transition(opacity, 0.2s);
+        text-decoration: underline;
+        opacity: 0.8;
+    }
     }
 
     .comments {

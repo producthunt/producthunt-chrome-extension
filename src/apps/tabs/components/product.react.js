@@ -35,7 +35,7 @@ let Product = React.createClass({
 
     return (
       <div className="product clickable" onClick={this._onClick}>
-        <div className="image">
+        <div className="image" onClick={this._openProduct}>
           <img src={product.screenshot_url['300px']}/>
         </div>
 
