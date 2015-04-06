@@ -18,6 +18,9 @@ let settings = require('../../common/settings');
 const TAB_DISABLED_KEY = process.env.TAB_DISABLED_KEY;
 const GA_ID = process.env.GA_ID;
 
+// load typekit before everything else
+loadTypekit();
+
 settings.get(TAB_DISABLED_KEY, function(disabled) {
   if (disabled) {
     debug('settings: tab disabled');
@@ -25,6 +28,5 @@ settings.get(TAB_DISABLED_KEY, function(disabled) {
   }
 
   loadGoogleAnalytics(GA_ID);
-  loadTypekit();
-  renderComponent(<DefaultTab />);
+  renderComponent(<DefaultTab />, document.getElementById('main'));
 });

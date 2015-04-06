@@ -8,7 +8,6 @@ let InfiniteScroll = require('react-infinite-scroll')(React);
 let cache = require('lscache');
 let async = require('async');
 let ProductGroup = require('./product-group.react');
-let Header = require('../../../common/header/header.react');
 let ProductStore = require('../../../common/stores/product');
 let api = require('../../../common/api');
 let Pane = require('../../../common/product-pane/pane.react');
@@ -110,27 +109,24 @@ let DefaultTab = React.createClass({
 
     return (
       <div>
-        <div className="main">
-          <Header />
-          <div className="products">
-            <InfiniteScroll
-              loader={<div className="loading">Hunting down posts...</div>}
-              pageStart={this.state.startPage}
-              loadMore={this._loadNext}
-              hasMore={true}>
-              <ProductGroup products={this.state.products} onClick={this._openPane} />
-            </InfiniteScroll>
-          </div>
-
-          <Pane
-            bodyClass="no-scroll"
-            loaderClass="loader"
-            overlayClass="overlay"
-            closeClass="close"
-            paneClass="pane"
-            url={url}
-            onClick={this._closePane} />
+        <div className="products">
+          <InfiniteScroll
+            loader={<div className="loading">Hunting down posts...</div>}
+            pageStart={this.state.startPage}
+            loadMore={this._loadNext}
+            hasMore={true}>
+            <ProductGroup products={this.state.products} onClick={this._openPane} />
+          </InfiniteScroll>
         </div>
+
+        <Pane
+          bodyClass="no-scroll"
+          loaderClass="loader"
+          overlayClass="overlay"
+          closeClass="close"
+          paneClass="pane"
+          url={url}
+          onClick={this._closePane} />
       </div>
     );
   },
