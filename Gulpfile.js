@@ -44,7 +44,7 @@ var zip = require('gulp-zip');
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var env = process.env;
 var NODE_ENV = env.NODE_ENV;
-var DEV = NODE_ENV === 'development';
+var DEV = NODE_ENV === 'development' || NODE_ENV === 'test';
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
@@ -220,8 +220,8 @@ gulp.task('img', function() {
  * Run the end to end tests.
  */
 
-gulp.task('test-acceptance', ['build'], function () {
-  return gulp.src(['test/*.test.js'], { read: false })
+gulp.task('test-acceptance', function() {
+  return gulp.src(['test/*.js'], { read: false })
     .pipe(mocha({ r: 'test/setup.js', timeout: 10000 }));
 });
 

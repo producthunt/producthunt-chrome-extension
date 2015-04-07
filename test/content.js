@@ -1,4 +1,4 @@
-describe('popup', function() {
+describe('Content App', function() {
   var browser = null;
 
   before(function() {
@@ -13,21 +13,16 @@ describe('popup', function() {
   });
 
    beforeEach(function() {
-     return browser.get(TEST.url + '/popup.html');
+     return browser.get('http://www.producthunt.com/apps/chrome?ref=producthunt');
    });
 
    after(function() {
      return browser.quit();
    });
 
-   it('has a proper title', function() {
+   it('renders the product bar', function() {
      return browser
-       .title().should.become('Product Hunt');
-   });
-
-   it('loads the specified URL', function() {
-     return browser
-       .elementByTagName('iframe')
-       .getAttribute('src').should.eventually.include('example.com');
+       .waitForElementByCss('#__phc-bar', 5000)
+       .elementByCss('#__phc-bar').isDisplayed().should.eventually.become(true);
    });
 });

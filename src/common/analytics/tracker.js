@@ -3,6 +3,7 @@
  */
 
 let debug = require('debug')('ph:analytics:tracker');
+let settings = require('../settings');
 
 /**
  * Tracker.
@@ -19,7 +20,7 @@ class Tracker {
    * @param {Object} storage (optional)
    */
 
-  constructor(analytics, storage=chrome.storage.sync) {
+  constructor(analytics, storage=settings.storage()) {
     this.analytics = analytics;
     this.storage = storage;
     this.platform = 'chrome extension';

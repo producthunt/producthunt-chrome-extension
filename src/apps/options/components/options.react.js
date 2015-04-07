@@ -5,6 +5,7 @@
 let React = require('react');
 let Flash = require('./Flash.react');
 let Header = require('../../../common/header/Header.react');
+let settings = require('../../../common/settings');
 
 /**
  * Constants.
@@ -54,7 +55,7 @@ let Options = React.createClass({
     options[BAR_KEY] = false;
     options[TAB_KEY] = false;
 
-    chrome.storage.sync.get(options, (items) => this.setState(items));
+    settings.getAll(options, (items) => this.setState(items));
   },
 
   /**
@@ -114,7 +115,7 @@ let Options = React.createClass({
     let option = {};
     option[key] = !this.state[key];
 
-    chrome.storage.sync.set(option, () => {
+    settings.setAll(option, () => {
       option.showFlash = true;
       this.setState(option);
     });
