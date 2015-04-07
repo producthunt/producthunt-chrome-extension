@@ -3,5 +3,7 @@
 /build/
 /dist/
 /.env
+/.env.staging
+/.env.production
 /dev/
 *.pem
