@@ -14,7 +14,7 @@ var babelify = require('babelify');
 var bourbon = require('node-bourbon');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
-var envc = require('envc')();
+var envc = require('envc')({ nodeenv: process.env.EXT_ENV || process.env.NODE_ENV });
 var envify = require('envify');
 var fs = require('fs');
 var gulp = require('gulp');
@@ -43,8 +43,8 @@ var zip = require('gulp-zip');
 
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var env = process.env;
-var NODE_ENV = env.NODE_ENV;
-var DEV = NODE_ENV === 'development' || NODE_ENV === 'test';
+var EXT_ENV = env.EXT_ENV;
+var DEV = env.NODE_ENV === 'development' || env.NODE_ENV === 'test';
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
@@ -173,13 +173,8 @@ gulp.task('locales', function() {
 gulp.task('manifest', function(done) {
   var manifest = require('./src/manifest.json');
 
-  switch (NODE_ENV) {
-    case 'development':
-      manifest.name = '[dev] ProductHunt';
-      break;
-    case 'staging':
-      manifest.name = '[staging] ProductHunt';
-      break;
+  if (EXT_ENV !== 'production') {
+    manifest.name = '[' + EXT_ENV + '] ProductHunt';
   }
 
   fs.writeFile(dest + '/manifest.json', JSON.stringify(manifest), done);

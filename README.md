@@ -119,7 +119,7 @@ localStorage.debug = '*';
 ### Publishing the extension
 
 ```
-$ NODE_ENV=production gulp build
+$ NODE_ENV=production EXT_ENV={production,staging} gulp build
 $ gulp pack
 $ open dist/
 ```
