@@ -12,7 +12,7 @@ let debug = require('debug')('ph:typekit');
 
 function loadTypekit() {
   try {
-    Typekit.load();
+    window.Typekit.load();
     debug('Typekit loaded');
   } catch(e) {
     debug('Typekit could not be loaded');

@@ -13,4 +13,12 @@ describe('PostActions', function() {
       expect(AppDispatcher.dispatch.mock.calls[0][0].action.data).toEqual(data);
     });
   });
+
+  describe('#receivePosts', function() {
+    it('dispatches a new action', function() {
+      var data = { foo: 'bar' };
+      PostActions.receivePosts(data);
+      expect(AppDispatcher.dispatch.mock.calls[0][0].action.data).toEqual(data);
+    });
+  });
 });

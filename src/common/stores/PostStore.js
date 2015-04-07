@@ -68,16 +68,6 @@ let PostStore = assign({}, EventEmitter.prototype, {
   },
 
   /**
-   * Emit change event.
-   *
-   * @private
-   */
-
-  emitChange() {
-    this.emit(CHANGE_EVENT);
-  },
-
-  /**
    * Set data.
    *
    * @param {Object|Array} post(s)
@@ -90,6 +80,26 @@ let PostStore = assign({}, EventEmitter.prototype, {
     } else {
       data.push(post);
     }
+  },
+
+  /**
+   * Emit change event.
+   *
+   * @public
+   */
+
+  emitChange() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  /**
+   * Reset the store.
+   *
+   * @public
+   */
+
+  reset() {
+    data = [];
   }
 });
 

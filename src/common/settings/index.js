@@ -24,10 +24,6 @@ let settings = {
       debug('%j', items);
       cb(items[key]);
     });
-  },
-
-  set(key, val, cb) {
-    // TODO(vesln): implement
   }
 }
 

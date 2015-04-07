@@ -11,7 +11,6 @@ let Tab = require('./Tab.react');
  */
 
 const SEARCH_URL = process.env.SEARCH_URL;
-const POST_URL = process.env.POST_URL;
 
 /**
  * Popup Component.
@@ -53,28 +52,6 @@ let Popup = React.createClass({
         <Tab url={this.state.url} />
       </div>
     );
-  },
-
-  /**
-   * Open the submissions page.
-   *
-   * @private
-   */
-
-  _openSubmission() {
-    debug('opening the submissions page');
-    this.setState({ url: POST_URL });
-  },
-
-  /**
-   * Open the serach page.
-   *
-   * @private
-   */
-
-  _openSearch() {
-    debug('opening the search page');
-    this.setState({ url: SEARCH_URL });
   }
 });
 

@@ -14,10 +14,14 @@ class Tracker {
 
   /**
    * Constructor.
+   *
+   * @param {Object} analytics
+   * @param {Object} storage (optional)
    */
 
-  constructor(analytics) {
+  constructor(analytics, storage=chrome.storage.sync) {
     this.analytics = analytics;
+    this.storage = storage;
     this.platform = 'chrome extension';
   }
 
@@ -91,17 +95,17 @@ class Tracker {
    */
 
   _getAnonymousId(cb) {
-    chrome.storage.sync.get({ userId: null }, (items) => {
+    this.storage.get({ userId: null }, (items) => {
       if (items.userId) {
         debug('User ID found in cache');
         return cb(items.userId);
+      } else {
+        debug('User ID not found in cache, generating a new one');
       }
-
-      debug('User ID not found in cache, generating a new one');
 
       let userId = this._anonymousId();
 
-      chrome.storage.sync.set({ userId: userId }, function() {
+      this.storage.set({ userId: userId }, function() {
         cb(userId);
       });
     });
