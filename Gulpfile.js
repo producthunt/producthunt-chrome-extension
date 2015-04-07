@@ -1,10 +1,11 @@
 'use strict';
 
 /**
- * Set the current node environment.
+ * Set the current environment.
  */
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.EXT_ENV = process.env.EXT_ENV || 'development';
 
 /**
  * Dependencies.
