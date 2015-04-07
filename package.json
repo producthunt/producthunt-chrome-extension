@@ -54,5 +54,11 @@
     "react-frame-component": "^0.3.0",
     "react-infinite-scroll": "^0.1.5",
     "superagent": "^0.21.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testPathDirs": ["<rootDir>/src"],
+    "setupEnvScriptFile": "<rootDir>/jest/env.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/jest/setup.js"
   }
 }
