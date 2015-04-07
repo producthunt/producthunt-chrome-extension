@@ -43,6 +43,10 @@ header {
   @include clearfix;
 }
 
+.disabled-indicator {
+  text-align: center;
+}
+
 .main {
   @include clearfix;
 

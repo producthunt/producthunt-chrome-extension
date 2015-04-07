@@ -25,7 +25,11 @@ let DisabledDefaultTab = React.createClass({
    */
 
   render() {
-    return <h4>Product Hunt Default Tab has been disabled</h4>;
+    return (
+      <div className="disabled-indicator">
+        <img src="assets/kitty.png" alt="Product Hunt" />
+      </div>
+    );
   }
 });
 
