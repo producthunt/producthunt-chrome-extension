@@ -4,13 +4,13 @@
 
 let React = require('react');
 let Frame = require('react-frame-component');
-let ProductStore = require('../../../common/stores/product');
-let BodyModifier = require('../../../common/body-modifier/body-modifier.react');
-let TopElements = require('./top-elements.react');
-let ProductDetails = require('./product-details.react');
-let Pane = require('../../../common/product-pane/pane.react');
-let TweetButton = require('./tweet-button.react');
-let ShareButton = require('./share-button.react');
+let PostStore = require('../../../common/stores/PostStore');
+let BodyModifier = require('../../../common/body-modifier/BodyModifier.react');
+let TopElements = require('./TopElements.react');
+let PostDetails = require('./PostDetails.react');
+let Pane = require('../../../common/product-pane/Pane.react');
+let TweetButton = require('./TweetButton.react');
+let ShareButton = require('./ShareButton.react');
 
 /**
  * Constants.
@@ -42,7 +42,7 @@ let closeButton = require('../../../common/close-button');
  *
  * State:
  *
- * - `product`: the product that will be shown
+ * - `post`: the post that will be shown
  * - `pane`: whether to show the pane or not
  *
  * @class
@@ -57,23 +57,23 @@ let ProductBar = React.createClass({
    */
 
   getInitialState() {
-    return { product: null, pane: false };
+    return { post: null, pane: false };
   },
 
   /**
-   * On component mount, subscribe to product changes.
+   * On component mount, subscribe to post changes.
    */
 
   componentDidMount() {
-    ProductStore.addChangeListener(this._handleChange);
+    PostStore.addChangeListener(this._handleChange);
   },
 
   /**
-   * On component unmount, unsubscribe from product changes.
+   * On component unmount, unsubscribe from post changes.
    */
 
   componentWillUnmount() {
-    ProductStore.removeChangeListener(this._handleChange);
+    PostStore.removeChangeListener(this._handleChange);
   },
 
   /**
@@ -84,14 +84,14 @@ let ProductBar = React.createClass({
    */
 
   render() {
-    if (!this.state.product) {
+    if (!this.state.post) {
       return false;
     }
 
-    let product = this.state.product;
-    let url = this.state.pane ? product.discussion_url : null;
-    let shareUrl = product.discussion_url;
-    let tweetText = `${product.name}: ${product.tagline}`;
+    let post = this.state.post;
+    let url = this.state.pane ? post.discussion_url : null;
+    let shareUrl = post.discussion_url;
+    let tweetText = `${post.name}: ${post.tagline}`;
 
     return (
       <div>
@@ -104,7 +104,7 @@ let ProductBar = React.createClass({
           <link type='text/css' rel='stylesheet' href={CSS_URL} />
         }>
           <div onClick={this._togglePane} className="container">
-            <ProductDetails product={this.state.product} />
+            <PostDetails post={this.state.post} />
 
             <div className="facebook">
               <ShareButton url={shareUrl} appId={FB_APP_ID} />
@@ -132,11 +132,11 @@ let ProductBar = React.createClass({
   },
 
   /**
-   * Handle product change event.
+   * Handle post change event.
    */
 
   _handleChange() {
-    this.setState({ product: ProductStore.getProduct() });
+    this.setState({ post: PostStore.getPost() });
   },
 
   /**
@@ -144,7 +144,7 @@ let ProductBar = React.createClass({
    */
 
   _togglePane() {
-    chrome.runtime.sendMessage(this.state.product);
+    chrome.runtime.sendMessage(this.state.post);
     this.setState({ pane: !this.state.pane });
   }
 });

@@ -3,13 +3,13 @@ jest.mock('../../dispatcher');
 
 var AppDispatcher = require('../../dispatcher');
 
-describe('ProductActions', function() {
-  let ProductActions = require('../product');
+describe('PostActions', function() {
+  let PostActions = require('../PostActions');
 
-  describe('#receiveProduct', function() {
+  describe('#receivePost', function() {
     it('dispatches a new action', function() {
       var data = { foo: 'bar' };
-      ProductActions.receiveProduct(data);
+      PostActions.receivePost(data);
       expect(AppDispatcher.dispatch.mock.calls[0][0].action.data).toEqual(data);
     });
   });

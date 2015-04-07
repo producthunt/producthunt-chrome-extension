@@ -3,8 +3,8 @@
  */
 
 let React = require('react');
-let Flash = require('./flash.react');
-let Header = require('../../../common/header/header.react');
+let Flash = require('./Flash.react');
+let Header = require('../../../common/header/Header.react');
 
 /**
  * Constants.

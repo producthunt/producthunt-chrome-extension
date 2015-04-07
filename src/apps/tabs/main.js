@@ -4,9 +4,8 @@
 
 let React = require('react');
 let debug = require('debug')('ph:tab:main');
-let analytics = require('../../common/analytics');
-let DefaultTab = require('./components/default-tab.react');
-let DisabledDefaultTab = require('./components/disabled-default-tab.react');
+let DefaultTab = require('./components/DefaultTab.react');
+let DisabledDefaultTab = require('./components/DisabledDefaultTab.react');
 let renderComponent = require('../../common/render');
 let loadTypekit = require('../../common/typekit');
 let loadGoogleAnalytics = require('../../common/google-analytics');

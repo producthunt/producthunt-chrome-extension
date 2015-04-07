@@ -5,7 +5,7 @@
 let React = require('react');
 let Frame = require('react-frame-component');
 let debug = require('debug')('ph:product-pane');
-let BodyModifier = require('../body-modifier/body-modifier.react');
+let BodyModifier = require('../body-modifier/BodyModifier.react');
 let closeButton = require('../close-button');
 
 /**

@@ -10,7 +10,7 @@ let loadTypekit = require('../../common/typekit');
  * Dependencies.
  */
 
-let Options = require('./components/options.react');
+let Options = require('./components/Options.react');
 
 // load Typekit
 loadTypekit();

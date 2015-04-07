@@ -2,7 +2,7 @@ jest.autoMockOff();
 
 describe('getDay', function() {
   let moment = require('moment');
-  let getDay = require('../get-day');
+  let getDay = require('../getDay');
 
   it('returns today if the supplied date is today', function() {
     let date = moment();

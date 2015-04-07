@@ -2,8 +2,8 @@
  * Dependencies.
  */
 
-let NullAnalytics = require('./null-analytics');
-let Tracker = require('./tracker');
+let NullAnalytics = require('./NullAnalytics');
+let Tracker = require('./Tracker');
 
 /**
  * Constants.

@@ -1,13 +1,13 @@
 jest.autoMockOff();
-jest.mock(filePath('common/header/header.react.js'));
+jest.mock(filePath('common/header/Header.react.js'));
 
 describe('DefaultTab', function() {
-  let DefaultTab = require('../default-tab.react');
-  let ProductStore = load('/common/stores/product');
+  let DefaultTab = require('../DefaultTab.react');
+  let PostStore = load('/common/stores/PostStore');
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
 
-  let product = {
+  let post = {
     name: 'Name',
     tagline: 'Tagline',
     discussion_url: 'http://example.com',
@@ -16,10 +16,10 @@ describe('DefaultTab', function() {
     comments_count: 22
   };
 
-  it('listens for product change events', function() {
+  it('listens for post change events', function() {
     let component = TestUtils.renderIntoDocument(<DefaultTab />);
-    ProductStore.setData([product]);
-    ProductStore.emitChange();
-    expect(component).toMatchContent(product.name);
+    PostStore.setData([post]);
+    PostStore.emitChange();
+    expect(component).toMatchContent(post.name);
   });
 });

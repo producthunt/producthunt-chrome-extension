@@ -7,10 +7,10 @@ let debug = require('debug')('ph:tabs:default-tab');
 let InfiniteScroll = require('react-infinite-scroll')(React);
 let cache = require('lscache');
 let async = require('async');
-let ProductGroup = require('./product-group.react');
-let ProductStore = require('../../../common/stores/product');
+let PostGroup = require('./PostGroup.react');
+let PostStore = require('../../../common/stores/PostStore');
 let api = require('../../../common/api');
-let Pane = require('../../../common/product-pane/pane.react');
+let Pane = require('../../../common/product-pane/Pane.react');
 
 /**
  * Constants.
@@ -19,12 +19,12 @@ let Pane = require('../../../common/product-pane/pane.react');
 const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
 
 /**
- * Queue for fetching the next page with products.
+ * Queue for fetching the next page with posts.
  */
 
 let fetch = async.queue(function(daysAgo, cb) {
   debug('fetching next day');
-  api.getProducts(daysAgo, cb);
+  api.getPosts(daysAgo, cb);
 });
 
 /**
@@ -40,7 +40,7 @@ let fetch = async.queue(function(daysAgo, cb) {
  *
  * State:
  *
- * - `products`:  Products to be shown on the page
+ * - `posts`:     Posts to be shown on the page
  * - `url`:       Product pane url
  * - `startPage`: Start fetching posts from `startPage` days ago
  *
@@ -67,7 +67,7 @@ let DefaultTab = React.createClass({
     debug('start page: %d', startPage);
 
     return {
-      products: this.cache || [],
+      posts: this.cache || [],
       startPage: startPage
     };
   },
@@ -85,19 +85,19 @@ let DefaultTab = React.createClass({
   },
 
   /**
-   * On component mount, subscribe to product changes.
+   * On component mount, subscribe to post changes.
    */
 
   componentDidMount() {
-    ProductStore.addChangeListener(this._handleChange);
+    PostStore.addChangeListener(this._handleChange);
   },
 
   /**
-   * On component unmount, unsubscribe from product changes.
+   * On component unmount, unsubscribe from post changes.
    */
 
   componentWillUnmount() {
-    ProductStore.removeChangeListener(this._handleChange);
+    PostStore.removeChangeListener(this._handleChange);
   },
 
   /**
@@ -115,7 +115,7 @@ let DefaultTab = React.createClass({
             pageStart={this.state.startPage}
             loadMore={this._loadNext}
             hasMore={true}>
-            <ProductGroup products={this.state.products} onClick={this._openPane} />
+            <PostGroup posts={this.state.posts} onClick={this._openPane} />
           </InfiniteScroll>
         </div>
 
@@ -150,7 +150,7 @@ let DefaultTab = React.createClass({
   },
 
   /**
-   * Load next page (day) with products.
+   * Load next page (day) with posts.
    *
    * @param {Number} page
    */
@@ -160,11 +160,11 @@ let DefaultTab = React.createClass({
   },
 
   /**
-   * Handle product change event.
+   * Handle post change event.
    */
 
   _handleChange() {
-    this.setState({ products: ProductStore.getProducts() });
+    this.setState({ posts: PostStore.getPosts() });
   }
 });
 

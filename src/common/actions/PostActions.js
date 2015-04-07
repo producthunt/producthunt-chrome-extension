@@ -2,36 +2,36 @@
  * Dependencies.
  */
 
-let debug = require('debug')('ph:actions:product');
+let debug = require('debug')('ph:actions:post');
 let AppDispatcher = require('../dispatcher');
-let ProductConstants = require('../constants');
+let PostConstants = require('../constants');
 
 /**
- * Product Actions.
+ * Post Actions.
  */
 
-let ProductActions = {
+let PostActions = {
 
   /**
-   * Handle the receive product action.
+   * Handle the receive post action.
    *
    * @param {Object} data
    * @public
    */
 
-  receiveProduct(data) {
-    this._dispatch(ProductConstants.RECEIVE_PRODUCT, data);
+  receivePost(data) {
+    this._dispatch(PostConstants.RECEIVE_POST, data);
   },
 
   /**
-   * Handle the receive products action.
+   * Handle the receive posts action.
    *
    * @param {Object} data
    * @public
    */
 
-  receiveProducts(data) {
-    this._dispatch(ProductConstants.RECEIVE_PRODUCTS, data);
+  receivePosts(data) {
+    this._dispatch(PostConstants.RECEIVE_POSTS, data);
   },
 
   /**
@@ -51,7 +51,7 @@ let ProductActions = {
 };
 
 /**
- * Export `ProductActions`.
+ * Export `PostActions`.
  */
 
-module.exports = ProductActions;
+module.exports = PostActions;

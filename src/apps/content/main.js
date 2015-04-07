@@ -4,12 +4,11 @@
 
 let React = require('react');
 let debug = require('debug')('ph:content:main');
-let ProductBar = require('./components/product-bar.react');
+let ProductBar = require('./components/ProductBar.react');
 let api = require('../../common/api');
 let renderComponent = require('../../common/render');
-let settings = require('../../common/settings');
+let settings = require('../../common/Settings');
 let Detector = require('./util/detector');
-let getHost = require('./util/get-host');
 
 /**
  * Constants.
@@ -36,5 +35,5 @@ settings.get(BAR_DISABLED_KEY, function(disabled) {
   }
 
   renderComponent(<ProductBar />);
-  api.getProduct(location.href);
+  api.getPost(location.href);
 });

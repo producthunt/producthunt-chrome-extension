@@ -1,7 +1,7 @@
 jest.autoMockOff();
 
 describe('BodyModifier', function() {
-  let BodyModifier = require('../body-modifier.react');
+  let BodyModifier = require('../BodyModifier.react');
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
   let bodyClass = '__phc-body';

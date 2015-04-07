@@ -3,7 +3,7 @@
  */
 
 let React = require('react');
-let buildUrl = require('../util/build-url');
+let buildUrl = require('../util/buildUrl');
 
 /**
  * Constants.

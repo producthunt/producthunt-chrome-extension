@@ -1,7 +1,7 @@
 jest.autoMockOff();
 
 describe('groupByDay', function() {
-  let groupByDay = require('../group-by-day');
+  let groupByDay = require('../groupByDay');
 
   it('returns the items grouped by day', function() {
     let item1 = { foo: 'bar', day: '1' };

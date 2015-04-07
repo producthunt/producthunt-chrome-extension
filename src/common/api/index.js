@@ -3,7 +3,7 @@
  */
 
 let debug = require('debug')('ph:api');
-let ProductActions = require('../actions/product');
+let PostActions = require('../actions/PostActions');
 let ProductHunt = require('../product-hunt');
 let cache = require('lscache');
 
@@ -30,43 +30,43 @@ let ph = new ProductHunt(OAUTH_KEY, OAUTH_SECRET, BASE_URL);
 let api = {
 
   /**
-   * Fetch product by `url`.
+   * Fetch post by `url`.
    *
    * @param {String} url
    * @public
    */
 
-  getProduct(url) {
+  getPost(url) {
     debug('getting post with url %s', url);
 
-    ph.searchProducts({ 'search[url]': url }, function(err, products) {
+    ph.searchPosts({ 'search[url]': url }, function(err, posts) {
       if (err) throw err;
       debug('post received');
-      ProductActions.receiveProduct(products[0]);
+      PostActions.receivePost(posts[0]);
     });
   },
 
   /**
-   * Fetch all products for given date.
+   * Fetch all posts for given date.
    *
    * @param {Date} date
    * @param {Function} callback [optional]
    * @public
    */
 
-  getProducts(daysAgo, cb) {
+  getPosts(daysAgo, cb) {
     debug('getting posts from %d days ago', daysAgo);
 
-    ph.getProducts(daysAgo, function(err, products) {
+    ph.getPosts(daysAgo, function(err, posts) {
       if (err) throw err;
       debug('posts received');
 
       if (daysAgo === 0) {
         debug('caching the posts...');
-        cache.set(CACHE_KEY, products, CACHE_DURARTION);
+        cache.set(CACHE_KEY, posts, CACHE_DURARTION);
       }
 
-      ProductActions.receiveProducts(products);
+      PostActions.receivePosts(posts);
       cb();
     });
   },

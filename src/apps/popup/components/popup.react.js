@@ -4,7 +4,7 @@
 
 let React = require('react');
 let debug = require('debug')('ph:popup:popup');
-let Tab = require('./tab.react');
+let Tab = require('./Tab.react');
 
 /**
  * Constants.

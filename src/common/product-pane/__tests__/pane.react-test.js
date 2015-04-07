@@ -1,7 +1,7 @@
 jest.autoMockOff();
 
 describe('Pane', function() {
-  let Pane = require('../pane.react');
+  let Pane = require('../Pane.react');
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
 

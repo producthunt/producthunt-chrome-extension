@@ -17,7 +17,7 @@ let debug = require('debug')('ph:popup:tab');
  *
  * Properties:
  *
- * - `url`  Product URL
+ * - url: Post URL
  *
  * @class
  */

@@ -1,7 +1,7 @@
 jest.autoMockOff();
 
 describe('TopElements', function() {
-  let TopElements = require('../top-elements.react');
+  let TopElements = require('../TopElements.react');
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
 

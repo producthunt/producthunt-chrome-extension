@@ -4,50 +4,50 @@
 
 let React = require('react');
 let moment = require('moment');
-let Product = require('./product.react');
-let getDay = require('../util/get-day');
-let groupByDay = require('../util/group-by-day');
+let Post = require('./Post.react');
+let getDay = require('../util/getDay');
+let groupByDay = require('../util/groupByDay');
 
 /**
- * Product Group component.
+ * Post Group component.
  *
- * Renders the products grouped by date.
+ * Renders the posts grouped by date.
  *
  * Usage:
  *
  * ```js
- * <ProductGroup />
+ * <PostGroup />
  * ```
  *
  * Properties:
  *
- * - `products`: Products to be grouped and rendered.
- * - `onClick`:  On product click cb
+ * - `posts`:   Posts to be grouped and rendered.
+ * - `onClick`: On post click cb
  *
  * @class
  */
 
-let ProductGroup = React.createClass({
+let PostGroup = React.createClass({
 
   /**
    * Render the view.
    */
 
   render() {
-    let groups = groupByDay(this.props.products);
+    let groups = groupByDay(this.props.posts);
     let onClick = this.props.onClick;
     let out = Object.keys(groups).map(function(day) {
       let date = moment(new Date(day));
       let humanDay = getDay(date);
       let monthDay = date.format('MMMM Do');
-      let products = groups[day].map(function(product) {
-        return <Product product={product} onClick={onClick} />
+      let posts = groups[day].map(function(post) {
+        return <Post post={post} onClick={onClick} />
       });
 
       return (
         <div className="clear">
           <h2>{humanDay} <span className="date">{monthDay}</span></h2>
-          {{products}}
+          {{posts}}
         </div>
       );
     });
@@ -57,7 +57,7 @@ let ProductGroup = React.createClass({
 });
 
 /**
- * Export `ProductGroup`.
+ * Export `PostGroup`.
  */
 
-module.exports = ProductGroup;
+module.exports = PostGroup;

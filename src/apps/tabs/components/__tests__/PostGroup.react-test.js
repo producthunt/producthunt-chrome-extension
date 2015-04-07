@@ -1,9 +1,9 @@
 jest.autoMockOff();
 
-describe('ProductGroup', function() {
-  let ProductGroup = require('../product-group.react');
+describe('PostGroup', function() {
+  let PostGroup = require('../PostGroup.react');
   let React = require('react/addons');
-  let product = {
+  let post = {
     name: 'Name',
     tagline: 'Tagline',
     day: '2015-01-01',
@@ -14,10 +14,10 @@ describe('ProductGroup', function() {
   };
 
   it('renders the group name', function() {
-    expect(<ProductGroup products={[product]} />).toRender('Thursday');
+    expect(<PostGroup posts={[post]} />).toRender('Thursday');
   });
 
-  it('renders the product name', function() {
-    expect(<ProductGroup products={[product]} />).toRender(product.name);
+  it('renders the post name', function() {
+    expect(<PostGroup posts={[post]} />).toRender(post.name);
   });
 });

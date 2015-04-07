@@ -3,9 +3,9 @@
  */
 
 let assign = require('object-assign');
-let debug = require('debug')('ph:stores:product');
+let debug = require('debug')('ph:stores:post');
 let AppDispatcher = require('../dispatcher');
-let ProductConstants = require('../constants');
+let PostConstants = require('../constants');
 let EventEmitter = require('events').EventEmitter;
 
 /**
@@ -21,10 +21,10 @@ const CHANGE_EVENT = 'change';
 let data = [];
 
 /**
- * Product Store.
+ * Post Store.
  */
 
-let ProductStore = assign({}, EventEmitter.prototype, {
+let PostStore = assign({}, EventEmitter.prototype, {
 
   /**
    * Register event listener
@@ -49,21 +49,21 @@ let ProductStore = assign({}, EventEmitter.prototype, {
   },
 
   /**
-   * Return the last product.
+   * Return the last post.
    *
    * @returns {Object}
    * @public
    */
 
-  getProduct() {
+  getPost() {
     return data[data.length -1];
   },
 
   /**
-   * Return all products.
+   * Return all posts.
    */
 
-  getProducts() {
+  getPosts() {
     return data;
   },
 
@@ -80,15 +80,15 @@ let ProductStore = assign({}, EventEmitter.prototype, {
   /**
    * Set data.
    *
-   * @param {Object|Array} product(s)
+   * @param {Object|Array} post(s)
    * @public
    */
 
-  setData(product) {
-    if (Array.isArray(product)) {
-      data = data.concat(product);
+  setData(post) {
+    if (Array.isArray(post)) {
+      data = data.concat(post);
     } else {
-      data.push(product);
+      data.push(post);
     }
   }
 });
@@ -99,15 +99,15 @@ AppDispatcher.register(function(payload) {
   let action = payload.action;
   let type = action.actionType;
 
-  if (type === ProductConstants.RECEIVE_PRODUCT || type === ProductConstants.RECEIVE_PRODUCTS) {
-    debug('product receive action received');
-    ProductStore.setData(action.data);
-    ProductStore.emitChange();
+  if (type === PostConstants.RECEIVE_POST || type === PostConstants.RECEIVE_POSTS) {
+    debug('post receive action received');
+    PostStore.setData(action.data);
+    PostStore.emitChange();
   }
 });
 
 /**
- * Export `ProductStore`.
+ * Export `PostStore`.
  */
 
-module.exports = ProductStore;
+module.exports = PostStore;

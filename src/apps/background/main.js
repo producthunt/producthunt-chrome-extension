@@ -2,7 +2,7 @@
  * Modifiers.
  */
 
-require('./x-frame');
+require('./xframe');
 require('./typekit');
 
 /**
@@ -10,7 +10,7 @@ require('./typekit');
  */
 
 let analytics = require('../../common/analytics');
-let buildUrl = require('./build-url');
+let buildUrl = require('./buildUrl');
 
 /**
  * Constants.
