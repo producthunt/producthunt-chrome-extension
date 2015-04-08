@@ -100,9 +100,9 @@ class Tracker {
       if (items.userId) {
         debug('User ID found in cache');
         return cb(items.userId);
-      } else {
-        debug('User ID not found in cache, generating a new one');
       }
+
+      debug('User ID not found in cache, generating a new one');
 
       let userId = this._anonymousId();
 
