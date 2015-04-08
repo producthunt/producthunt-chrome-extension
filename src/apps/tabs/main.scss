@@ -143,7 +143,7 @@ header {
         @include transition(opacity, 0.2s);
         text-decoration: underline;
         opacity: 0.8;
-    }
+      }
     }
 
     .comments {
@@ -157,6 +157,11 @@ header {
       right: 0;
       text-align: right;
       top: 0;
+
+      &:hover {
+        background-image: url('assets/comment_hover.svg');
+        color: $red;
+      }
     }
 
     h3 {
