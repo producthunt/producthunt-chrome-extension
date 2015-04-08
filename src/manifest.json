@@ -30,7 +30,6 @@
     "keyword": "product"
   },
   "permissions": [
-    "*://use.typekit.net/*",
     "*://www.producthunt.com/*",
     "webRequestBlocking",
     "storage",
@@ -61,5 +60,5 @@
     "common/loader/loader@2x.png",
     "common/product-pane/close.css"
   ],
-  "content_security_policy": "script-src https://ssl.google-analytics.com https://use.typekit.net 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src https://ssl.google-analytics.com 'self' 'unsafe-eval'; object-src 'self'"
 }

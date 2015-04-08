@@ -3,7 +3,6 @@
  */
 
 require('./xframe');
-require('./typekit');
 
 /**
  * Dependencies.
