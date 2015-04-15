@@ -3,6 +3,7 @@
  */
 
 var path = require('path');
+var envc = require('envc')({ nodeenv: 'test' });
 
 /**
  * Project src directory.
@@ -58,5 +59,11 @@ global.chrome = window.chrome = {
   },
   runtime: {
     sendMessage: function() {}
+  },
+  storage: {
+    sync: {
+      get: function() {},
+      set: function() {}
+    }
   }
 };

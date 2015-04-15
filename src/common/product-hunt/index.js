@@ -4,7 +4,7 @@
 
 let request = require('superagent');
 let cache = require('lscache');
-let debug = require('debug')('ph:client');
+let debug = require('debug')('ph:product-hunt');
 
 /**
  * Constants.
@@ -34,15 +34,15 @@ class ProductHunt {
   }
 
   /**
-   * Search products by `query`.
+   * Search posts by `query`.
    *
    * @param {Object} query
    * @param {Function} cb
    * @public
    */
 
-  searchProducts(query, cb) {
-    debug('searching products...');
+  searchPosts(query, cb) {
+    debug('searching posts...');
 
     this._getAuth((err, token) => {
       if (err) return cb(err);
@@ -52,22 +52,22 @@ class ProductHunt {
         .query(query)
         .set('Authorization', `Bearer ${token}`)
         .end((res) => {
-          let retry = () => this.searchProducts(query, cb)
+          let retry = () => this.searchPosts(query, cb)
           this._handleResponse(res, retry, cb);
         });
     });
   }
 
   /**
-   * Get product
+   * Get post
    *
    * @param {Number} days ago
    * @param {Function} cb
    * @public
    */
 
-  getProducts(daysAgo, cb) {
-    debug('searching products...');
+  getPosts(daysAgo, cb) {
+    debug('searching posts...');
 
     this._getAuth((err, token) => {
       if (err) return cb(err);
@@ -77,7 +77,7 @@ class ProductHunt {
         .query({ days_ago: daysAgo })
         .set('Authorization', `Bearer ${token}`)
         .end((res) => {
-          let retry = () => this.getProducts(daysAgo, cb)
+          let retry = () => this.getPosts(daysAgo, cb)
           this._handleResponse(res, retry, cb);
         });
     });

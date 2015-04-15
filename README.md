@@ -1,6 +1,19 @@
 # Product Hunt Chrome Extension
 
+[![Product Hunt Chrome Extension](http://f.cl.ly/items/1T0u1V0Q0715072v4643/ph-chrome.png)](https://chrome.google.com/webstore/detail/product-hunt/likjafohlgffamccflcidmedfongmkee)
+
 > This is the official [Product Hunt](http://www.producthunt.com) extension.
+
+Product Hunt is a place for product-loving enthusiasts to share and geek out
+about the latest mobile apps, websites, hardware projects, and technology. With
+our shiny new Chrome extension, you can:
+
+- View a gallery of the top products of the day in every new tab
+- Search for products, collections, and people directly from the Chrome menu bar
+- Open the discussion and product details from the product page itself by clicking the PH Bar
+- Hunt products and curate collections in a few keystrokes
+
+Explore more ways to use Product Hunt at [http://producthunt.com/apps](http://producthunt.com/apps).
 
 ## Chrome App Store
 
@@ -65,6 +78,7 @@ See the [example .env file](.env.example).
 | test                | Run all tests                                 |
 | test-acceptance     | Run the acceptance tests                      |
 | test-unit           | Run the unit tests                            |
+| pack                | Create an archive for publishing              |
 
 Example usage:
 
@@ -101,6 +115,16 @@ To enable the debug output in the console:
 ```
 localStorage.debug = '*';
 ```
+
+### Publishing the extension
+
+```
+$ NODE_ENV=production EXT_ENV={production,staging} gulp build
+$ gulp pack
+$ open dist/
+```
+
+Then upload the archive to the Chrome Web Store.
 
 ## Contributing
 

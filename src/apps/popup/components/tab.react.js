@@ -4,6 +4,7 @@
 
 let React = require('react');
 let Frame = require('react-frame-component');
+let debug = require('debug')('ph:popup:tab');
 
 /**
  * iframe Tab View.
@@ -16,7 +17,7 @@ let Frame = require('react-frame-component');
  *
  * Properties:
  *
- * - `url`  Product URL
+ * - url: Post URL
  *
  * @class
  */
@@ -48,6 +49,7 @@ let Tab = React.createClass({
     loader.style.setProperty('display', 'block');
 
     iframe.onload = () => {
+      debug('tab loaded');
       loader.style.setProperty('display', 'none');
       iframe.style.setProperty('display', 'block');
     };
@@ -58,6 +60,8 @@ let Tab = React.createClass({
    */
 
   render() {
+    debug('loading tab with URL %s', this.props.url);
+
     return (
       <div>
         <div id="loader" className="loader"></div>

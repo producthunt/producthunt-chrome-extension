@@ -1,4 +1,10 @@
 /**
+ * Dependencies.
+ */
+
+let debug = require('debug')('ph:google-analytics');
+
+/**
  * Load Google Analytics.
  *
  * @param {String} key
@@ -7,6 +13,7 @@
 
 function loadGa(key) {
   if (!key) {
+    debug('no key - bail out');
     return;
   }
 
@@ -21,6 +28,8 @@ function loadGa(key) {
 
   let s = document.getElementsByTagName('script')[0];
   s.parentNode.insertBefore(ga, s);
+
+  debug('inserted');
 }
 
 /**

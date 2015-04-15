@@ -15,17 +15,19 @@
     "envc": "^2.1.0",
     "envify": "^3.2.0",
     "gulp": "^3.8.11",
-    "gulp-ignore": "^1.2.1",
+    "gulp-if": "^1.2.5",
     "gulp-imagemin": "^2.2.1",
     "gulp-jsonminify": "0.0.2",
+    "gulp-minify-css": "^1.0.0",
     "gulp-minify-html": "^1.0.0",
-    "gulp-plumber": "^0.6.6",
     "gulp-rimraf": "^0.1.1",
     "gulp-sass": "^1.3.3",
+    "gulp-sourcemaps": "^1.5.1",
     "gulp-spawn-mocha": "^2.0.1",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.1.1",
+    "gulp-zip": "^3.0.2",
     "harmonize": "^1.4.1",
     "jest-cli": "^0.4.0",
     "node-neat": "^1.7.1-beta1",
@@ -41,7 +43,7 @@
     "assert-env": "^0.6.0",
     "async": "^0.9.0",
     "bower": "^1.3.12",
-    "debug": "^2.1.2",
+    "debug": "2.1.0",
     "flux": "^2.0.1",
     "lscache": "^1.0.5",
     "moment": "^2.9.0",
@@ -52,5 +54,11 @@
     "react-frame-component": "^0.3.0",
     "react-infinite-scroll": "^0.1.5",
     "superagent": "^0.21.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testPathDirs": ["<rootDir>/src"],
+    "setupEnvScriptFile": "<rootDir>/jest/env.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/jest/setup.js"
   }
 }

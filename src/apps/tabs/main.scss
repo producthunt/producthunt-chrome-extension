@@ -2,6 +2,7 @@
 @import "neat";
 @import "common/product-pane/main";
 @import "common/header/main";
+@import "common/fonts/proxima-nova";
 
 // Variables
 
@@ -41,6 +42,10 @@ header {
 
 .clear {
   @include clearfix;
+}
+
+.disabled-indicator {
+  text-align: center;
 }
 
 .main {
@@ -85,10 +90,11 @@ header {
     background-color: $grey-2;
     border-radius: 4px;
     float: left;
-    height: 300px;
+    height: 340px;
     margin: 10px;
     padding: 10px;
     width: 300px;
+    word-break: break-all;
 
     &:hover {
       @include transition(background, 0.1s);
@@ -103,6 +109,11 @@ header {
       img {
         height: 100%;
         width: 100%;
+
+        &:hover {
+          @include transition(opacity, 0.2s);
+          opacity: 0.8;
+        }
       }
     }
 
@@ -129,7 +140,11 @@ header {
       margin-left: 44px;
       margin-right: 10px;
 
-      a:hover { text-decoration: underline; }
+      a:hover {
+        @include transition(opacity, 0.2s);
+        text-decoration: underline;
+        opacity: 0.8;
+      }
     }
 
     .comments {
@@ -143,6 +158,11 @@ header {
       right: 0;
       text-align: right;
       top: 0;
+
+      &:hover {
+        background-image: url('assets/comment_hover.svg');
+        color: $red;
+      }
     }
 
     h3 {

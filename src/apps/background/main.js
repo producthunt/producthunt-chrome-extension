@@ -2,15 +2,14 @@
  * Modifiers.
  */
 
-require('./x-frame');
-require('./typekit');
+require('./xframe');
 
 /**
  * Dependencies.
  */
 
 let analytics = require('../../common/analytics');
-let buildUrl = require('./build-url');
+let buildUrl = require('./buildUrl');
 
 /**
  * Constants.

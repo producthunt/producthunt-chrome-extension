@@ -3,8 +3,9 @@
  */
 
 let React = require('react');
-let Flash = require('./flash.react');
-let Header = require('../../../common/header/header.react');
+let Flash = require('./Flash.react');
+let Header = require('../../../common/header/Header.react');
+let settings = require('../../../common/settings');
 
 /**
  * Constants.
@@ -26,9 +27,9 @@ const TAB_KEY = process.env.TAB_DISABLED_KEY;
  *
  * State:
  *
- * - barDisabled: default value for the bar disabled option
- * - tabDisabled: default value for the tab disabled option
- * - showFlash:   whether to show the flash message or not
+ * - `barDisabled`: default value for the bar disabled option
+ * - `tabDisabled`: default value for the tab disabled option
+ * - `showFlash`:   whether to show the flash message or not
  *
  * @class
  */
@@ -54,7 +55,7 @@ let Options = React.createClass({
     options[BAR_KEY] = false;
     options[TAB_KEY] = false;
 
-    chrome.storage.sync.get(options, (items) => this.setState(items));
+    settings.getAll(options, (items) => this.setState(items));
   },
 
   /**
@@ -81,7 +82,7 @@ let Options = React.createClass({
             onChange={this._toggleDefaultTab}
             checked={this.state[TAB_KEY]}
             type="checkbox" />
-            <label htmlFor="tab">Disable default tab</label>
+            <label htmlFor="tab">Disable default tab (due to technical limitations, this will not return your previous default tab).</label>
         </div>
       </div>
     );
@@ -114,7 +115,7 @@ let Options = React.createClass({
     let option = {};
     option[key] = !this.state[key];
 
-    chrome.storage.sync.set(option, () => {
+    settings.setAll(option, () => {
       option.showFlash = true;
       this.setState(option);
     });

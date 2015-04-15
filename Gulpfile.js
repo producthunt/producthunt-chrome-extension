@@ -1,35 +1,51 @@
 'use strict';
 
 /**
+ * Set the current environment.
+ */
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.EXT_ENV = process.env.EXT_ENV || 'development';
+
+/**
  * Dependencies.
  */
 
 var babelify = require('babelify');
-var browserify = require('browserify');
-var watchify = require('watchify');
-var envify = require('envify');
-var source = require('vinyl-source-stream');
-var envc = require('envc')();
-var gulp = require('gulp');
-var gwatch = require('gulp-watch');
-var gutil = require('gulp-util')
-var html = require('gulp-minify-html');
-var json = require('gulp-jsonminify');
-var sass = require('gulp-sass');
-var ignore = require('gulp-ignore');
-var rimraf = require('rimraf');
-var imagemin = require('gulp-imagemin');
-var uglify = require('gulp-uglify');
-var plumber = require('gulp-plumber');
-var buffer = require('vinyl-buffer');
 var bourbon = require('node-bourbon');
-var neat = require('node-neat');
+var browserify = require('browserify');
+var buffer = require('vinyl-buffer');
+var envc = require('envc')({ nodeenv: process.env.EXT_ENV || process.env.NODE_ENV });
+var envify = require('envify');
 var fs = require('fs');
-var mocha = require('gulp-spawn-mocha');
-var jest = require('jest-cli');
+var gulp = require('gulp');
+var gulpif = require('gulp-if');
+var gutil = require('gulp-util')
+var gwatch = require('gulp-watch');
 var harmonize = require('harmonize')();
+var html = require('gulp-minify-html');
+var imagemin = require('gulp-imagemin');
+var jest = require('jest-cli');
+var json = require('gulp-jsonminify');
+var minifyCss = require('gulp-minify-css');
+var mocha = require('gulp-spawn-mocha');
+var neat = require('node-neat');
+var rimraf = require('rimraf');
+var sass = require('gulp-sass');
+var source = require('vinyl-source-stream');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
+var watchify = require('watchify');
+var zip = require('gulp-zip');
+
+/**
+ * Locals.
+ */
+
 var requiredVars = fs.readFileSync('.env.assert', 'utf8').split('\n');
 var env = process.env;
+var EXT_ENV = env.EXT_ENV;
+var DEV = env.NODE_ENV === 'development' || env.NODE_ENV === 'test';
 var assertEnv = require('assert-env')(requiredVars.filter(function(key) {
   return !!key;
 }));
@@ -48,7 +64,7 @@ var patterns = {
   html: 'src/**/*.html',
   img: 'src/**/*.{png,svg,ico}',
   css: 'src/**/*.{scss,css}',
-  json: 'src/**/*.json',
+  locales: 'src/_locales/**/*.json',
   vendor: 'vendor/**/**'
 };
 
@@ -79,7 +95,7 @@ var bundles = [
  */
 
 function watch(pattern) {
-  return argv.watch ? gwatch(pattern) : gutil.noop();
+  return argv.watch ? gwatch(pattern, { verbose: true }) : gutil.noop();
 }
 
 /**
@@ -87,20 +103,26 @@ function watch(pattern) {
  */
 
 gulp.task('js', function() {
-  bundles.forEach(function(bundle) {
+  return bundles.map(function(bundle) {
     var bundler = browserify({
       entries: [bundle.entry],
       transform: [envify, babelify],
-      debug: true,
+      debug: DEV,
       cache: {},
       packageCache: {},
       fullPaths: true
     });
 
+    bundler.on('log', gutil.log)
+
     var update = function() {
-      bundler.bundle()
+      return bundler.bundle()
+        .on('error', function(err) {
+          gutil.log(err.message);
+        })
         .pipe(source(bundle.out))
         .pipe(buffer())
+        .pipe(gulpif(!DEV, uglify()))
         .pipe(gulp.dest(dest));
     };
 
@@ -109,7 +131,7 @@ gulp.task('js', function() {
       bundler.on('update', update);
     }
 
-    update();
+    return update();
   });
 });
 
@@ -135,14 +157,28 @@ gulp.task('vendor', function() {
 });
 
 /**
- * Minify the JSON files.
+ * Minify the locale files.
  */
 
-gulp.task('json', function() {
-  return gulp.src(patterns.json)
-    .pipe(watch(patterns.json))
+gulp.task('locales', function() {
+  return gulp.src(patterns.locales)
+    .pipe(watch(patterns.locales))
     .pipe(json())
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest + '/_locales/'));
+});
+
+/**
+ * Modify the manifest file.
+ */
+
+gulp.task('manifest', function(done) {
+  var manifest = require('./src/manifest.json');
+
+  if (EXT_ENV !== 'production') {
+    manifest.name = '[' + EXT_ENV + '] ProductHunt';
+  }
+
+  fs.writeFile(dest + '/manifest.json', JSON.stringify(manifest), done);
 });
 
 /**
@@ -153,12 +189,15 @@ gulp.task('scss', function() {
   var paths = neat.includePaths.concat(['./src']);
 
   return gulp.src(patterns.css)
-    .pipe(plumber())
     .pipe(watch(patterns.css))
+    .pipe(gulpif(DEV, sourcemaps.init()))
     .pipe(sass({
       imagePath: 'chrome-extension://' + env.EXTENSION_ID,
-      includePaths: paths
+      includePaths: paths,
+      errLogToConsole: true
     }))
+    .pipe(gulpif(DEV, sourcemaps.write()))
+    .pipe(gulpif(!DEV, minifyCss()))
     .pipe(gulp.dest(dest));
 });
 
@@ -177,8 +216,8 @@ gulp.task('img', function() {
  * Run the end to end tests.
  */
 
-gulp.task('test-acceptance', ['build'], function () {
-  return gulp.src(['test/*.test.js'], { read: false })
+gulp.task('test-acceptance', function() {
+  return gulp.src(['test/*.js'], { read: false })
     .pipe(mocha({ r: 'test/setup.js', timeout: 10000 }));
 });
 
@@ -200,6 +239,18 @@ gulp.task('test-unit', function(done) {
   jest.runCLI(options, __dirname, function(success) {
     done();
   });
+});
+
+/**
+ * Create an archive from `build`.
+ */
+
+gulp.task('pack', function() {
+  var version = require('./src/manifest.json').version;
+
+  return gulp.src(dest + '/**/*')
+    .pipe(zip(version + '-product-hunt.zip'))
+    .pipe(gulp.dest('dist'));
 });
 
 /**
@@ -228,4 +279,13 @@ gulp.task('test', ['test-acceptance', 'test-unit']);
  * Build all.
  */
 
-gulp.task('build', ['clean', 'js', 'html', 'json', 'scss', 'img', 'vendor']);
+gulp.task('build', [
+  'clean',
+  'js',
+  'html',
+  'locales',
+  'manifest',
+  'scss',
+  'img',
+  'vendor'
+]);
