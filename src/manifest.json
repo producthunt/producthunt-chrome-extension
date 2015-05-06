@@ -27,7 +27,7 @@
     "default_popup": "apps/popup/main.html"
   },
   "omnibox": {
-    "keyword": "product"
+    "keyword": "ph"
   },
   "permissions": [
     "*://www.producthunt.com/*",
