@@ -12,7 +12,9 @@ let settings = require('../../../common/settings');
  */
 
 const BAR_KEY = process.env.BAR_DISABLED_KEY;
-const TAB_KEY = process.env.TAB_DISABLED_KEY;
+const DEFAULT_TAB_DISABLED = process.env.DISABLE_DEFAULT_TAB;
+const EXT_DISABLED_TAB_URL = process.env.EXT_DISABLED_TAB_URL;
+const EXT_ENABLED_TAB_URL = process.env.EXT_ENABLED_TAB_URL;
 
 /**
  * Options Component.
@@ -43,7 +45,7 @@ let Options = React.createClass({
    */
 
   getInitialState() {
-    return { barDisabled: false, tabDisabled: false, showFlash: false };
+    return { barDisabled: false, showFlash: false };
   },
 
   /**
@@ -53,7 +55,6 @@ let Options = React.createClass({
   componentDidMount() {
     let options = {};
     options[BAR_KEY] = false;
-    options[TAB_KEY] = false;
 
     settings.getAll(options, (items) => this.setState(items));
   },
@@ -68,6 +69,9 @@ let Options = React.createClass({
         <Header />
         <Flash show={this.state.showFlash} text="Your settings have been updated!" />
         <h1>Settings</h1>
+        <div className="notice">
+          {this.renderTabNotice()}
+        </div>
         <div>
           <input
             id="bar"
@@ -76,15 +80,41 @@ let Options = React.createClass({
             type="checkbox" />
             <label htmlFor="bar">Disable product bar</label>
         </div>
-        <div>
-          <input
-            id="tab"
-            onChange={this._toggleDefaultTab}
-            checked={this.state[TAB_KEY]}
-            type="checkbox" />
-            <label htmlFor="tab">Disable default tab (due to technical limitations, this will not return your previous default tab).</label>
-        </div>
       </div>
+    );
+  },
+
+  /**
+   * Render the Default Tab notice.
+   */
+
+  renderTabNotice() {
+    return DEFAULT_TAB_DISABLED
+      ? this.renderDisabledTabNotice()
+      : this.renderEnabledTabNotice();
+  },
+
+  /**
+   * Render the notice about the default tab when enabled.
+   */
+
+  renderEnabledTabNotice() {
+    return (
+      <span>
+        Looking to disable the default tab? Check out our <a href={EXT_DISABLED_TAB_URL}>chrome extension without a default tab</a>.
+      </span>
+    );
+  },
+
+  /**
+   * Render the notice about the default tab when disabled.
+   */
+
+  renderDisabledTabNotice() {
+    return (
+      <span>
+        Looking to enable the default tab? Check out our <a href={EXT_ENABLED_TAB_URL}>chrome extension with a default tab</a>.
+      </span>
     );
   },
 
@@ -94,14 +124,6 @@ let Options = React.createClass({
 
   _toggleProductBar() {
     this._toggleOption(BAR_KEY);
-  },
-
-  /**
-   * Toggle the default tab.
-   */
-
-  _toggleDefaultTab() {
-    this._toggleOption(TAB_KEY);
   },
 
   /**

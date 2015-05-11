@@ -178,6 +178,10 @@ gulp.task('manifest', function(done) {
     manifest.name = '[' + EXT_ENV + '] ProductHunt';
   }
 
+  if (env.DISABLE_DEFAULT_TAB) {
+    manifest.chrome_url_overrides = {};
+  }
+
   fs.writeFile(dest + '/manifest.json', JSON.stringify(manifest), done);
 });
 

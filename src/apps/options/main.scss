@@ -43,3 +43,13 @@ h1 {
 
   &.hidden { opacity: 0; }
 }
+
+.notice {
+  font-size: 16px;
+  background: #fcf5e2;
+  border-radius: 5px;
+  line-height: 36px;
+  margin: 20px 0 30px;
+  min-height: 36px;
+  padding: 19px 54px 19px 20px;
+}
