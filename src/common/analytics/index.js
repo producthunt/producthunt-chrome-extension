@@ -13,6 +13,9 @@ const ANALYTICS_KEY = process.env.ANALYTICS_KEY;
 
 /**
  * Locals.
+ *
+ * Note(andreasklinger): window.ProductHuntAnalytics gets set by a custom built of the analytics.js
+ *   To recreate this use their make script - it offers a options to set the variable name.
  */
 
 let enableAnalytics = window.ProductHuntAnalytics && ANALYTICS_KEY;
