@@ -3,7 +3,6 @@
  */
 
 let React = require('react');
-let Frame = require('react-frame-component');
 let debug = require('debug')('ph:popup:tab');
 
 /**
