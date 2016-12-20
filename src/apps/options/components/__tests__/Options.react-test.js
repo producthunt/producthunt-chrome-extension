@@ -18,10 +18,6 @@ describe('Options', function() {
     expect(<Options />).toRender('Disable product bar');
   });
 
-  it('renders default tab option', function() {
-    expect(<Options />).toRender('Disable default tab');
-  });
-
   describe('persisting settings', function() {
     let node = null;
 
@@ -32,11 +28,6 @@ describe('Options', function() {
 
     afterEach(function() {
       chrome.storage.sync.set = function(){};
-    });
-
-    it('stores the default tab option', function() {
-      TestUtils.Simulate.change(node.querySelector('#tab'));
-      expect(chrome.storage.sync.set).toBeCalledWith({ tabDisabled: true }, jasmine.any('function'));
     });
 
     it('stores the product bar option', function() {
