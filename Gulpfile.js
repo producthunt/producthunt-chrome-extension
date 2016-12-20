@@ -22,7 +22,6 @@ var gulp = require('gulp');
 var gulpif = require('gulp-if');
 var gutil = require('gulp-util')
 var gwatch = require('gulp-watch');
-var harmonize = require('harmonize')();
 var html = require('gulp-minify-html');
 var imagemin = require('gulp-imagemin');
 var jest = require('jest-cli');
