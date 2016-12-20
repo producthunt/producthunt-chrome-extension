@@ -5,17 +5,6 @@ describe('Pane', function() {
   let React = require('react/addons');
   let TestUtils = React.addons.TestUtils;
 
-  beforeEach(function() {
-    document.body.classList = {
-      add: jest.genMockFn(),
-      remove: jest.genMockFn()
-    };
-  });
-
-  afterEach(function() {
-    document.body.classList = undefined;
-  });
-
   describe('with no url', function() {
     it('does not render', function() {
       let pane = TestUtils.renderIntoDocument(<Pane />);
@@ -41,7 +30,7 @@ describe('Pane', function() {
     it('adds a class to the body', function() {
       let className = 'body-class';
       let pane = TestUtils.renderIntoDocument(<Pane bodyClass={className} url="http://example.com" />);
-      expect(document.body.classList.add).toBeCalledWith(className);
+      expect(document.body.classList.contains('body-class')).toBeTruthy();
     });
   });
 });
