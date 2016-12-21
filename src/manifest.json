@@ -40,8 +40,7 @@
     "apps/content/assets/comment.svg",
     "apps/content/assets/arrow_up.svg",
     "common/loader/loader.png",
-    "common/loader/loader@2x.png",
-    "common/product-pane/close.css"
+    "common/loader/loader@2x.png"
   ],
   "content_security_policy": "script-src https://ssl.google-analytics.com 'self' 'unsafe-eval'; object-src 'self'"
 }

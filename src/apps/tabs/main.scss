@@ -1,6 +1,5 @@
 @import "bourbon";
 @import "neat";
-@import "common/product-pane/main";
 @import "common/header/main";
 @import "common/fonts/proxima-nova";
 
@@ -29,11 +28,6 @@ body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
 }
 
-.pane { @include product-pane; top: 0 !important; }
-.overlay { @include product-pane-overlay; }
-.close { @include product-pane-close; top: 15px !important; }
-.loader { @include product-pane-loader; }
-.no-scroll { overflow: hidden; }
 .clickable { cursor: pointer; }
 
 header {
