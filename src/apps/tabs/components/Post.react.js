@@ -58,18 +58,6 @@ let Post = React.createClass({
   },
 
   /**
-   * Handle post click events.
-   *
-   * @param {Object} event
-   */
-
-  _onClick(e) {
-    e.stopPropagation();
-    analytics.clickPost(this.props.post);
-    this.props.onClick(this.props.post.discussion_url);
-  },
-
-  /**
    * Handle open post click events.
    *
    * @param {Object} event
