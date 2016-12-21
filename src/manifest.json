@@ -1,6 +1,5 @@
 {
   "name": "__MSG_appName__",
-  "options_page": "apps/options/main.html",
   "version": "0.1.2",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
@@ -35,22 +34,6 @@
     "storage",
     "webRequest",
     "tabs"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": [
-        "apps/content/main.js"
-      ],
-      "css": [
-        "apps/content/main.css"
-      ],
-      "run_at": "document_end",
-      "all_frames": false
-    }
   ],
   "web_accessible_resources": [
     "apps/content/product-bar.css",
