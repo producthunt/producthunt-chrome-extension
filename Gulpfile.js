@@ -80,7 +80,6 @@ var dest = 'build' || argv.build;
 var bundles = [
   { entry: './src/apps/popup/main.js', out: 'apps/popup/main.js' },
   { entry: './src/apps/background/main.js', out: 'apps/background/main.js' },
-  { entry: './src/apps/content/main.js', out: 'apps/content/main.js' },
   { entry: './src/apps/tabs/main.js', out: 'apps/tabs/main.js' },
   { entry: './src/apps/options/main.js', out: 'apps/options/main.js' }
 ];
