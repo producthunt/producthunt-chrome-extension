@@ -47,7 +47,6 @@
     "lscache": "^1.0.5",
     "mocha": "3.2.0",
     "moment": "^2.9.0",
-    "node-bourbon": "^4.2.1-beta1",
     "object-assign": "^4.1.0",
     "query-string": "^4.2.3",
     "react": "^0.12.2",

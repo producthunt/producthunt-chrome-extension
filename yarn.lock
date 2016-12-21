@@ -3677,7 +3677,7 @@ next-tick@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-0.2.2.tgz#75da4a927ee5887e39065880065b7336413b310d"
 
-node-bourbon@^4.2.1-beta1, node-bourbon@^4.2.3:
+node-bourbon@^4.2.3:
   version "4.2.8"
   resolved "https://registry.yarnpkg.com/node-bourbon/-/node-bourbon-4.2.8.tgz#e444f1f09434ab7650ea318c28e2e103d3f942cd"
   dependencies:

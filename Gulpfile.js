@@ -12,7 +12,6 @@ process.env.EXT_ENV = process.env.EXT_ENV || 'development';
  */
 
 var babelify = require('babelify');
-var bourbon = require('node-bourbon');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var envc = require('envc')({ nodeenv: process.env.EXT_ENV || process.env.NODE_ENV });
