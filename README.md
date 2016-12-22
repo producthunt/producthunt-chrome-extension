@@ -44,10 +44,10 @@ $ cp .env.example .env
 $ $EDITOR .env
 ```
 
-* Install npm dependencies:
+* Install yarn dependencies:
 
 ```
-$ npm install
+$ yarn install
 ```
 
 * Create the initial build

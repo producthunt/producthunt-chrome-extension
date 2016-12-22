@@ -2,7 +2,6 @@
  * Dependencies.
  */
 
-let assign = require('object-assign');
 let debug = require('debug')('ph:settings');
 let nullStorage = {
   get: function(keys, cb) {

@@ -6,21 +6,10 @@ describe('BodyModifier', function() {
   let TestUtils = React.addons.TestUtils;
   let bodyClass = '__phc-body';
 
-  beforeEach(function() {
-    document.body.classList = {
-      add: jest.genMockFn(),
-      remove: jest.genMockFn()
-    };
-  });
-
-  afterEach(function() {
-    document.body.classList = undefined;
-  });
-
   describe('on mount', function() {
     it('adds a class to the body', function() {
       TestUtils.renderIntoDocument(<BodyModifier className={bodyClass} />);
-      expect(document.body.classList.add).toBeCalledWith(bodyClass);
+      expect(document.body.classList.contains(bodyClass)).toBeTruthy();
     });
   });
 
@@ -31,7 +20,7 @@ describe('BodyModifier', function() {
       React.render(<BodyModifier className={bodyClass} />, container);
       React.unmountComponentAtNode(container);
 
-      expect(document.body.classList.remove).toBeCalledWith(bodyClass);
+      expect(document.body.classList.contains(bodyClass)).toBeFalsy();
     });
   });
 });
