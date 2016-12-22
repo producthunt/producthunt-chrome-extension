@@ -49,24 +49,12 @@ let Post = React.createClass({
             <p>{post.tagline}</p>
           </div>
 
-          <div className="comments" onClick={this._onClick}>
+          <div className="comments" onClick={this._openPost}>
             {post.comments_count}
           </div>
         </div>
       </div>
     );
-  },
-
-  /**
-   * Handle post click events.
-   *
-   * @param {Object} event
-   */
-
-  _onClick(e) {
-    e.stopPropagation();
-    analytics.clickPost(this.props.post);
-    this.props.onClick(this.props.post.discussion_url);
   },
 
   /**

@@ -10,7 +10,6 @@ let async = require('async');
 let PostGroup = require('./PostGroup.react');
 let PostStore = require('../../../common/stores/PostStore');
 let api = require('../../../common/api');
-let Pane = require('../../../common/product-pane/Pane.react');
 
 /**
  * Constants.
@@ -105,8 +104,6 @@ let DefaultTab = React.createClass({
    */
 
   render() {
-    let url = this.state.url;
-
     return (
       <div>
         <div className="products">
@@ -115,38 +112,11 @@ let DefaultTab = React.createClass({
             pageStart={this.state.startPage}
             loadMore={this._loadNext}
             hasMore={true}>
-            <PostGroup posts={this.state.posts} onClick={this._openPane} />
+            <PostGroup posts={this.state.posts} />
           </InfiniteScroll>
         </div>
-
-        <Pane
-          bodyClass="no-scroll"
-          loaderClass="loader"
-          overlayClass="overlay"
-          closeClass="close"
-          paneClass="pane"
-          url={url}
-          onClick={this._closePane} />
       </div>
     );
-  },
-
-  /**
-   * Open the product pane.
-   *
-   * @param {String} url
-   */
-
-  _openPane(url) {
-    this.setState({ url: url });
-  },
-
-  /**
-   * Close the product pane.
-   */
-
-  _closePane() {
-    this.setState({ url: false });
   },
 
   /**

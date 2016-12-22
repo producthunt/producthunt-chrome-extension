@@ -1,6 +1,5 @@
 {
   "name": "__MSG_appName__",
-  "options_page": "apps/options/main.html",
   "version": "0.1.2",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
@@ -36,29 +35,12 @@
     "webRequest",
     "tabs"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "js": [
-        "apps/content/main.js"
-      ],
-      "css": [
-        "apps/content/main.css"
-      ],
-      "run_at": "document_end",
-      "all_frames": false
-    }
-  ],
   "web_accessible_resources": [
     "apps/content/product-bar.css",
     "apps/content/assets/comment.svg",
     "apps/content/assets/arrow_up.svg",
     "common/loader/loader.png",
-    "common/loader/loader@2x.png",
-    "common/product-pane/close.css"
+    "common/loader/loader@2x.png"
   ],
   "content_security_policy": "script-src https://ssl.google-analytics.com 'self' 'unsafe-eval'; object-src 'self'"
 }

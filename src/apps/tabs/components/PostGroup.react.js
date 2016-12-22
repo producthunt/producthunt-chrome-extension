@@ -35,13 +35,12 @@ let PostGroup = React.createClass({
 
   render() {
     let groups = groupByDay(this.props.posts);
-    let onClick = this.props.onClick;
     let out = Object.keys(groups).map(function(day) {
       let date = moment(new Date(day));
       let humanDay = getDay(date);
       let monthDay = date.format('MMMM Do');
       let posts = groups[day].map(function(post) {
-        return <Post post={post} onClick={onClick} />
+        return <Post post={post} />
       });
 
       return (
@@ -52,7 +51,7 @@ let PostGroup = React.createClass({
       );
     });
 
-    return <div>{{out}}</div>
+    return <div>{{out}}</div>;
   }
 });
 
