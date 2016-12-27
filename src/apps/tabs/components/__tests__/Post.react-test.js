@@ -3,7 +3,6 @@ jest.autoMockOff();
 describe('Post', function() {
   let Post = require('../Post.react');
   let React = require('react/addons');
-  let TestUtils = React.addons.TestUtils;
   let post = {
     name: 'Name',
     tagline: 'Tagline',
