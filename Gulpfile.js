@@ -102,12 +102,11 @@ gulp.task('js', function() {
   return bundles.map(function(bundle) {
     var bundler = browserify({
       entries: [bundle.entry],
-      transform: [envify, babelify],
       debug: DEV,
       cache: {},
       packageCache: {},
       fullPaths: true
-    });
+    }).transform(babelify, {presets: ['es2015', 'react']}).transform(envify);
 
     bundler.on('log', gutil.log)
 
