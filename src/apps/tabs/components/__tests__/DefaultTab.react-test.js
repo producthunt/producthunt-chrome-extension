@@ -3,8 +3,8 @@ jest.autoMockOff();
 describe('DefaultTab', function() {
   let DefaultTab = require('../DefaultTab.react');
   let PostStore = load('/common/stores/PostStore');
-  let React = require('react/addons');
-  let TestUtils = React.addons.TestUtils;
+  let React = require('react');
+  let TestUtils = require('react-addons-test-utils');
 
   let post = {
     id: 1,
@@ -20,6 +20,6 @@ describe('DefaultTab', function() {
     let component = TestUtils.renderIntoDocument(<DefaultTab />);
     PostStore.setData([post]);
     PostStore.emitChange();
-    expect(component).toMatchContent(post.name);
+    expect(component).toRender(post.name);
   });
 });
