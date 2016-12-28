@@ -4,7 +4,7 @@
 
 let React = require('react');
 let debug = require('debug')('ph:tabs:default-tab');
-let InfiniteScroll = require('react-infinite-scroll')(React);
+let InfiniteScroll = require('./InfiniteScroll.react');
 let cache = require('lscache');
 let async = require('async');
 let PostGroup = require('./PostGroup.react');
