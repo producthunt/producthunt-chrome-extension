@@ -40,18 +40,20 @@ let PostGroup = React.createClass({
       let humanDay = getDay(date);
       let monthDay = date.format('MMMM Do');
       let posts = groups[day].map(function(post) {
-        return <Post post={post} />
+        return <Post key={post.id} post={post} />;
       });
 
       return (
-        <div className="clear">
+        <div className="clear" key={day}>
           <h2>{humanDay} <span className="date">{monthDay}</span></h2>
-          {{posts}}
+          {posts}
         </div>
       );
     });
 
-    return <div>{{out}}</div>;
+    return (
+      <div>{out}</div>
+    );
   }
 });
 

@@ -7,6 +7,7 @@ describe('DefaultTab', function() {
   let TestUtils = React.addons.TestUtils;
 
   let post = {
+    id: 1,
     name: 'Name',
     tagline: 'Tagline',
     discussion_url: 'http://example.com',
