@@ -76,4 +76,4 @@ var InfiniteScroll = React.createClass({
   },
 });
 
-export default InfiniteScroll;
+module.exports = InfiniteScroll;
