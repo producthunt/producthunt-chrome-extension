@@ -2,7 +2,7 @@ jest.autoMockOff();
 
 describe('Tab', function() {
   let Tab = require('../Tab.react');
-  let React = require('react/addons');
+  let React = require('react');
   let url = 'http://example.com';
 
   it('renders the given page', function() {

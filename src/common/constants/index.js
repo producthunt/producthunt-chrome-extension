@@ -1,17 +1,11 @@
 /**
- * Dependencies.
- */
-
-let keyMirror = require('react/lib/keyMirror');
-
-/**
  * Constants.
  */
 
-const consts = keyMirror({
-  RECEIVE_POST: null,
-  RECEIVE_POSTS: null
-});
+const consts = {
+  RECEIVE_POST: 'RECEIVE_POST',
+  RECEIVE_POSTS: 'RECEIVE_POSTS'
+};
 
 /**
  * Export `consts`.

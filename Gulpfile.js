@@ -102,12 +102,11 @@ gulp.task('js', function() {
   return bundles.map(function(bundle) {
     var bundler = browserify({
       entries: [bundle.entry],
-      transform: [envify, babelify],
       debug: DEV,
       cache: {},
       packageCache: {},
       fullPaths: true
-    });
+    }).transform(babelify, {presets: ['es2015', 'react']}).transform(envify);
 
     bundler.on('log', gutil.log)
 
@@ -230,8 +229,10 @@ gulp.task('test-unit', function(done) {
     config: {
       rootDir: __dirname,
       testPathDirs: [__dirname + '/src'],
-      scriptPreprocessor: __dirname + '/node_modules/babel-jest/index.js',
-      setupEnvScriptFile: __dirname + '/jest/env.js',
+      transform: {
+        '.*': "<rootDir>/node_modules/babel-jest",
+      },
+      setupFiles: [__dirname + '/jest/env.js'],
       setupTestFrameworkScriptFile: __dirname + '/jest/setup.js'
     }
   };

@@ -2,7 +2,7 @@
  * Dependencies.
  */
 
-let React = require('react');
+let ReactDom = require('react-dom');
 
 /**
  * Render React `component`.
@@ -18,7 +18,7 @@ function render(component, el) {
     document.body.insertBefore(el, document.body.firstChild)
   }
 
-  React.render(component, el);
+  ReactDom.render(component, el);
 }
 
 /**

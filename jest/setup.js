@@ -1,16 +1,27 @@
-jasmine.getEnv().beforeEach(function() {
-  var React = require('react/addons');
+const ReactDOM = require('react-dom');
+const ReactDOMServer = require('react-dom/server');
+const TestUtils = require('react-addons-test-utils');
 
-  // add custom matchers
-  this.addMatchers({
-    toMatchContent: function(expected) {
-      return this.actual.getDOMNode().innerHTML.match(expected);
-    },
-
-    toRender: function(expected) {
-      var div = document.createElement('div');
-      var component = React.render(this.actual, div);;
-      return component.getDOMNode().innerHTML.match(expected);
+jasmine.addMatchers({
+  toRender: function() {
+    function renderComponent(actual) {
+      if (TestUtils.isElement(actual)) {
+        return ReactDOMServer.renderToString(actual);
+      } else {
+        return ReactDOM.findDOMNode(actual).innerHTML;
+      }
     }
-  });
+
+    return {
+      compare: function(actual, expected) {
+        const html = renderComponent(actual);
+        const pass = !!html.match(expected);
+
+        return {
+          pass: pass,
+          message: pass ? '' : `Expected ${ html } to match "${ expected }", but it didn't`,
+        };
+      }
+    };
+  }
 });

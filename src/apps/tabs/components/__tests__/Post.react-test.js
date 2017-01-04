@@ -2,8 +2,7 @@ jest.autoMockOff();
 
 describe('Post', function() {
   let Post = require('../Post.react');
-  let React = require('react/addons');
-  let TestUtils = React.addons.TestUtils;
+  let React = require('react');
   let post = {
     name: 'Name',
     tagline: 'Tagline',
@@ -35,5 +34,5 @@ describe('Post', function() {
 
   it('renders the discussion_url', function() {
     expect(<Post post={post} />).toRender(post.discussion_url);
-  });
 });
+  });

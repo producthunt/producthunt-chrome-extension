@@ -2,8 +2,9 @@ jest.autoMockOff();
 
 describe('PostGroup', function() {
   let PostGroup = require('../PostGroup.react');
-  let React = require('react/addons');
+  let React = require('react');
   let post = {
+    id: 1,
     name: 'Name',
     tagline: 'Tagline',
     day: '2015-01-01',
