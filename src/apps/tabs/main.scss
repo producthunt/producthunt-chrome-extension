@@ -6,19 +6,10 @@
 // Variables
 
 $black:     #000000;
-$red:       #da552f;
-$yellow:    #fcf5e2;
-$brown-1:   #534540;
-$brown-2:   #685f5c;
-$grey-1:    #999999;
-$grey-2:    #eceae9;
-$grey-3:    #bbbbbb;
-$grey-4:    #dddddd;
-$grey-5:    #a9a29f;
-$cream-1:   #d5d2d0;
-$cream-2:   #a9a29f;
-
-$line:      $grey-2;
+$white:     #ffffff;
+$orange:    #da552f;
+$grey:    #999999;
+$line:      #e8e8e8;
 
 // Definitions
 
@@ -26,8 +17,12 @@ html,
 body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
   background: #f9f9f9;
-}
 
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}
+brown-
 a { text-decoration: none; }
 
 .clickable { cursor: pointer; }
@@ -47,7 +42,7 @@ a { text-decoration: none; }
   line-height: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  color: $grey-1;
+  color: $grey;
 }
 
 .main {
@@ -87,7 +82,7 @@ a { text-decoration: none; }
 
   .title {
     float: left;
-    color: $red;
+    color: $orange;
     font-size: 20px;
     font-weight: bold;
     line-height: $header-height;
@@ -114,107 +109,88 @@ a { text-decoration: none; }
     }
   }
 
+  .products {
+    margin-left: -10px;
+  }
+
   .product {
-    @include transition(background-color, 0.1s, ease);
-    background-color: $grey-2;
-    border-radius: 4px;
+    @include transition(top, 0.1s, ease);
+    @include transition(box-shadow, 0.2s, ease);
+    background-color: $white;
+    border-radius: 3px;
+    border: 1px solid $line;
     float: left;
-    height: 340px;
-    margin: 10px;
-    padding: 10px;
-    width: 300px;
+    height: 300px;
+    margin: {
+      left: 10px;
+      bottom: 10px;
+    }
+    width: 312px;
+    position: relative;
+    top: 0px;
+    box-shadow: 0 1px 4px 0 #f9f9f9;
 
     &:hover {
-      @include transition(background, 0.1s);
-      background-color: $yellow;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
+      top: -2px;
     }
 
-    .image {
-      height: 196px;
-      margin-bottom: 10px;
-      width: 280px;
+    .gallery {
+      height: 200px;
 
       img {
         height: 100%;
         width: 100%;
-
-        &:hover {
-          @include transition(opacity, 0.2s);
-          opacity: 0.8;
-        }
       }
     }
 
-    .container { position: relative; }
+    .name {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
 
-    .votes {
-      background-image: url('assets/arrow_up.svg');
-      background-position: center 2px;
-      background-repeat: no-repeat;
-      border-radius: 3px;
-      color: $brown-1;
-      font-size: 13px;
-      height: 44px;
-      left: 0;
-      margin-right: 10px;
-      padding-top: 23px;
-      position: absolute;
-      text-align: center;
-      top: 0;
-      width: 33px;
+    .tagline {
+      color: $grey;
+      height: 36px;
     }
 
     .details {
-      margin-left: 44px;
-      margin-right: 10px;
+      position: relative;
+      border-top: 1px solid $line;
+      padding: 10px;
+    }
 
-      a:hover {
-        @include transition(opacity, 0.2s);
-        text-decoration: underline;
-        opacity: 0.8;
-      }
+    .info {
+      text-align: right;
+    }
+
+    .votes {
+      display: inline-block;
+      background-image: url('assets/arrow_up.svg');
+      background-position: 0px 3px;
+      background-repeat: no-repeat;
+      background-size: 11px;
+      color: $grey;
+      padding-left: 15px;
     }
 
     .comments {
+      margin-left: 10px;
+      display: inline-block;
       background-image: url('assets/comment.svg');
+      background-position: 0px 3px;
       background-repeat: no-repeat;
-      color: $cream-2;
-      height: 20px;
-      min-width: 30px;
-      padding-left: 20px;
-      position: absolute;
-      right: 0;
-      text-align: right;
-      top: 0;
-
-      &:hover {
-        background-image: url('assets/comment_hover.svg');
-        color: $red;
-      }
-    }
-
-    h3 {
-      color: $brown-1;
-      font-size: 16px;
-      margin: 0 23px 5px 0;
-      padding: 0;
-    }
-
-    p {
-      color: $brown-2;
-      font-size: 16px;
-      margin: 0;
-      padding: 0;
+      background-size: 10px 11px;
+      color: $grey;
+      padding-left: 15px;
     }
   }
 }
 
 .loading {
   clear: both;
-  color: $grey-4;
-  display: block;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 40px;
+  color: $line;
+  padding: 20px;
   text-align: center;
 }

@@ -111,7 +111,7 @@ let DefaultTab = React.createClass({
         <Header />
         <div className="products">
           <InfiniteScroll
-            loader={<div className="loading">Hunting down posts...</div>}
+            loader={<div className="featured loading">Hunting down posts...</div>}
             pageStart={this.state.startPage}
             loadMore={this._loadNext}
             hasMore={true}>

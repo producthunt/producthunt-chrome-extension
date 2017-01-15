@@ -33,7 +33,9 @@ export default function PostGroup({ posts }) {
           <span className="title date">{monthDay}</span>
           <span className="featured">{humanDay}</span>
         </h2>
-        {groups[day].map((post) => <Post key={post.id} post={post} />)}
+        <div className="products">
+          {groups[day].map((post) => <Post key={post.id} post={post} />)}
+        </div>
       </div>
     );
   });
