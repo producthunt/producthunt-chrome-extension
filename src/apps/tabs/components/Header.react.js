@@ -2,7 +2,7 @@
  * Dependencies.
  */
 
-let React = require('react');
+import React from 'react';
 
 /**
  * Header Component.
@@ -14,33 +14,15 @@ let React = require('react');
  * ```js
  * <Header />
  * ```
- *
- * @class
  */
 
-let Header = React.createClass({
-
-  /**
-   * Render the view.
-   */
-
-  render() {
-    return (
-      <header className="main-header">
-        <a href="https://www.producthunt.com">
-          <img src="/apps/tabs/assets/logo.svg" alt="Product Hunt" className="logo" />
-          <div className="title">
-            <h1>Product Hunt</h1>
-            <h2>The best new products, every day</h2>
-          </div>
-        </a>
-      </header>
-    );
-  }
-});
-
-/**
- * Export `Product`.
- */
-
-module.exports = Header;
+export default function Header() {
+  return (
+    <header className="header">
+      <a href="https://www.producthunt.com">
+        <img className="logo" src="/apps/tabs/assets/logo.svg" alt="Product Hunt"  />
+        <h1 className="title">Product Hunt</h1>
+      </a>
+    </header>
+  );
+}

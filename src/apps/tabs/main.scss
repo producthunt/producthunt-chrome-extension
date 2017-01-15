@@ -17,10 +17,6 @@ $grey-5:    #a9a29f;
 $cream-1:   #d5d2d0;
 $cream-2:   #a9a29f;
 
-// Grid settings
-
-$max-width: 960px;
-
 // Definitions
 
 html,
@@ -28,63 +24,11 @@ body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
 }
 
+a { text-decoration: none; }
+
 .clickable { cursor: pointer; }
 
-header {
-  height: 40px;
-
-  margin: {
-    top: 15px;
-    bottom: 15px;
-  }
-
-  a { text-decoration: none; }
-
-  .logo {
-    display: block;
-    float: left;
-    height: 40px;
-    margin-right: 10px;
-    width: 40px;
-  }
-
-  .title { float: left; }
-
-  h1 {
-    color: #da552f;;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 22px;
-    margin: 0;
-
-    @include medium-screen {
-      margin-top: 10px;
-    }
-
-    @include small-screen {
-      display: none;
-    }
-  }
-
-  h2 {
-    color: #999999;
-    font-size: 16px;
-    font-weight: normal;
-    margin-top: 0;
-
-    @include medium-screen {
-      display: none;
-    }
-
-    @include small-screen {
-      display: none;
-    }
-  }
-}
-
-.clear {
-  @include clearfix;
-}
+.clear { @include clearfix; }
 
 .main {
   @include clearfix;
@@ -104,6 +48,38 @@ header {
   margin: {
     left: auto;
     right: auto;
+  }
+}
+
+.header {
+  $header-height: 30px;
+
+  height: $header-height;
+  margin: 15px 0;
+
+  .logo {
+    display: block;
+    float: left;
+    height: $header-height;
+    width: $header-height;
+    margin-right: 10px;
+  }
+
+  .title {
+    float: left;
+    color: $red;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: $header-height;
+    margin: 0;
+
+    @include medium-screen {
+      margin-top: 10px;
+    }
+
+    @include small-screen {
+      display: none;
+    }
   }
 }
 
