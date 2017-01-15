@@ -11,6 +11,8 @@ let PostGroup = require('./PostGroup.react');
 let PostStore = require('../../../common/stores/PostStore');
 let api = require('../../../common/api');
 
+import Header from './Header.react';
+
 /**
  * Constants.
  */
@@ -106,6 +108,7 @@ let DefaultTab = React.createClass({
   render() {
     return (
       <div>
+        <Header />
         <div className="products">
           <InfiniteScroll
             loader={<div className="loading">Hunting down posts...</div>}
