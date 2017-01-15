@@ -2,12 +2,10 @@
  * Dependencies.
  */
 
-let React = require('react');
-let debug = require('debug')('ph:tab:main');
-let DefaultTab = require('./components/DefaultTab.react');
-let renderComponent = require('../../common/render');
-let loadGoogleAnalytics = require('../../common/google-analytics');
-let settings = require('../../common/settings');
+import React from 'react';
+import DefaultTab from './components/DefaultTab.react';
+import renderComponent from '../../common/render';
+import loadGoogleAnalytics from '../../common/google-analytics';
 
 /**
  * Constants.

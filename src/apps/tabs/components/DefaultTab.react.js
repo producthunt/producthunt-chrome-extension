@@ -2,14 +2,12 @@
  * Dependencies.
  */
 
-let React = require('react');
-let debug = require('debug')('ph:tabs:default-tab');
-let InfiniteScroll = require('./InfiniteScroll.react');
-let cache = require('lscache');
-let async = require('async');
-let PostStore = require('../../../common/stores/PostStore');
-let api = require('../../../common/api');
-
+import React from 'react';
+import InfiniteScroll from './InfiniteScroll.react';
+import cache from 'lscache';
+import async from 'async';
+import PostStore from '../../../common/stores/PostStore';
+import api from '../../../common/api';
 import PostGroup from './PostGroup.react';
 import Header from './Header.react';
 
@@ -20,10 +18,16 @@ import Header from './Header.react';
 const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
 
 /**
+ * Debuger.
+ */
+
+const debug = require('debug')('ph:tabs:default-tab');
+
+/**
  * Queue for fetching the next page with posts.
  */
 
-let fetch = async.queue(function(daysAgo, cb) {
+const fetch = async.queue(function(daysAgo, cb) {
   debug('fetching next day');
   api.getPosts(daysAgo, cb);
 });
@@ -45,18 +49,20 @@ let fetch = async.queue(function(daysAgo, cb) {
  * - `url`:       Product pane url
  * - `startPage`: Start fetching posts from `startPage` days ago
  *
- * @class
  */
 
-let DefaultTab = React.createClass({
+export default class DefaultTab extends React.Component {
 
   /**
    * Return initial state.
-   *
-   * @returns {Object}
    */
 
-  getInitialState() {
+  constructor(props) {
+    super(props);
+
+    this.loadNext = this.loadNext.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
     this.cache = cache.get(CACHE_KEY);
 
     let firstPageCached = !!this.cache;
@@ -67,11 +73,11 @@ let DefaultTab = React.createClass({
 
     debug('start page: %d', startPage);
 
-    return {
+    this.state = {
       posts: this.cache || [],
-      startPage: startPage
+      startPage: startPage,
     };
-  },
+  }
 
   /**
    * Before mounting the component, cache the current
@@ -81,25 +87,25 @@ let DefaultTab = React.createClass({
   componentWillMount() {
     if (this.cache) {
       debug('using cache, refreshing it');
-      this._loadNext(0);
+      this.loadNext(0);
     }
-  },
+  }
 
   /**
    * On component mount, subscribe to post changes.
    */
 
   componentDidMount() {
-    PostStore.addChangeListener(this._handleChange);
-  },
+    PostStore.addChangeListener(this.handleChange);
+  }
 
   /**
    * On component unmount, unsubscribe from post changes.
    */
 
   componentWillUnmount() {
-    PostStore.removeChangeListener(this._handleChange);
-  },
+    PostStore.removeChangeListener(this.handleChange);
+  }
 
   /**
    * Render the view.
@@ -113,14 +119,14 @@ let DefaultTab = React.createClass({
           <InfiniteScroll
             loader={<div className="featured loading">Hunting down posts...</div>}
             pageStart={this.state.startPage}
-            loadMore={this._loadNext}
+            loadMore={this.loadNext}
             hasMore={true}>
             <PostGroup posts={this.state.posts} />
           </InfiniteScroll>
         </div>
       </div>
     );
-  },
+  }
 
   /**
    * Load next page (day) with posts.
@@ -128,21 +134,15 @@ let DefaultTab = React.createClass({
    * @param {Number} page
    */
 
-  _loadNext(daysAgo) {
+  loadNext(daysAgo) {
     fetch.push(daysAgo);
-  },
+  }
 
   /**
    * Handle post change event.
    */
 
-  _handleChange() {
+  handleChange() {
     this.setState({ posts: PostStore.getPosts() });
   }
-});
-
-/**
- * Export `DefaultTab`.
- */
-
-module.exports = DefaultTab;
+}
