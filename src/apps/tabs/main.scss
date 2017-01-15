@@ -5,6 +5,7 @@
 
 // Variables
 
+$black:     #000000;
 $red:       #da552f;
 $yellow:    #fcf5e2;
 $brown-1:   #534540;
@@ -17,11 +18,14 @@ $grey-5:    #a9a29f;
 $cream-1:   #d5d2d0;
 $cream-2:   #a9a29f;
 
+$line:      $grey-2;
+
 // Definitions
 
 html,
 body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
+  background: #f9f9f9;
 }
 
 a { text-decoration: none; }
@@ -29,6 +33,22 @@ a { text-decoration: none; }
 .clickable { cursor: pointer; }
 
 .clear { @include clearfix; }
+
+.featured {
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: .2px;
+  line-height: 24px;
+  color: $black;
+}
+
+.title {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $grey-1;
+}
 
 .main {
   @include clearfix;
@@ -84,18 +104,13 @@ a { text-decoration: none; }
 }
 
 .products {
-  h2 {
-    text-align: center;
-    clear: both;
-    color: $brown-1;
-    font-size: 22px;
-    font-weight: 600;
-    margin: 20px 0;
+  .day {
+    margin: 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $line;
 
     .date {
-      color: $grey-3;
-      font-size: 14px;
-      font-weight: normal;
+      float: right;
     }
   }
 

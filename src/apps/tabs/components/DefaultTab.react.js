@@ -7,10 +7,10 @@ let debug = require('debug')('ph:tabs:default-tab');
 let InfiniteScroll = require('./InfiniteScroll.react');
 let cache = require('lscache');
 let async = require('async');
-let PostGroup = require('./PostGroup.react');
 let PostStore = require('../../../common/stores/PostStore');
 let api = require('../../../common/api');
 
+import PostGroup from './PostGroup.react';
 import Header from './Header.react';
 
 /**

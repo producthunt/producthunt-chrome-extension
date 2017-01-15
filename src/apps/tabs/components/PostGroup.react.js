@@ -2,11 +2,11 @@
  * Dependencies.
  */
 
-let React = require('react');
-let moment = require('moment');
-let Post = require('./Post.react');
-let getDay = require('../util/getDay');
-let groupByDay = require('../util/groupByDay');
+import React from 'react';
+import moment from 'moment';
+import Post from './Post.react';
+import getDay from '../util/getDay';
+import groupByDay from '../util/groupByDay';
 
 /**
  * Post Group component.
@@ -16,49 +16,29 @@ let groupByDay = require('../util/groupByDay');
  * Usage:
  *
  * ```js
- * <PostGroup />
+ * <PostGroup posts={posts} />
  * ```
- *
- * Properties:
- *
- * - `posts`:   Posts to be grouped and rendered.
- * - `onClick`: On post click cb
- *
- * @class
  */
 
-let PostGroup = React.createClass({
-
-  /**
-   * Render the view.
-   */
-
-  render() {
-    let groups = groupByDay(this.props.posts);
-    let out = Object.keys(groups).map(function(day) {
-      let date = moment(new Date(day));
-      let humanDay = getDay(date);
-      let monthDay = date.format('MMMM Do');
-      let posts = groups[day].map(function(post) {
-        return <Post key={post.id} post={post} />;
-      });
-
-      return (
-        <div className="clear" key={day}>
-          <h2>{humanDay} <span className="date">{monthDay}</span></h2>
-          {posts}
-        </div>
-      );
-    });
+export default function PostGroup({ posts }) {
+  let groups = groupByDay(posts);
+  let out = Object.keys(groups).map(function(day) {
+    let date = moment(new Date(day));
+    let humanDay = getDay(date);
+    let monthDay = date.format('MMMM Do');
 
     return (
-      <div>{out}</div>
+      <div className="clear" key={day}>
+        <h2 className="day">
+          <span className="title date">{monthDay}</span>
+          <span className="featured">{humanDay}</span>
+        </h2>
+        {groups[day].map((post) => <Post key={post.id} post={post} />)}
+      </div>
     );
-  }
-});
+  });
 
-/**
- * Export `PostGroup`.
- */
-
-module.exports = PostGroup;
+  return (
+    <div>{out}</div>
+  );
+}
