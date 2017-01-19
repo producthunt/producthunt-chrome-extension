@@ -9,7 +9,7 @@ import async from 'async';
 import PostStore from '../../../common/stores/PostStore';
 import api from '../../../common/api';
 import PostGroup from './PostGroup.react';
-import Header from './Header.react';
+import Logo from './Logo.react';
 
 /**
  * Constants.
@@ -114,16 +114,14 @@ export default class DefaultTab extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <div className="products">
-          <InfiniteScroll
-            loader={<div className="featured loading">Hunting down posts...</div>}
-            pageStart={this.state.startPage}
-            loadMore={this.loadNext}
-            hasMore={true}>
-            <PostGroup posts={this.state.posts} />
-          </InfiniteScroll>
-        </div>
+        <Logo />
+        <InfiniteScroll
+          loader={<div className="featured loading">Hunting down posts...</div>}
+          pageStart={this.state.startPage}
+          loadMore={this.loadNext}
+          hasMore={true}>
+          <PostGroup posts={this.state.posts} />
+        </InfiniteScroll>
       </div>
     );
   }

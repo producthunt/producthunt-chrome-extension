@@ -17,12 +17,13 @@ html,
 body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
   background: #f9f9f9;
-
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
+  padding: 0px;
+  margin: 0px;
 }
-brown-
+
 a { text-decoration: none; }
 
 .clickable { cursor: pointer; }
@@ -60,133 +61,119 @@ a { text-decoration: none; }
     max-width: 960px;
   }
 
+  position: relative;
   margin: {
     left: auto;
     right: auto;
   }
 }
 
-.header {
-  $header-height: 30px;
+.logo {
+  @include transition(opacity, 0.2s, ease);
+  position: absolute;
+  top: 0px;
+  left: -40px;
+  height: 30px;
+  width: 30px;
+  opacity: 1.0;
 
-  height: $header-height;
-  margin: 15px 0;
-
-  .logo {
-    display: block;
-    float: left;
-    height: $header-height;
-    width: $header-height;
-    margin-right: 10px;
+  &:hover {
+    opacity: 0.8;
   }
 
-  .title {
-    float: left;
-    color: $orange;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: $header-height;
-    margin: 0;
+  img {
+    width: 100%;
+  }
+}
 
-    @include medium-screen {
-      margin-top: 10px;
-    }
+.day {
+  margin: 10px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid $line;
 
-    @include small-screen {
-      display: none;
-    }
+  .date {
+    float: right;
   }
 }
 
 .products {
-  .day {
-    margin: 10px 0;
-    padding-bottom: 5px;
-    border-bottom: 1px solid $line;
+  margin-left: -10px;
+}
 
-    .date {
-      float: right;
+.product {
+  @include transition(top, 0.1s, ease);
+  @include transition(box-shadow, 0.2s, ease);
+  background-color: $white;
+  border-radius: 3px;
+  border: 1px solid $line;
+  float: left;
+  height: 300px;
+  margin: {
+    left: 10px;
+    bottom: 10px;
+  }
+  width: 312px;
+  position: relative;
+  top: 0px;
+  box-shadow: 0 1px 4px 0 #f9f9f9;
+
+  &:hover {
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
+    top: -2px;
+  }
+
+  .gallery {
+    height: 200px;
+
+    img {
+      height: 100%;
+      width: 100%;
     }
   }
 
-  .products {
-    margin-left: -10px;
+  .name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
-  .product {
-    @include transition(top, 0.1s, ease);
-    @include transition(box-shadow, 0.2s, ease);
-    background-color: $white;
-    border-radius: 3px;
-    border: 1px solid $line;
-    float: left;
-    height: 300px;
-    margin: {
-      left: 10px;
-      bottom: 10px;
-    }
-    width: 312px;
+  .tagline {
+    color: $grey;
+    height: 36px;
+  }
+
+  .details {
     position: relative;
-    top: 0px;
-    box-shadow: 0 1px 4px 0 #f9f9f9;
+    border-top: 1px solid $line;
+    padding: 10px;
+  }
 
-    &:hover {
-      box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
-      top: -2px;
-    }
+  .info {
+    text-align: right;
+  }
 
-    .gallery {
-      height: 200px;
+  .votes {
+    display: inline-block;
+    background-image: url('assets/arrow_up.svg');
+    background-position: 0px 3px;
+    background-repeat: no-repeat;
+    background-size: 11px;
+    color: $grey;
+    padding-left: 15px;
+  }
 
-      img {
-        height: 100%;
-        width: 100%;
-      }
-    }
-
-    .name {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    .tagline {
-      color: $grey;
-      height: 36px;
-    }
-
-    .details {
-      position: relative;
-      border-top: 1px solid $line;
-      padding: 10px;
-    }
-
-    .info {
-      text-align: right;
-    }
-
-    .votes {
-      display: inline-block;
-      background-image: url('assets/arrow_up.svg');
-      background-position: 0px 3px;
-      background-repeat: no-repeat;
-      background-size: 11px;
-      color: $grey;
-      padding-left: 15px;
-    }
-
-    .comments {
-      margin-left: 10px;
-      display: inline-block;
-      background-image: url('assets/comment.svg');
-      background-position: 0px 3px;
-      background-repeat: no-repeat;
-      background-size: 10px 11px;
-      color: $grey;
-      padding-left: 15px;
-    }
+  .comments {
+    margin-left: 10px;
+    display: inline-block;
+    background-image: url('assets/comment.svg');
+    background-position: 0px 3px;
+    background-repeat: no-repeat;
+    background-size: 10px 11px;
+    color: $grey;
+    padding-left: 15px;
   }
 }
+
 
 .loading {
   clear: both;
