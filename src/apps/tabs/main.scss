@@ -5,11 +5,13 @@
 
 // Variables
 
-$black:     #000000;
-$white:     #ffffff;
-$orange:    #da552f;
-$grey:    #999999;
-$line:      #e8e8e8;
+$black:  #000000;
+$white:  #ffffff;
+$orange: #da552f;
+$grey:   #999999;
+$silver: #e8e8e8;
+
+$radius: 3px;
 
 // Definitions
 
@@ -89,7 +91,7 @@ a { text-decoration: none; }
 .day {
   margin: 10px 0;
   padding: 5px 0;
-  border-bottom: 1px solid $line;
+  border-bottom: 1px solid $silver;
 
   .date {
     float: right;
@@ -104,10 +106,10 @@ a { text-decoration: none; }
   @include transition(top, 0.1s, ease);
   @include transition(box-shadow, 0.2s, ease);
   background-color: $white;
-  border-radius: 3px;
-  border: 1px solid $line;
+  border-radius: $radius;
+  border: 1px solid $silver;
   float: left;
-  height: 300px;
+  height: 305px;
   margin: {
     left: 10px;
     bottom: 10px;
@@ -140,16 +142,40 @@ a { text-decoration: none; }
   .tagline {
     color: $grey;
     height: 36px;
+    margin-bottom: 5px;
   }
 
   .details {
     position: relative;
-    border-top: 1px solid $line;
+    border-top: 1px solid $silver;
     padding: 10px;
   }
 
   .info {
     text-align: right;
+  }
+
+  .topics {
+    float: left;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: .6px;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: $grey;
+  }
+
+  .topic {
+    background: $silver;
+    border-radius: $radius;
+    color: $grey;
+    padding: 3px 4px 1px;
+    display: inline-block;
+
+    & + .topic {
+      margin-left: 5px;
+    }
   }
 
   .votes {
@@ -177,7 +203,7 @@ a { text-decoration: none; }
 
 .loading {
   clear: both;
-  color: $line;
+  color: $silver;
   padding: 20px;
   text-align: center;
 }

@@ -4,6 +4,7 @@
 
 import React from 'react';
 import analytics from '../../../common/analytics';
+import sliceWithRest from '../util/sliceWithRest';
 
 /**
  * Post Component.
@@ -30,6 +31,7 @@ export default class Post extends React.Component {
 
   render() {
     let post = this.props.post;
+    let [topics, overflow] = sliceWithRest(post.topics, 1);
 
     return (
       <div className="product clickable" onClick={this.openPost}>
@@ -40,6 +42,13 @@ export default class Post extends React.Component {
           <div className="name featured" title={post.name}>{post.name}</div>
           <div className="tagline">{post.tagline}</div>
           <div className="info">
+            <span className="topics">
+              {topics.map(({ id, name }) => (
+                <span key={id} className="topic">{name}</span>
+              ))}
+              {overflow.length > 0 &&
+                <span title={overflow.map(({ name }) => name).join(', ')}> +{overflow.length}</span>}
+            </span>
             <span className="votes">
               {post.votes_count}
             </span>

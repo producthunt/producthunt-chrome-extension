@@ -9,7 +9,8 @@ describe('Post', function() {
     discussion_url: 'http://example.com',
     screenshot_url: { '300px': 'http://example.com/screen' },
     votes_count: 32,
-    comments_count: 22
+    comments_count: 22,
+    topics: [],
   };
 
   it('renders the votes count', function() {
@@ -34,5 +35,5 @@ describe('Post', function() {
 
   it('renders the discussion_url', function() {
     expect(<Post post={post} />).toRender(post.discussion_url);
-});
   });
+});

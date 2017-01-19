@@ -11,7 +11,8 @@ describe('PostGroup', function() {
     discussion_url: 'http://example.com',
     screenshot_url: { '300px': 'http://example.com/screen' },
     votes_count: 32,
-    comments_count: 22
+    comments_count: 22,
+    topics: [],
   };
 
   it('renders the group name', function() {
