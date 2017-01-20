@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="16px" height="14px" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>Oval 28</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Grid" sketch:type="MSArtboardGroup" transform="translate(-586.000000, -792.000000)" fill="#D2CECC">
-            <g id="Group" sketch:type="MSLayerGroup" transform="translate(335.000000, 592.000000)">
-                <g id="Group-5" transform="translate(251.000000, 196.000000)" sketch:type="MSShapeGroup">
-                    <path d="M1.86939273,14.0602414 C0.702638252,12.9958865 0,11.6232666 0,10.125 C0,6.74225591 3.581722,4 8,4 C12.418278,4 16,6.74225591 16,10.125 C16,13.5077441 12.418278,16.25 8,16.25 C6.90182358,16.25 5.85532842,16.0805872 4.90266728,15.7740349 C3.34384918,16.6194283 0.296389128,17.7364185 0.296389128,17.7364185 C0.296389128,17.7364185 1.31560361,15.4384523 1.86939273,14.0602414 Z" id="Oval-28"></path>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg"><title>Oval-28</title><path d="M1.87 10.06C.702 8.996 0 7.623 0 6.125 0 2.742 3.582 0 8 0s8 2.742 8 6.125-3.582 6.125-8 6.125c-1.098 0-2.145-.17-3.097-.476-1.56.845-4.607 1.962-4.607 1.962s1.02-2.298 1.573-3.676z" fill="#999" fill-rule="evenodd"/></svg>
