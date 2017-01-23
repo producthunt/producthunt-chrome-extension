@@ -18,7 +18,7 @@ import Logo from './Logo.react';
 const CACHE_KEY = process.env.PRODUCTS_CACHE_KEY;
 
 /**
- * Debuger.
+ * Logger.
  */
 
 const debug = require('debug')('ph:tabs:default-tab');
