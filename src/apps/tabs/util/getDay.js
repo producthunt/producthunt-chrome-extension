@@ -7,7 +7,7 @@
  * @public
  */
 
-function getDay(date) {
+export default function getDay(date) {
   let diff = date.diff(new Date, 'days');
 
   if (diff === 0) {
@@ -18,9 +18,3 @@ function getDay(date) {
     return date.format('dddd');
   }
 }
-
-/**
- * Export `getDay`.
- */
-
-module.exports = getDay;

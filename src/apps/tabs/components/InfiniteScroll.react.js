@@ -2,8 +2,8 @@
  * Dependencies.
  */
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 /**
  * Utils.
@@ -20,60 +20,63 @@ function topPosition(domElt) {
  * InfiniteScroll component.
  */
 
-var InfiniteScroll = React.createClass({
-  getDefaultProps: function() {
-    return {
-      pageStart: 0 ,
-      hasMore: false,
-      loadMore: function() {},
-      threshold: 250,
-      loader: <div></div>,
-    };
-  },
-  componentDidMount: function() {
+export default class InfiniteScroll extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.scrollListener = this.scrollListener.bind(this);
+  }
+
+  componentDidMount() {
     this.pageLoaded = this.props.pageStart;
     this.attachScrollListener();
-  },
+  }
 
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     this.attachScrollListener();
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     this.detachScrollListener();
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div>
         {this.props.children}
         {this.props.hasMore && this.props.loader}
       </div>
     );
-  },
+  }
 
-  scrollListener: function() {
+  scrollListener() {
     var el = ReactDOM.findDOMNode(this);
     var scrollTop = window.pageYOffset !== undefined ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
     if (topPosition(el) + el.offsetHeight - scrollTop - window.innerHeight < Number(this.props.threshold)) {
       this.detachScrollListener();
       this.props.loadMore(this.pageLoaded += 1);
     }
-  },
+  }
 
-  attachScrollListener: function() {
+  attachScrollListener() {
     if (!this.props.hasMore) {
       return;
     }
     window.addEventListener('scroll', this.scrollListener);
     window.addEventListener('resize', this.scrollListener);
     this.scrollListener();
-  },
+  }
 
-  detachScrollListener: function() {
+  detachScrollListener() {
     window.removeEventListener('scroll', this.scrollListener);
     window.removeEventListener('resize', this.scrollListener);
-  },
-});
+  }
+}
 
-module.exports = InfiniteScroll;
+InfiniteScroll.defaultProps = {
+  pageStart: 0 ,
+  hasMore: false,
+  loadMore: function() {},
+  threshold: 250,
+  loader: <div></div>,
+};

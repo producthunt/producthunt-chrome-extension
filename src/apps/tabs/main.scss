@@ -1,41 +1,51 @@
 @import "bourbon";
 @import "neat";
-@import "common/header/main";
+@import "common/screens/main";
 @import "common/fonts/proxima-nova";
 
 // Variables
 
-$red:       #da552f;
-$yellow:    #fcf5e2;
-$brown-1:   #534540;
-$brown-2:   #685f5c;
-$grey-1:    #999999;
-$grey-2:    #eceae9;
-$grey-3:    #bbbbbb;
-$grey-4:    #dddddd;
-$grey-5:    #a9a29f;
-$cream-1:   #d5d2d0;
-$cream-2:   #a9a29f;
+$black:  #000000;
+$white:  #ffffff;
+$orange: #da552f;
+$grey:   #999999;
+$silver: #e8e8e8;
 
-// Grid settings
-
-$max-width: 960px;
+$radius: 3px;
 
 // Definitions
 
 html,
 body {
   font-family: 'proxima-nova', 'Proxima Nova', sans-serif;
+  background: #f9f9f9;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
 }
+
+a { text-decoration: none; }
 
 .clickable { cursor: pointer; }
 
-header {
-  @include main-header();
+.clear { @include clearfix; }
+
+.featured {
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: .2px;
+  line-height: 24px;
+  color: $black;
 }
 
-.clear {
-  @include clearfix;
+.title {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $grey;
 }
 
 .main {
@@ -53,129 +63,148 @@ header {
     max-width: 960px;
   }
 
+  position: relative;
   margin: {
     left: auto;
     right: auto;
   }
 }
 
-.products {
-  h2 {
-    text-align: center;
-    clear: both;
-    color: $brown-1;
-    font-size: 22px;
-    font-weight: 600;
-    margin: 20px 0;
+.logo {
+  @include transition(opacity, 0.2s, ease);
+  position: absolute;
+  top: 0px;
+  left: -40px;
+  height: 30px;
+  width: 30px;
+  opacity: 1.0;
 
-    .date {
-      color: $grey-3;
-      font-size: 14px;
-      font-weight: normal;
-    }
+  &:hover {
+    opacity: 0.8;
   }
 
-  .product {
-    @include transition(background-color, 0.1s, ease);
-    background-color: $grey-2;
-    border-radius: 4px;
-    float: left;
-    height: 340px;
-    margin: 10px;
-    padding: 10px;
-    width: 300px;
-
-    &:hover {
-      @include transition(background, 0.1s);
-      background-color: $yellow;
-    }
-
-    .image {
-      height: 196px;
-      margin-bottom: 10px;
-      width: 280px;
-
-      img {
-        height: 100%;
-        width: 100%;
-
-        &:hover {
-          @include transition(opacity, 0.2s);
-          opacity: 0.8;
-        }
-      }
-    }
-
-    .container { position: relative; }
-
-    .votes {
-      background-image: url('assets/arrow_up.svg');
-      background-position: center 2px;
-      background-repeat: no-repeat;
-      border-radius: 3px;
-      color: $brown-1;
-      font-size: 13px;
-      height: 44px;
-      left: 0;
-      margin-right: 10px;
-      padding-top: 23px;
-      position: absolute;
-      text-align: center;
-      top: 0;
-      width: 33px;
-    }
-
-    .details {
-      margin-left: 44px;
-      margin-right: 10px;
-
-      a:hover {
-        @include transition(opacity, 0.2s);
-        text-decoration: underline;
-        opacity: 0.8;
-      }
-    }
-
-    .comments {
-      background-image: url('assets/comment.svg');
-      background-repeat: no-repeat;
-      color: $cream-2;
-      height: 20px;
-      min-width: 30px;
-      padding-left: 20px;
-      position: absolute;
-      right: 0;
-      text-align: right;
-      top: 0;
-
-      &:hover {
-        background-image: url('assets/comment_hover.svg');
-        color: $red;
-      }
-    }
-
-    h3 {
-      color: $brown-1;
-      font-size: 16px;
-      margin: 0 23px 5px 0;
-      padding: 0;
-    }
-
-    p {
-      color: $brown-2;
-      font-size: 16px;
-      margin: 0;
-      padding: 0;
-    }
+  img {
+    width: 100%;
   }
 }
 
+.day {
+  margin: 10px 0;
+  padding: 5px 0;
+  border-bottom: 1px solid $silver;
+
+  .date {
+    padding-top: 5px;
+    float: right;
+  }
+}
+
+.products {
+  margin-left: -10px;
+}
+
+.product {
+  @include transition(top, 0.1s, ease);
+  @include transition(box-shadow, 0.2s, ease);
+  background-color: $white;
+  border-radius: $radius;
+  border: 1px solid $silver;
+  float: left;
+  height: 305px;
+  margin: {
+    left: 10px;
+    bottom: 10px;
+  }
+  width: 312px;
+  position: relative;
+  top: 0px;
+  box-shadow: 0 1px 4px 0 #f9f9f9;
+
+  &:hover {
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
+    top: -2px;
+  }
+
+  .gallery {
+    height: 200px;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .tagline {
+    color: $grey;
+    height: 36px;
+    margin-bottom: 5px;
+  }
+
+  .details {
+    position: relative;
+    border-top: 1px solid $silver;
+    padding: 10px;
+  }
+
+  .info {
+    text-align: right;
+  }
+
+  .topics {
+    float: left;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: .6px;
+    line-height: 12px;
+    text-transform: uppercase;
+    color: $grey;
+  }
+
+  .topic {
+    background: $silver;
+    border-radius: $radius;
+    color: $grey;
+    padding: 3px 4px 1px;
+    display: inline-block;
+
+    & + .topic {
+      margin-left: 5px;
+    }
+  }
+
+  .votes {
+    display: inline-block;
+    background-image: url('assets/arrow_up.svg');
+    background-position: 0px 3px;
+    background-repeat: no-repeat;
+    background-size: 11px;
+    color: $grey;
+    padding-left: 15px;
+  }
+
+  .comments {
+    margin-left: 10px;
+    display: inline-block;
+    background-image: url('assets/comment.svg');
+    background-position: 0px 1px;
+    background-repeat: no-repeat;
+    background-size: 13px 15px;
+    color: $grey;
+    padding-left: 17px;
+  }
+}
+
+
 .loading {
   clear: both;
-  color: $grey-4;
-  display: block;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 40px;
+  color: $silver;
+  padding: 20px;
   text-align: center;
 }

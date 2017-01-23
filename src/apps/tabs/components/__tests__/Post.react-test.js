@@ -1,16 +1,11 @@
 jest.autoMockOff();
 
+import Post from '../Post.react';
+import React from 'react';
+import buildPost from '../../util/buildPost';
+
 describe('Post', function() {
-  let Post = require('../Post.react');
-  let React = require('react');
-  let post = {
-    name: 'Name',
-    tagline: 'Tagline',
-    discussion_url: 'http://example.com',
-    screenshot_url: { '300px': 'http://example.com/screen' },
-    votes_count: 32,
-    comments_count: 22
-  };
+  let post = buildPost();
 
   it('renders the votes count', function() {
     expect(<Post post={post} />).toRender(post.votes_count);
@@ -34,5 +29,5 @@ describe('Post', function() {
 
   it('renders the discussion_url', function() {
     expect(<Post post={post} />).toRender(post.discussion_url);
-});
   });
+});
